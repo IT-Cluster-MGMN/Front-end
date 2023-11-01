@@ -104,6 +104,8 @@ const Registration = () => {
         e.preventDefault();
         if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
             console.log("Успіх")
+            // frontend logic
+            // post name
             setSuccess(true);
         } else {
             setErrMsg('Please fill in all required fields correctly.');
@@ -209,7 +211,6 @@ const Registration = () => {
             </form>
 
             {errMsg && <div className="error">{errMsg}</div>}
-            {success && <div className="success">Registration successful!</div>}
         </div>
     )
 }

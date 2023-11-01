@@ -7,10 +7,12 @@ function App() {
 
   return (
     <>
+      
       <BrowserRouter>
         <Routes>
           <Route path="/reg" element={<Registration/>} />
           <Route path="/log" element={<Login/>} />
+
         </Routes>
       </BrowserRouter>
     </>
