@@ -1,23 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./Registration.css";
 
-// export default Registration;
-function namesValidation(name){
-    return /[a-zA-Zа-яА-Я]{3,20}$/.test(name)
-}
+const NAMES_REGEX = /[a-zA-Zа-яА-Я]{3,20}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
+const PHONE_NUMBER_REGEX = /^\+\d{1,3}\d{9}$/;
 
-function emailValidation(email){
-    return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)
+function isInputValid(value, regex, isOptional){
+    if(value === '' && isOptional){
+        return true;
+    }
+    else{
+        return regex.test(value);
+    }
 }
-
-function passwordValidation(password){
-    return /^[a-zA-Z0-9-]{8,20}$/.test(password)
-}
-
-function phoneNumberValidation(phoneNumber){
-    return /^\+\d{1,3}\d{9}$/.test(phoneNumber)
-}
-
 
 const Registration = () => {
 
@@ -56,49 +52,16 @@ const Registration = () => {
         nameRef.current.focus();
     }, []);
 
-    useEffect(() => {
-        const isValid = namesValidation(name);
-        console.log(isValid);
-        setValidName(isValid);
-    }, [name]);
-
-    useEffect(() => {
-        const isValid = namesValidation(surname);
-        console.log(isValid);
-        setValidSurname(isValid);
-    }, [surname]);
-
-    useEffect(() => {
-        const isValid = patronymic==='' || namesValidation(patronymic);
-        console.log(isValid);
-        setValidPatronymic(isValid);
-    }, [patronymic]);
-
-    useEffect(() => {
-        const isValid = emailValidation(email);
-        console.log(isValid);
-        setValidEmail(isValid);
-    }, [email]);
-
-    useEffect(() => {
-        const isValid = passwordValidation(password);
-        console.log(isValid);
-        setValidPassword(isValid);
-    }, [password]);
-
-    useEffect(() => {
-        const isValid = phoneNumberValidation(phoneNumber);
-        console.log(isValid)
-        setValidPhoneNumber(isValid)
-    }, [phoneNumber])
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [name, surname, patronymic, email, password, phoneNumber])
-
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
+
+    const handleInputChange = (e, setValue, setValid, regex, setFocus, isOptional) => {
+        const value = e.target.value;
+        setValue(value);
+        setFocus(true);
+        setValid(isInputValid(value, regex, isOptional))
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -112,107 +75,93 @@ const Registration = () => {
         }
     };
 
+    const renderError = (focus, valid, message) => {
+        if (focus && valid) {
+          return <div className="error">{message}</div>;
+        }
+        return null;
+    };
+
     return (
         <div>
-            <form className="registration-form" onSubmit={handleSubmit}>
-                <div className="row">
-                    {nameFocus && !validName && <div className="error">Name must contain only letters and have less than 20 symbols</div>}
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        onFocus={() => setNameFocus(true)}
-                        onBlur={() => setNameFocus(false)}
-                        ref={nameRef}
-                    />
-                </div>
-                <div className="row">
-                    {surnameFocus && !validSurname && <div className="error">Surname must contain only letters and have less than 20 symbols</div>}
-                    <input
-                        type="text"
-                        id="surname"
-                        name="surname"
-                        placeholder="Surname"
-                        value={surname}
-                        onChange={(e) => setSurname(e.target.value)}
-                        onFocus={() => setSurnameFocus(true)}
-                        onBlur={() => setSurnameFocus(false)}
-                    />
-                </div>
-
-                <div className="row">
-                    <input
-                        type="text"
-                        id="patronymic"
-                        name="patronymic"
-                        placeholder="Patronymic"
-                        value={patronymic}
-                        onChange={(e) => setPatronymic(e.target.value)}
-                        onFocus={() => setPatronymicFocus(true)}
-                        onBlur={() => setPatronymicFocus(false)}
-                    />
-                    {patronymicFocus && !validPatronymic && <div className="error">Please enter a valid patronymic.</div>}
-                </div>
-
-                <div className="row">
-                {emailFocus && !validEmail && <div className="error">Please enter a valid email.</div>}
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onFocus={() => setEmailFocus(true)}
-                        onBlur={() => setEmailFocus(false)}
-                    />
-                </div>
-
-                <div className="row">
-                    {passwordFocus && !validPassword && <div className="error">Please enter a valid password.</div>}
-                    <input
-                        type={passwordVisible ? "text" : "password"}
-                        id="password"
-                        name="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onFocus={() => setPasswordFocus(true)}
-                        onBlur={() => setPasswordFocus(false)}
-                    />
-                    <button
-                        className="password-toggle"
-                        onClick={togglePasswordVisibility}
-                    >
-                        {passwordVisible ? "Hide" : "Show"}
-                    </button>
-                </div>
-
-                <div className="row">
-                    {phoneNumberFocus && !validPhoneNumber && <div className="error">Please enter a valid phone number.</div>}
-                    <input
-                        type="text"
-                        id="phoneNumber"
-                        placeholder="Phone Number"
-                        name="phoneNumber"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        onFocus={() => setPhoneNumberFocus(true)}
-                        onBlur={() => setPhoneNumberFocus(false)}
-                    />
-                </div>
-
-                <div>
-                    <button type="submit">Register</button>
-                </div>
-            </form>
-
-            {errMsg && <div className="error">{errMsg}</div>}
+          <form className="registration-form" onSubmit={handleSubmit}>
+            <div className="row">
+              {renderError(nameFocus, !validName, 'Name must contain only letters and have less than 20 symbols')}
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => handleInputChange(e, setName, setValidName, NAMES_REGEX, setNameFocus, false)}
+                ref={nameRef}
+              />
+            </div>
+            <div className="row">
+              {renderError(surnameFocus, !validSurname, 'Surname must contain only letters and have less than 20 symbols')}
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                placeholder="Surname"
+                value={surname}
+                onChange={(e) => handleInputChange(e, setSurname, setValidSurname, NAMES_REGEX, setSurnameFocus, false)}
+              />
+            </div>
+            <div className="row">
+              <input
+                type="text"
+                id="patronymic"
+                name="patronymic"
+                placeholder="Patronymic"
+                value={patronymic}
+                onChange={(e) => handleInputChange(e, setPatronymic, setValidPatronymic, NAMES_REGEX, setPatronymicFocus, true)}
+              />
+              {renderError(patronymicFocus, !validPatronymic, 'Please enter a valid patronymic.')}
+            </div>
+            <div className="row">
+              {renderError(emailFocus, !validEmail, 'Please enter a valid email.')}
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => handleInputChange(e, setEmail, setValidEmail, EMAIL_REGEX, setEmailFocus, false)}
+              />
+            </div>
+            <div className="row">
+              {renderError(passwordFocus, !validPassword, 'Please enter a valid password.')}
+              <input
+                type={passwordVisible ? 'text' : 'password'}
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => handleInputChange(e, setPassword, setValidPassword, PASSWORD_REGEX, setPasswordFocus, false)}
+              />
+              <button className="password-toggle" onClick={togglePasswordVisibility}>
+                {passwordVisible ? 'Hide' : 'Show'}
+              </button>
+            </div>
+            <div className="row">
+              {renderError(phoneNumberFocus, !validPhoneNumber, 'Please enter a valid phone number.')}
+              <input
+                type="text"
+                id="phoneNumber"
+                placeholder="Phone Number"
+                name="phoneNumber"
+                value={phoneNumber}
+                onChange={(e) => handleInputChange(e, setPhoneNumber, setValidPhoneNumber, PHONE_NUMBER_REGEX, setPhoneNumberFocus, false)}
+              />
+            </div>
+            <div>
+              <button type="submit">Register</button>
+            </div>
+          </form>
+          {errMsg && <div className="error">{errMsg}</div>}
         </div>
-    )
-}
-
-export default Registration;
+      );
+    };
+    
+    export default Registration;
