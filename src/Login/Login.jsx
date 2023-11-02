@@ -3,6 +3,13 @@ import axios from "axios"
 import { useRef, useState, useEffect } from "react"
 import "./Login.css"
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
+
+function isInputValid(value, regex){
+    return regex.test(value);
+};
+
 const Login = () => {
 
     const emailRef = useRef();
@@ -24,24 +31,15 @@ const Login = () => {
         emailRef.current.focus()
     }, [])
 
-    useEffect(() => {
-        const isValid = email != '';
-        console.log(isValid)
-        setValidEmail(isValid)
-    }, [email])
-
-    useEffect(() => {
-        const isValid = password != '';
-        console.log(isValid)
-        setValidPassword(isValid)
-    }, [password])
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [email, password])
-
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
+    };
+
+    const handleInputChange = (e, setValue, setValid, setFocus, regex) => {
+        const value = e.target.value;
+        setValue(value);
+        setFocus(true);
+        setValid(isInputValid(value, regex));
     };
 
     const handleSubmit = (e) => {
@@ -58,41 +56,44 @@ const Login = () => {
         }
     };
 
+    const renderError = (focus, notValid, message) => {
+        if(focus && notValid){
+            return <div className="error">{message}</div>
+        }
+        return null;
+    }
+
     return(
         <div>
             <form className="login-form" onSubmit={handleSubmit}>
                 <div className="row">
-                    {emailFocus && !validEmail && <div className="error">Please enter a valid email.</div>}
+                    {renderError(emailFocus, !validEmail, 'Please enter a valid email.')}
                         <input
                             type="email"
                             id="email"
                             name="email"
                             placeholder="Email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            onFocus={() => setEmailFocus(true)}
-                            onBlur={() => setEmailFocus(false)}
+                            onChange={(e) => handleInputChange(e, setEmail, setValidEmail, setEmailFocus, EMAIL_REGEX)}
                             ref={emailRef}
                         />
                 </div>
                 <div className="row">
-                    {passwordFocus && !validPassword && <div className="error">Please enter a valid password.</div>}
-                    <input
-                        type={passwordVisible ? "text" : "password"}
-                        id="password"
-                        name="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onFocus={() => setPasswordFocus(true)}
-                        onBlur={() => setPasswordFocus(false)}
-                    />
-                    <button
-                        className="password-toggle"
-                        onClick={togglePasswordVisibility}
-                    >
-                        {passwordVisible ? "Hide" : "Show"}
-                    </button>
+                    {renderError(passwordFocus, !validPassword, 'Please enter a valid password.')}                    
+                        <input
+                            type={passwordVisible ? "text" : "password"}
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => handleInputChange(e, setPassword, setValidPassword, setPasswordFocus, PASSWORD_REGEX)}
+                        />
+                        <button
+                            className="password-toggle"
+                            onClick={togglePasswordVisibility}
+                        >
+                            {passwordVisible ? "Hide" : "Show"}
+                        </button>
                 </div>
                 <div className="registration-link">
                     <Link to={"http://localhost:5173/reg"}>Registration</Link>
