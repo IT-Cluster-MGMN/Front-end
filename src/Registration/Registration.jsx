@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./Registration.css";
+import axios from 'axios';
 
 const NAMES_REGEX = /[a-zA-Zа-яА-Я]{3,20}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
 const PHONE_NUMBER_REGEX = /^\+\d{1,3}\d{9}$/;
+
+const API_ENDPOINT = 'http://localhost:8088/api/register';
 
 function isInputValid(value, regex, isOptional){
     if(value === '' && isOptional){
@@ -66,10 +69,14 @@ const Registration = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
-            console.log("Успіх")
-            // frontend logic
-            // post name
+          try{
+            const createUser = {'name': name, 'surname': surname, 'patronymic': patronymic, 'number': phoneNumber,
+            'username': email, 'password':password};
+            axios.post(API_ENDPOINT, createUser);
             setSuccess(true);
+          } catch (error){
+            setErrMsg('An error occured while registering. Please try later.')
+          }
         } else {
             setErrMsg('Please fill in all required fields correctly.');
         }
