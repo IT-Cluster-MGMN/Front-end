@@ -72,7 +72,8 @@ const Registration = () => {
           try{
             const createUser = {'name': name, 'surname': surname, 'patronymic': patronymic, 'number': phoneNumber,
             'username': email, 'password':password};
-            axios.post(API_ENDPOINT, createUser);
+            axios.post(API_ENDPOINT, createUser)
+            .push('/log');
             setSuccess(true);
           } catch (error){
             setErrMsg('An error occured while registering. Please try later.')
