@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import "./Registration.css";
+import "./Registration/Registration.css";
 import axios from 'axios';
 
 const NAMES_REGEX = /[a-zA-Zа-яА-Я]{3,20}$/;

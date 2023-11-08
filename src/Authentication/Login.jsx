@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useRef, useState, useEffect } from "react"
-import "./Login.css"
+import "./Login/Login.css"
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
+
+const API_ENDPOINT = ""
 
 function isInputValid(value, regex){
     return regex.test(value);
@@ -45,11 +47,14 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validEmail && validPassword) {
-            if (true){
+            try{
+                const loginUser = {"username":email, "password":password}
+                axios.post(API_ENDPOINT, loginUser)
+                .push("/log");
                 setSuccess(true);
             }
-            else{
-                setErrMsg('Wrong email or password');
+            catch(error){
+                setErrMsg("Wrong email or password!")
             }
         } else {
             setErrMsg('Please fill in all required fields correctly.');
