@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import "./Registration/Registration.css";
+import "./Authentication.css";
 import axios from 'axios';
 
 const NAMES_REGEX = /[a-zA-Zа-яА-Я]{3,20}$/;
@@ -64,7 +64,7 @@ const Registration = () => {
         setValue(value);
         setFocus(true);
         setValid(isInputValid(value, regex, isOptional))
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -92,7 +92,7 @@ const Registration = () => {
 
     return (
         <div>
-          <form className="registration-form" onSubmit={handleSubmit}>
+          <form className="authentication-form" onSubmit={handleSubmit}>
             <div className="row">
               {renderError(nameFocus, !validName, 'Name must contain only letters and have less than 20 symbols')}
               <input
@@ -167,7 +167,6 @@ const Registration = () => {
               <button type="submit">Register</button>
             </div>
           </form>
-          {errMsg && <div className="error">{errMsg}</div>}
         </div>
       );
     };

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useRef, useState, useEffect } from "react"
-import "./Login/Login.css"
+import "./Authentication.css"
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
@@ -50,7 +50,7 @@ const Login = () => {
             try{
                 const loginUser = {"username":email, "password":password}
                 axios.post(API_ENDPOINT, loginUser)
-                .push("/log");
+                .push("/");
                 setSuccess(true);
             }
             catch(error){
@@ -70,7 +70,7 @@ const Login = () => {
 
     return(
         <div>
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="authentication-form" onSubmit={handleSubmit}>
                 <div className="row">
                     {renderError(emailFocus, !validEmail, 'Please enter a valid email.')}
                         <input
@@ -101,7 +101,7 @@ const Login = () => {
                         </button>
                 </div>
                 <div className="registration-link">
-                    <Link to={"http://localhost:5173/reg"}>Registration</Link>
+                    <Link to={"/registration"}>Registration</Link>
                 </div>
                 <div>
                     <button type="submit">Login</button>
