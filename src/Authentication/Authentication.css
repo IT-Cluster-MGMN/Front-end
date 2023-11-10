@@ -64,4 +64,8 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
+
+  .reset-password-hint {
+    color:#ccc;
+  }
   
