@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useRef, useState, useEffect } from "react"
-import "./Authentication.css"
+import "../App.css";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;

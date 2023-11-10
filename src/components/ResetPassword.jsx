@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-import "./Authentication.css";
+import "../App.css";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
