@@ -14,6 +14,8 @@ function isInputValid(value, regex){
 
 const Login = () => {
 
+    let home = useHome();
+
     const emailRef = useRef();
     const errRef = useRef();
 
@@ -50,7 +52,10 @@ const Login = () => {
             try{
                 const loginUser = {"username":email, "password":password}
                 axios.post(API_ENDPOINT, loginUser)
-                .push("/");
+                .then((res) => {
+                    home.push("/");
+                })
+                
                 setSuccess(true);
             }
             catch(error){
