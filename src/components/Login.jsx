@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useRef, useState, useEffect } from "react"
 import "../App.css";
@@ -14,7 +14,7 @@ function isInputValid(value, regex){
 
 const Login = () => {
 
-    let history = useHistory();
+    let navigate = useNavigate();
 
     const emailRef = useRef();
     const errRef = useRef();
@@ -53,7 +53,7 @@ const Login = () => {
                 const loginUser = {"username":email, "password":password}
                 axios.post(API_ENDPOINT, loginUser)
                 .then((res) => {
-                    history.push("/");
+                    navigate.push("/");
                 })
                 
                 setSuccess(true);
