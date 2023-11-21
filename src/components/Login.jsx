@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import axios from "axios"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, useHistory } from "react"
 import "../App.css";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -14,7 +14,7 @@ function isInputValid(value, regex){
 
 const Login = () => {
 
-    let home = useHome();
+    let history = useHistory();
 
     const emailRef = useRef();
     const errRef = useRef();
@@ -53,7 +53,7 @@ const Login = () => {
                 const loginUser = {"username":email, "password":password}
                 axios.post(API_ENDPOINT, loginUser)
                 .then((res) => {
-                    home.push("/");
+                    history.push("/");
                 })
                 
                 setSuccess(true);
