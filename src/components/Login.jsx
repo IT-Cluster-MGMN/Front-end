@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import axios from "axios"
-import { useRef, useState, useEffect, useHistory } from "react"
+import { useRef, useState, useEffect } from "react"
 import "../App.css";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
