@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../App.css";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const NAMES_REGEX = /[a-zA-Zа-яА-Я]{3,20}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -19,6 +20,8 @@ function isInputValid(value, regex, isOptional){
 }
 
 const Registration = () => {
+
+    let navigate = useNavigate();
 
     const nameRef = useRef();
     const errRef = useRef();
@@ -73,7 +76,12 @@ const Registration = () => {
             const createUser = {'name': name, 'surname': surname, 'patronymic': patronymic, 'number': phoneNumber,
             'username': email, 'password':password};
             axios.post(API_ENDPOINT, createUser)
-            .push('/log');
+            .then((res) => {
+              navigate("/login");
+            })
+            // .catch((error) => {
+
+            // })
             setSuccess(true);
           } catch (error){
             setErrMsg('An error occured while registering. Please try later.')
