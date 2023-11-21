@@ -53,7 +53,7 @@ const Login = () => {
                 const loginUser = {"username":email, "password":password}
                 axios.post(API_ENDPOINT, loginUser)
                 .then((res) => {
-                    navigate.push("/");
+                    navigate("/");
                 })
                 
                 setSuccess(true);
