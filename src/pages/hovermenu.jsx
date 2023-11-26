@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 
 const HoverMenu = ({ label, items }) => {
-    
   const [isHovered, setIsHovered] = useState(false);
-
   const [subMenuOpen, setSubMenuOpen] = useState(false);
-
   const [subMenuItem, setSubMenuItem] = useState(null);
 
   const handleMouseEnter = () => {

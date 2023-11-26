@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-import { useClickOutside } from "../functions/useClickOutside.js";
-import HoverMenu from './HoverMenu.jsx';
+import { useClickOutside } from "./App";
+import HoverMenu from './hovermenu';
+import { Link } from 'react-router-dom';
 import {
   BsPersonCircle,BsFillPersonFill,BsFillGearFill,
   BsBoxArrowRight,BsFillKeyFill,BsFillPersonPlusFill,
@@ -8,11 +9,10 @@ import {
   BsFillHeartFill,BsList,BsFillTagsFill,BsPhone,BsTv,BsLaptop,
   BsCarFront,BsFillUmbrellaFill,BsRocket, BsTencentQq, BsDribbble, BsFillHouseFill
 } from "react-icons/bs";
-import "../App.css";
+import "./App.css";
 import React from "react";
-import { Link } from "react-router-dom";
 
-function Home() {
+function Desktop1() {
   const [isOpen, setOpen] = useState(false);
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => {
@@ -111,8 +111,8 @@ function Home() {
     </div>
 
     <div className="Left_sidebar">
-      <div className="absolute top-[80px] left-[19px] w-[303px] h-[311px] text-sm">
-          <div className="absolute top-[0px] left-[23px] inline-block w-[280px] h-6 text-black">
+      <div className="absolute top-[80px] left-[19px] w-[303px] h-[311px] ">
+          <div className="absolute top-[0px] left-[23px] inline-block w-[280px] h-6  text-black">
             <BsPhone className="absolute top-[0px] left-[-20px] w-5 h-5 object-cover"/>
             Смартфони та телефони
           </div>
@@ -126,7 +126,7 @@ function Home() {
           </div>
           <div className="absolute top-[70px] left-[23px] inline-block w-[193px] h-[23px] text-black">
             <BsLaptop className="absolute top-[0px] left-[-22px] w-5 h-5 object-cover"/>
-            <b>Ноутбуки та комп’ютери</b>
+            Ноутбуки та комп’ютери
           </div>
           <div className="absolute top-[140px] left-[23px] inline-block w-44 h-[34px] text-black">
             <BsFillUmbrellaFill className="absolute top-[0px] left-[-22px] w-5 h-5 object-cover"/>
@@ -170,12 +170,16 @@ function Home() {
                 <span>Exit</span>
               </li>
               <li className="menu__item">
-                <BsFillKeyFill className="icon w-18 h-18" />
-                <Link to='/login'>Login</Link>
+                <BsFillKeyFill className="icon" />
+                <Link to='/login' className="text-[#747474] no-underline">
+                <span>Login</span>
+                </Link>
               </li>
               <li className="menu__item">
                 <BsFillPersonPlusFill className="icon" />
-                <Link to='/registration'>Registration</Link>
+                <Link to='/registration' className="text-[#747474] no-underline">
+                <span>Regisr</span>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -189,4 +193,4 @@ function Home() {
    );
 };
 
-export default Home;
+export default Desktop1;
