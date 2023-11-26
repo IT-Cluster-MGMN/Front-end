@@ -91,19 +91,19 @@ function Desktop1() {
             <div className="absolute top-[-747px] left-[-500px] font-inter inline-block w-[97px] h-[25px] text-white no-underline">
               <span>Головна</span>
             </div>   
-            <BsFillBasket2Fill className="absolute top-[-753px] right-[350px] w-8 h-8 object-cover" />        
-          <div className="absolute top-[-747px] right-[100px] font-inter inline-block w-[53px] h-5">
+            <BsFillBasket2Fill className="absolute top-[-753px] right-[100px] w-8 h-8 object-cover" />        
+          <div className="absolute top-[-747px] right-[40px] font-inter inline-block w-[53px] h-5">
             <span>Кошик</span>
           </div>
-        <BsFillTagsFill className="absolute top-[-752px] right-[155px] w-8 h-8 object-cover" />    
-          <div className="absolute top-[-747px] right-[295px] font-inter inline-block w-[53px] h-5">
+        <BsFillTagsFill className="absolute top-[-752px] right-[360px] w-8 h-8 object-cover" />    
+          <div className="absolute top-[-747px] right-[300px] font-inter inline-block w-[53px] h-5">
             <span>Продаж</span>
           </div>
-        <BsFillHeartFill className="absolute top-[-750px] right-[38px] w-7 h-7 object-cover " />
-          <div className="absolute top-[-747px] right-[-20px] font-inter inline-block w-[53px] h-5">
+        <BsFillHeartFill className="absolute top-[-750px] right-[-100px] w-7 h-7 object-cover " />
+          <div className="absolute top-[-747px] right-[-160px] font-inter inline-block w-[53px] h-5">
             <span>Обране</span>
           </div>
-        <div className="absolute top-[-747px] right-[-190px] font-inter inline-block w-[53px] h-5">
+        <div className="absolute top-[-747px] right-[-360px] font-inter inline-block w-[53px] h-5">
           <span>Профіль</span>
         </div>
       </div>  
