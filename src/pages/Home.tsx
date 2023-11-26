@@ -37,8 +37,8 @@ function Desktop1() {
       {/* <span>Ось код знизу для navbarу</span> */}
       <div className="absolute top-[-1px] left-[-1px] box-border w-[100vw] h-[45px]  z-2 text-white border-[1px] border-solid border-gray-300 " style={{ backgroundColor: "#0C0C0DE5", opacity: 0.9 }}>{/* ось тут відбувається зміна navbarу*/}
         <div className="absolute top-[12px] left-[125px] font-inter inline-block w-[97px] h-[25px] text-white no-underline">
-          <BsList className= "absolute top-[-5px] left-[70px] w-8 h-8 object-cover" />
-           {/* <span>Каталог</span>  */}
+          {/* <BsList className= "absolute top-[-5px] left-[70px] w-8 h-8 object-cover" /> */}
+           Каталог  
            <HoverMenu
               label="Каталог"
               items={[
@@ -152,7 +152,6 @@ function Desktop1() {
 
         <header className="absolute top-[0px] right-[150px] font-inika inline-block w-4 h-4 object-cover text-white no-underline">
           <button className="menu-button" onClick={() => setOpen(!isOpen)}>
-            <BsPersonCircle />
           </button>
           <nav className={`menu ${isOpen ? "active" : ""}`} ref={menuRef}>
             <ul className="menu__list">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BsList } from 'react-icons/bs';
 
 const HoverMenu = ({ label, items }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -27,8 +28,8 @@ const HoverMenu = ({ label, items }) => {
 
   return (
     <div className="relative inline-block">
-      <div className="hover-menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <div>{label}</div>
+      <div className="hover-menu">
+        <BsList className= "absolute top-[-25px] left-[70px] w-8 h-8 object-cover" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
         {isHovered && (
           <ul>
             {items.map((item, index) => (
@@ -51,5 +52,4 @@ const HoverMenu = ({ label, items }) => {
 };
 
 export default HoverMenu;
-
 
