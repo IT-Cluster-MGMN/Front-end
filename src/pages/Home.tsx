@@ -71,11 +71,11 @@ function Desktop1() {
         />
       </div>
       <div className="absolute top-[759px] left-[538px] w-[898px] h-[312px] text-sm font-inika">
-        {/*<img*/}
-        {/*  className="absolute top-[280.01px] left-[252px] w-[51.51px] h-[1.5px]"*/}
-        {/*  alt=""*/}
-        {/*  src="/line-1.svg"*/}
-        {/*  />*/}
+        <img
+          className="absolute top-[280.01px] left-[252px] w-[51.51px] h-[1.5px]"
+          alt=""
+          src="/line-1.svg"
+          />
       </div>  
       <div className="absolute top-[8px] left-[257px] bg-white w-[725px] h-7 overflow-visible  text-xs text-black">
         <div
