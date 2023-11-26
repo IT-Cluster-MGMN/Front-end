@@ -35,7 +35,7 @@ function Desktop1() {
 
 
       {/* <span>Ось код знизу для navbarу</span> */}
-      <div className="absolute top-[-1px] left-[-1px] box-border w-[100vw] h-[45px]  z-2 text-white border-[1px] border-solid border-gray-300" style={{ backgroundColor: "#0C0C0DE5", opacity: 0.9 }}>{/* ось тут відбувається зміна navbarу*/}
+      <div className="absolute top-[-1px] left-[-1px] box-border w-[100vw] h-[45px]  z-2 text-white border-[1px] border-solid border-gray-300 " style={{ backgroundColor: "#0C0C0DE5", opacity: 0.9 }}>{/* ось тут відбувається зміна navbarу*/}
         <div className="absolute top-[12px] left-[125px] font-inter inline-block w-[97px] h-[25px] text-white no-underline">
           <BsList className= "absolute top-[-5px] left-[70px] w-8 h-8 object-cover" />
            {/* <span>Каталог</span>  */}
@@ -63,7 +63,7 @@ function Desktop1() {
         </div>
     <div className="header">          
       <div className="Site_banner">
-      <div className="absolute top-[43.5px] left-[256.5px] bg-black box-border w-px h-[1137px] border-r-[1px] border-solid border-black" />
+      <div className="absolute top-[43.5px] left-[256.5px] bg-black box-border w-px h-[1137px] border-r-[1px] border-solid border-black " />
         <img
           className="absolute top-[425px] left-[0px] w-[257px] h-0.5"
           alt=""
@@ -76,7 +76,7 @@ function Desktop1() {
           alt=""
           src="/line-1.svg"
         />
-      <div className="absolute top-[8px] left-[257px] bg-white w-[725px] h-7 overflow-visible  text-xs text-black">
+      <div className="absolute top-[-750px] left-[-280px] bg-white w-[725px] h-7 overflow-visible  text-xs text-black ">
         <div
           className="absolute top-[4px] left-[44px] inline-block w-[242px] h-[19px] bg-white border-none outline-none hover:no-underline focus:no-underline font-inter text-black"
           contentEditable="true" // ось це і дає можливість писати в пошуку//
@@ -86,24 +86,24 @@ function Desktop1() {
 
 
       <div className="Header_logos">
-        <BsSearch className="absolute top-[10px] left-[257px] w-8 h-6 object-cover fill-black " />
+        <BsSearch className="absolute top-[-748px] left-[-273px] w-8 h-6 object-cover fill-black " />
         <div className="absolute top-[15px] left-[18px] text-sm inline-block w-[97px] h-[25px]" />
-            <div className="absolute top-[12px] left-[18px] font-inter inline-block w-[97px] h-[25px] text-white no-underline">
+            <div className="absolute top-[-747px] left-[-500px] font-inter inline-block w-[97px] h-[25px] text-white no-underline">
               <span>Головна</span>
             </div>   
-        <BsFillTagsFill className="absolute top-[6px] right-[660px] w-8 h-8 object-cover" />        
-          <div className="absolute top-[12px] right-[600px] font-inter inline-block w-[53px] h-5">
+            <BsFillBasket2Fill className="absolute top-[-753px] right-[350px] w-8 h-8 object-cover" />        
+          <div className="absolute top-[-747px] right-[100px] font-inter inline-block w-[53px] h-5">
             <span>Кошик</span>
           </div>
-        <BsFillBasket2Fill className="absolute top-[6px] right-[490px] w-8 h-8 object-cover" /> 
-          <div className="absolute top-[12px] right-[430px] font-inter inline-block w-[53px] h-5">
+        <BsFillTagsFill className="absolute top-[-752px] right-[155px] w-8 h-8 object-cover" />    
+          <div className="absolute top-[-747px] right-[295px] font-inter inline-block w-[53px] h-5">
             <span>Продаж</span>
           </div>
-        <BsFillHeartFill className="absolute top-[10px] right-[320px] w-7 h-7 object-cover " />
-          <div className="absolute top-[12px] right-[260px] font-inter inline-block w-[53px] h-5">
+        <BsFillHeartFill className="absolute top-[-750px] right-[38px] w-7 h-7 object-cover " />
+          <div className="absolute top-[-747px] right-[-20px] font-inter inline-block w-[53px] h-5">
             <span>Обране</span>
           </div>
-        <div className="absolute top-[12px] right-[70px] font-inter inline-block w-[53px] h-5">
+        <div className="absolute top-[-747px] right-[-190px] font-inter inline-block w-[53px] h-5">
           <span>Профіль</span>
         </div>
       </div>  
