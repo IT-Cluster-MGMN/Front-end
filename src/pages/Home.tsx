@@ -75,8 +75,7 @@ function Desktop1() {
           className="absolute top-[280.01px] left-[252px] w-[51.51px] h-[1.5px]"
           alt=""
           src="/line-1.svg"
-          />
-      </div>  
+        />
       <div className="absolute top-[8px] left-[257px] bg-white w-[725px] h-7 overflow-visible  text-xs text-black">
         <div
           className="absolute top-[4px] left-[44px] inline-block w-[242px] h-[19px] bg-white border-none outline-none hover:no-underline focus:no-underline font-inter text-black"
@@ -188,7 +187,7 @@ function Desktop1() {
 
       </div>
     </div>
-
+  </div>
 
    );
 };
