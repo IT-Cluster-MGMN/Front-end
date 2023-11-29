@@ -9,7 +9,7 @@ import {
   BsFillHeartFill,BsList,BsFillTagsFill,BsPhone,BsTv,BsLaptop,
   BsCarFront,BsFillUmbrellaFill,BsRocket, BsTencentQq, BsDribbble, BsFillHouseFill
 } from "react-icons/bs";
-import "./App.css";
+import "../styles/App.css";
 import React from "react";
 
 
