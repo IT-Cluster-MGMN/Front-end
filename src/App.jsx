@@ -1,22 +1,31 @@
-import { Routes, Route } from "react-router-dom";
-import Registration from "./pages/Regestration";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./pages/App.css";
+import Registration from "./components/Registration"
+import Login from "./components/Login"
+import Home from "./components/Home"
+import ResetPassword from "./components/ResetPassword";
+
+import './App.css'
 
 function App() {
+
   return (
     <>
       <div>
-        <Routes>
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/registration" element={<Registration/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/resetpassword" element={<ResetPassword/>} />
+          </Routes>
+        </BrowserRouter>
       </div>
+      <footer className="footer"> {/* Apply the "footer" class */}
+        <p>Footer</p>
+      </footer>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
