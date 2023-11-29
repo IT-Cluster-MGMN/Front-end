@@ -34,9 +34,9 @@ const Registration = () => {
     const [validSurname, setValidSurname] = useState(false);
     const [surnameFocus, setSurnameFocus] = useState(false);
 
-    const [patronymic, setPatronymic] = useState('');
-    const [validPatronymic, setValidPatronymic] = useState(true);
-    const [patronymicFocus, setPatronymicFocus] = useState(false);
+    // const [patronymic, setPatronymic] = useState('');
+    // const [validPatronymic, setValidPatronymic] = useState(true);
+    // const [patronymicFocus, setPatronymicFocus] = useState(false);
 
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
@@ -73,7 +73,7 @@ const Registration = () => {
         e.preventDefault();
         if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
           try{
-            const createUser = {'name': name, 'surname': surname, 'patronymic': patronymic, 'number': phoneNumber,
+            const createUser = {'name': name, 'surname': surname, /*'patronymic': patronymic,*/ 'number': phoneNumber,
             'username': email, 'password':password};
             axios.post(API_ENDPOINT, createUser)
             .then((res) => {
@@ -123,17 +123,6 @@ const Registration = () => {
                 value={surname}
                 onChange={(e) => handleInputChange(e, setSurname, setValidSurname, NAMES_REGEX, setSurnameFocus, false)}
               />
-            </div>
-            <div className="row">
-              <input
-                type="text"
-                id="patronymic"
-                name="patronymic"
-                placeholder="Patronymic"
-                value={patronymic}
-                onChange={(e) => handleInputChange(e, setPatronymic, setValidPatronymic, NAMES_REGEX, setPatronymicFocus, true)}
-              />
-              {renderError(patronymicFocus, !validPatronymic, 'Please enter a valid patronymic.')}
             </div>
             <div className="row">
               {renderError(emailFocus, !validEmail, 'Please enter a valid email.')}
