@@ -82,7 +82,7 @@ const Registration = () => {
         e.preventDefault();
         if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
           try{
-            const createUser = {'name': name, 'surname': surname, /*'patronymic': patronymic,*/ 'number': phoneNumber,
+            const createUser = {'name': name, 'surname': surname, 'number': phoneNumber,
             'username': email, 'password':password};
             axios.post(API_ENDPOINT, createUser)
             .then((res) => {
@@ -100,12 +100,12 @@ const Registration = () => {
         }
     };
 
-    const renderError = (focus, valid, message) => {
-        if (focus && valid) {
-          return <div className="error">{message}</div>;
-        }
-        return null;
-    };
+    // const renderError = (focus, valid, message) => {
+    //     if (focus && valid) {
+    //       return <div className="error">{message}</div>;
+    //     }
+    //     return null;
+    // };
 
     // return (
     //     <div>

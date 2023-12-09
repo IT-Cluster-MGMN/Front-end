@@ -21,9 +21,6 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-      <footer className="footer"> {/* Apply the "footer" class */}
-        <p>Footer</p>
-      </footer>
     </>
   )
 }
