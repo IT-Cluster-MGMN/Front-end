@@ -56,7 +56,7 @@ const Registration = () => {
     const [phoneNumberFocus, setPhoneNumberFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
-    const [emailErrMsg, setUsernameErrMsg] = useState('');
+    const [emailErrMsg, setEmailErrMsg] = useState('');
 
     const [success, setSuccess] = useState(false);
 
@@ -67,38 +67,92 @@ const Registration = () => {
         emailRef.current.focus();
     }, []);
 
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible);
-    };
+    useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email])
 
-    const handleInputChange = (e, setValue, setValid, regex, setFocus, isOptional) => {
-        const value = e.target.value;
-        setValue(value);
-        setFocus(true);
-        setValid(isInputValid(value, regex, isOptional))
-    };
+    useEffect(() => {
+        setValidPassword(PASSWORD_REGEX.test(password));
+        setValidMatch(password === matchPassword);
+    }, [password, matchPassword])
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
-          try{
-            const createUser = {'name': name, 'surname': surname, 'number': phoneNumber,
-            'username': email, 'password':password};
-            axios.post(API_ENDPOINT, createUser)
-            .then((res) => {
-              navigate("/login");
-            })
-            // .catch((error) => {
+    useEffect(() => {
+        setErrMsg('');
+    }, [email, password, matchPassword])
 
-            // })
-            setSuccess(true);
-          } catch (error){
-            setErrMsg('An error occured while registering. Please try later.')
+    // const togglePasswordVisibility = () => {
+    //     setPasswordVisible(!passwordVisible);
+    // };
+
+    // const handleInputChange = (e, setValue, setValid, regex, setFocus, isOptional) => {
+    //     const value = e.target.value;
+    //     setValue(value);
+    //     setFocus(true);
+    //     setValid(isInputValid(value, regex, isOptional))
+    // };
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
+    //       try{
+    //         const createUser = {'name': name, 'surname': surname, 'number': phoneNumber,
+    //         'username': email, 'password':password};
+    //         axios.post(API_ENDPOINT, createUser)
+    //         .then((res) => {
+    //           navigate("/login");
+    //         })
+    //         // .catch((error) => {
+
+    //         // })
+    //         setSuccess(true);
+    //       } catch (error){
+    //         setErrMsg('An error occured while registering. Please try later.')
+    //       }
+    //     } else {
+    //         setErrMsg('Please fill in all required fields correctly.');
+    //     }
+    // };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const v1 = EMAIL_REGEX.test(email);
+      const v2 = PASSWORD_REGEX.test(password);
+      if (!v1 || !v2) {
+          setErrMsg("Invalid Entry");
+          return;
+      }
+      try {
+          const response = await axios.post(
+              REGISTER_URL,
+              JSON.stringify({ email, password }),
+              {
+                  headers: { 'Content-Type': 'application/json' },
+                  withCredentials: true
+              }
+          );
+          console.log(response?.data);
+          console.log(response?.accessToken);
+          console.log(JSON.stringify(response))
+          console.log("Name:", name);
+          console.log("Surname:", surname);
+          console.log("Phone Number:", phoneNumber);
+          setSuccess(true);
+          setEmail('');
+          setPassword('');
+          setMatchPassword('');
+      } catch (err) {
+          if (!err?.response) {
+              setErrMsg('No Server Response');
+          } else if (err.response?.status === 409) {
+              setErrMsg('Username(email) Taken');
+          } else if (!validName){
+              setEmailErrMsg('Invalid Username(email)');
+          } else {
+              setErrMsg('Registration Failed')
           }
-        } else {
-            setErrMsg('Please fill in all required fields correctly.');
-        }
-    };
+          errRef.current.focus();
+      }
+  };
 
     // const renderError = (focus, valid, message) => {
     //     if (focus && valid) {
