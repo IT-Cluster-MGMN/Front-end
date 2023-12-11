@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import "../styles/Registration.css"
+import "../styles/Registration.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa';
@@ -178,172 +178,224 @@ const Registration = () => {
 
 
     return (
-      <>
+        <>
           {success ? (
-              <section className="section">
-                  <h1>Success!</h1>
-                  <p>
-                      <a href="#">Sign In</a>
-                  </p>
-              </section>
+            <section className="section">
+              <h1>Success!</h1>
+              <p>
+                <a href="#">Sign In</a>
+              </p>
+            </section>
           ) : (
-              <section>
-                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                  <p ref={errRef} className={emailFocus && email && !validEmail ? "errmsg" : "offscreen"} aria-live="assertive">{emailErrMsg}</p>
-                  <form onSubmit={handleSubmit}>
-                      <label htmlFor="username" className="labelWithIcon">
-                          Username:
-                          {email && (
-                              <>
-                                  {validEmail ? (
-                                      <FaCheck className="valid-icon" />
-                                  ) : (
-                                      <FaTimes className="invalid-icon" />
-                                  )}
-                              </>
-                          )}
-                      </label>
-                      <input
-                          type="text"
-                          id="username"
-                          ref={emailRef}
-                          autoComplete="off"
-                          onChange={(e) => setEmail(e.target.value)}
-                          value={email}
-                          required
-                          aria-invalid={validEmail ? "false" : "true"}
-                          aria-describedby="uidnote"
-                          onFocus={() => setEmailFocus(true)}
-                          onBlur={() => setEmailFocus(false)}
-                      />
-                      <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions bg-[#606060]" : "offscreen"}>
-                          <FaInfoCircle />
-                          <p className="font-inder text white">4 to 24 characters.<br />
-                              Must begin with a letter.<br />
-                              Letters, numbers, underscores, hyphens allowed.</p>
-                      </p>
-
-                      <label htmlFor="password" className="labelWithIcon">
-                          Password:
-                          {(passwordFocus && password) && (
-                              <>
-                                  {validPassword ? (
-                                      <FaCheck className="valid-icon" />
-                                  ) : (
-                                      <FaTimes className="invalid-icon" />
-                                  )}
-                              </>
-                          )}
-                      </label>
-                      <input
-                          type="password"
-                          id="password"
-                          onChange={(e) => setPassword(e.target.value)}
-                          value={password}
-                          required
-                          aria-invalid={validPassword ? "false" : "true"}
-                          aria-describedby="pwdnote"
-                          onFocus={() => setPasswordFocus(true)}
-                          onBlur={() => setPasswordFocus(false)}
-                      />
-                      <p id="pwdnote" className={(passwordFocus && password) ? "instructions instructions bg-[#606060]" : "offscreen"}>
-                          <FaInfoCircle />
-                          8 to 24 characters.<br />
-                          Must include uppercase and lowercase letters, a number, and a special character.<br />
-                          Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> 
-                          <span aria-label="hashtag">#</span> 
-                          <span aria-label="dollar sign">$</span> 
-                          <span aria-label="percent">%</span>
-                      </p>
-
-                      <label htmlFor="confirm_pwd" className="labelWithIcon">
-                          Confirm Password:
-                          {(matchFocus && matchPassword) && (
-                              <>
-                                  {validMatch ? (
-                                      <FaCheck className="valid-icon" />
-                                  ) : (
-                                      <FaTimes className="invalid-icon" />
-                                  )}
-                              </>
-                          )}
-                      </label>
-                      <input
-                          type="password"
-                          id="confirm_pwd"
-                          onChange={(e) => setMatchPassword(e.target.value)}
-                          value={matchPassword}
-                          required
-                          aria-invalid={validMatch ? "false" : "true"}
-                          aria-describedby="confirmnote"
-                          onFocus={() => setMatchFocus(true)}
-                          onBlur={() => setMatchFocus(false)}
-                      />
-                      <p id="confirmnote" className={matchFocus && !validMatch ? "instructions instructions bg-[#606060]" : "offscreen"}>
-                          <FaInfoCircle />
-                          Must match the first password input field.
-                      </p>  
-                      <button
-                          className="additional-fields-button"
-                          onClick={() => setShowAdditionalFields(!showAdditionalFields)}
-                      >
-                          Add Additional Fields
-                      </button>
-
-                      {showAdditionalFields && (
-                          <>
-                              {/* Additional fields */}
-                              <label htmlFor="name" className="labelWithIcon">
-                                  Name:
-                                  {/* Validation icons here */}
-                              </label>
-                              <input
-                                  type="text"
-                                  id="name"
-                                  onChange={(e) => setName(e.target.value)}
-                                  value={name}
-                                  required
-                              />
-
-                              <label htmlFor="surname" className="labelWithIcon">
-                                  Surname:
-                                  {/* Validation icons here */}
-                              </label>
-                              <input
-                                  type="text"
-                                  id="surname"
-                                  onChange={(e) => setSurname(e.target.value)}
-                                  value={surname}
-                                  required
-                              />
-
-                              <label htmlFor="phoneNumber" className="labelWithIcon">
-                                  Phone Number:
-                                  {/* Validation icons here */}
-                              </label>
-                              <input
-                                  type="tel"
-                                  id="phoneNumber"
-                                  onChange={(e) => setPhoneNumber(e.target.value)}
-                                  value={phoneNumber}
-                                  required
-                                  style={{ width: "420px", height: "40px", borderRadius: "8px" }}
-                              />
-                          </>
+            <section>
+              <p
+                ref={errRef}
+                className={errMsg ? 'errmsg' : 'offscreen'}
+                aria-live="assertive"
+              >
+                {errMsg}
+              </p>
+              <p
+                ref={errRef}
+                className={
+                  emailFocus && email && !validEmail ? 'errmsg' : 'offscreen'
+                }
+                aria-live="assertive"
+              >
+                {emailErrMsg}
+              </p>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="username" className="labelWithIcon">
+                  Username:
+                  {email && (
+                    <>
+                      {validEmail ? (
+                        <FaCheck className="valid-icon" />
+                      ) : (
+                        <FaTimes className="invalid-icon" />
                       )}
+                    </>
+                  )}
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  ref={emailRef}
+                  autoComplete="off"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  required
+                  aria-invalid={validEmail ? 'false' : 'true'}
+                  aria-describedby="uidnote"
+                  onFocus={() => setEmailFocus(true)}
+                  onBlur={() => setEmailFocus(false)}
+                />
+                <p
+                  id="uidnote"
+                  className={
+                    emailFocus && email && !validEmail
+                      ? 'instructions bg-[#606060]'
+                      : 'offscreen'
+                  }
+                >
+                  <FaInfoCircle />
+                  <p className="font-inder text white">
+                    4 to 24 characters.
+                    <br />
+                    Must begin with a letter.
+                    <br />
+                    Letters, numbers, underscores, hyphens allowed.
+                  </p>
+                </p>
+      
+                <label htmlFor="password" className="labelWithIcon">
+                  Password:
+                  {passwordFocus && password && (
+                    <>
+                      {validPassword ? (
+                        <FaCheck className="valid-icon" />
+                      ) : (
+                        <FaTimes className="invalid-icon" />
+                      )}
+                    </>
+                  )}
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  required
+                  aria-invalid={validPassword ? 'false' : 'true'}
+                  aria-describedby="pwdnote"
+                  onFocus={() => setPasswordFocus(true)}
+                  onBlur={() => setPasswordFocus(false)}
+                />
+                <p
+                  id="pwdnote"
+                  className={
+                    passwordFocus && password
+                      ? 'instructions instructions bg-[#606060]'
+                      : 'offscreen'
+                  }
+                >
+                  <FaInfoCircle />
+                  8 to 24 characters.
+                  <br />
+                  Must include uppercase and lowercase letters, a number, and a special character.
+                  <br />
+                  Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> 
+                  <span aria-label="hashtag">#</span> 
+                  <span aria-label="dollar sign">$</span> 
+                  <span aria-label="percent">%</span>
+                </p>
+      
+                <label htmlFor="confirm_pwd" className="labelWithIcon">
+                  Confirm Password:
+                  {matchFocus && matchPassword && (
+                    <>
+                      {validMatch ? (
+                        <FaCheck className="valid-icon" />
+                      ) : (
+                        <FaTimes className="invalid-icon" />
+                      )}
+                    </>
+                  )}
+                </label>
+                <input
+                  type="password"
+                  id="confirm_pwd"
+                  onChange={(e) => setMatchPassword(e.target.value)}
+                  value={matchPassword}
+                  required
+                  aria-invalid={validMatch ? 'false' : 'true'}
+                  aria-describedby="confirmnote"
+                  onFocus={() => setMatchFocus(true)}
+                  onBlur={() => setMatchFocus(false)}
+                />
+                <p
+                  id="confirmnote"
+                  className={
+                    matchFocus && !validMatch
+                      ? 'instructions instructions bg-[#606060]'
+                      : 'offscreen'
+                  }
+                >
+                  <FaInfoCircle />
+                  Must match the first password input field.
+                </p>  
+      
+                {showAdditionalFields && (
+                  <>
+                    {/* Additional fields */}
+                    <label htmlFor="name" className="labelWithIcon">
+                      Name:
+                      {/* Validation icons here */}
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                      required
+                    />
+      
+                    <label htmlFor="surname" className="labelWithIcon">
+                      Surname:
+                      {/* Validation icons here */}
+                    </label>
+                    <input
+                      type="text"
+                      id="surname"
+                      onChange={(e) => setSurname(e.target.value)}
+                      value={surname}
+                      required
+                    />
+      
+                    <label htmlFor="phoneNumber" className="labelWithIcon">
+                      Phone Number:
+                      {/* Validation icons here */}
+                    </label>
+                    <input
+                      type="tel"
+                      id="phoneNumber"
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      value={phoneNumber}
+                      required
+                      style={{ width: "420px", height: "40px", borderRadius: "8px" }}
+                    />
+                  </>
+                )}
+      
+                <div className="buttons-container">
+                  <button
+                    className="relative w-40 h-8 text-base mt-5 font-Inder rounded-full bg-white p-2 ml-32 text-center flex items-center justify-center text-black"
+                    disabled={!validName || !validPassword || !validMatch ? true : false}
+                  >
+                    Sign Up
+                  </button>
 
-                      <button className="relative w-40 h-8 text-base mt-5 font-Inder rounded-full bg-white p-2 ml-32 text-center flex items-center justify-center text-black" disabled={!validName || !validPassword || !validMatch ? true : false}>Sign Up</button>
-                      <p className="text-white text-inder">
-                          Already registered?<br />
-                          <span className="line">
-                              <a className='no-underline text-inder' href="#">Sign In</a>
-                          </span>
-                      </p>
-                  </form>
-              </section>
+                  <button
+                    className="button3"
+                    onClick={() => setShowAdditionalFields(!showAdditionalFields)}
+                  >
+                    More
+                  </button>
+        
+                </div>
+      
+                <p className="sign1">
+                  Already registered?<br />
+                  <span className="line">
+                    <a className='sign2' href="#">
+                      Sign In
+                      </a>
+                  </span>
+                </p>
+              </form>
+            </section>
           )}
-      </>
-  );
-    };
-    
-    export default Registration;
+        </>
+      );
+    }      
+export default Registration;      

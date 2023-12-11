@@ -1,4 +1,4 @@
-.loginContainer {
+.login{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +33,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     flex-grow: 1;
+    gap: 1rem;
   }
 .form-group {
     text-align: left;
@@ -42,6 +43,7 @@
     margin-bottom: 1rem; 
     margin-top: 14rem;
     padding: 0.5rem;
+    gap: 1rem;
 }
 
 .form-group input {
@@ -89,23 +91,41 @@
     justify-content: center;
     color: black;
   }
+    button.button3 {
+      position: relative;
+      width: 150px;
+      height: 30px;
+      font-size: 16px;
+      top: 20px;
+      font-family: 'Inder', sans-serif;
+      border-radius: 1rem;
+      background-color: #ffffff;
+      padding: 0.5rem;
+      margin-left: 130px;
+      margin-bottom: 0rem;
+      text-align: center;
+      align-items: center; 
+      justify-content: center;
+      color: black;
+    
+    }
   
     button {
-    position: absolute;
-    color: black;
+    position: relative;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    top: 20px;
     font-family: 'Inder', sans-serif;
-    font-size: 20px;
-    border-radius: 0.5rem;
-    background-color: #fff;
-    width: 350px;
-    height: 40px;
+    border-radius: 1rem;
+    background-color: #ffffff;
     padding: 0.5rem;
-    margin-left: 30px;
+    margin-left: 130px;
+    margin-bottom: 0rem;
     text-align: center;
-    display: flex; 
     align-items: center; 
     justify-content: center;
-    top:-20px;
+    color: black;
 
 }
 
@@ -133,7 +153,7 @@
      display: none;
   }
   
-  .valid {
+  /* .valid {
     color: limegreen;
     margin-left: 0.25rem;
     position: relative;
@@ -157,9 +177,9 @@
     border-radius:  10px;
     top: 225px;
     text-align: center;
-  }
+  } */
   
-  .errmsg {
+  /* .errmsg {
     position: relative;
     left: 75px;
     width: 200px;
@@ -171,7 +191,7 @@
     top: 225px;
     text-align: center;
   }
-  
+   */
   .line {
     display: inline-block;
   }
@@ -202,3 +222,4 @@
   margin-left:px;
   top: -70px;
 }
+

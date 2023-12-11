@@ -145,7 +145,7 @@ const Login = () => {
           </div>
     
           <div className="Login-and-register">
-            <div className="absolute top-[587px] left-[508px] inline-block w-[244px] h-[33px]">
+            <div className="button">
               {`Електрона пошта або телефон `}
             </div>
             <div className="absolute top-[714px] left-[508px] inline-block w-[70px] h-[33px]">
