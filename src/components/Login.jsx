@@ -12,6 +12,8 @@ const API_ENDPOINT = ""
 
 const AuthContext = createContext({});
 
+const FONT_CLASS = "font-sans"
+
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
 
@@ -80,7 +82,6 @@ const Login = () => {
 
   return (
       <>
-
           {success ? (
             // if success = 1
               <section>
@@ -92,104 +93,120 @@ const Login = () => {
               </section>
           ) : (
             // if success = 0
-            <section className="
-            flex flex-col 
+            <section className="flex items-center justify-center min-h-screen">
 
-            ">
-                <p ref={errRef} className={`text-red-500 ${errMsg ? 'errmsg' : 'offscreen'}`} aria-live="assertive">
+                {/* форма */}
+                <form onSubmit={handleSubmit} className="
+                flex flex-col
+                w-full max-w-[420px] min-h-[400px] 
+                justify-center 
+                pt-10
+                pb-10
+                pl-4
+                pr-4 
+                items-center
+                rounded-[2rem] 
+                bg-darkgrey
+                drop-shadow-xl">
+                
+                {/* помилки */}
+                <p ref={errRef} className={`text-red-500 ${errMsg ? 'errmsg' : 'offscreen'} w-full`} aria-live="assertive">
                     {errMsg}
                 </p>
 
-                <form onSubmit={handleSubmit} className="
-                flex flex-col 
-                space-y-4 
-                p-8 
-                rounded-lg 
-                shadow-md 
-                mt-8 w-96">
+
+                {/* Картинка профілю */}
+                <div className="relative w-40 h-40">
+                    <label className="
+                    absolute flex 
+                    items-center 
+                    rounded-full 
+                    justify-center
+                    bg-white 
+                    shadow-inset 
+                    text-align-center
+                    w-full h-full">
+                    <img className="
+                        absolute top-2 left-2 
+                        w-36 h-36 
+                        object-cover 
+                        rounded-full"
+                        // потрібно додати функцію, яка буде посилати гет запит по введеному емейлу, щоб показувало
+                        // картинку профілю
+                        alt="profile_logo"
+                        src="profile.png"
+                    />
+                    </label>
+                </div>
+
+                {/* Google button */}
+                <button id="login" className={`
+                ${FONT_CLASS}
+                button-google 
+                flex
+                justify-evenly 
+                bg-white 
+                text-black
+                text-[20px]
+                rounded-md
+                h-full
+                p-2
+                text-[20px]
+                w-[94%]
+                mt-[30px]`}>
+                    <img className="icon  w-6" alt="google_logo" src="google.png" />
+                    Увійти за допомогою Google
+                </button>
+
+                {/* Ел пошта  */}
+                <label className={`${FONT_CLASS} text-white mt-[20px] text-left`} htmlFor="username">
+                    Електрона пошта або телефон:
+                </label>
+                <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    autoComplete="off"
+                    onChange={(e) => setUser(e.target.value)}
+                    value={user}
+                    required
+                    className={`${FONT_CLASS} text-base p-2 w-[90%] h-full rounded-md mt-[5px]`}
+                />
 
 
-                    {/* Картинка профілю */}
-                    <div className="relative w-40 h-40">
-                        <label1 className="
-                        absolute flex 
-                        items-center 
-                        rounded-full 
-                        justify-center
-                        bg-white 
-                        shadow-inset 
-                        w-full h-full">
-                            <img
-                                className="
-                                absolute top-2 left-2 
-                                w-36 h-36 
-                                object-cover 
-                                rounded-full"
-                                // потрібно додати функцію, яка буде посилати гет запит по введеному емейлу, щоб показувало
-                                // картинку профілю
-                                alt="profile_logo"
-                                src="profile.png"
-                            />
-                        </label1>
-                    </div>
-
-                    {/* Google button */}
-                    <button id="login" className="
-                    button-google 
-                    flex 
-                    bg-white
-                    w-full  
-                    text-black
-                    font-inder
-                    rounded-md">
-                        <img className="icon mr-2 ml-2 w-6 h-6" alt="google_logo" src="google.png" />
-                        Увійти за допомогою Google
-                    </button>
-
-                        <label className="font-inder text-white" htmlFor="username">
-                            Електрона пошта або телефон:
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                            className="input-field"
-                        />
-
-                        <label className="font-inder text-white" htmlFor="password">
-                            Пароль:
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                            className="input-field"
-                        />
+                {/* Пароль */}
+                <label className={`${FONT_CLASS} text-white mt-[20px] text-left`} htmlFor="password">
+                    Пароль:
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    onChange={(e) => setPwd(e.target.value)}
+                    value={pwd}
+                    required
+                    className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
+                />
                     
 
-                    <button className="
-                    button-login 
-                    flex 
-                    items-center 
-                   
-                    bg-#ccc 
-                    text-black 
-                    rounded-md">
-                        Увійти
-                    </button>
+                {/* Кнопка входу */}
+                <button id="login" className={`
+                ${FONT_CLASS}
+                text-[20px]
+                text-black 
+                rounded-md
+                h-full
+                mt-[30px]
+                p-2
+                w-[94%]`}>
+                    Увійти
+                </button>
 
-                    <p className="sign2 text-white mt-4">
-                        Забули пароль?<br />
-                        <span className="line">
-                            <Link to="/resetpassword">Немає акаунту?</Link>
-                        </span>
-                    </p>
+
+                {/* ссилки на інші сторінки */}
+                <p className="flex justify-between sign2 text-white mt-[50px] w-[90%]">
+                    <Link className={`${FONT_CLASS} no-underline visited:text-white`} to="/resetpassword">Забули пароль?</Link>
+                    <Link className={`${FONT_CLASS} no-underline visited:text-white`}  to="/registration">Немає акаунту?</Link>
+                </p>
                 </form>
             </section>
 
