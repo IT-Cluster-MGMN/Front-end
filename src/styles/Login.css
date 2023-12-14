@@ -1,4 +1,4 @@
-.login{
+/* .login{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,8 +6,8 @@
     min-height: 100vh; 
     padding: 1rem 0.5rem;
   }
-  
-  section {
+   */
+  /* section {
     border-radius: 8%;
     position: absolute;
     margin-top: 150px;
@@ -26,16 +26,16 @@
     background-color: #0C0C0DE5;
     border: 2px solid #ffffff;
     position: center;
-  }
+  } */
   
-  form {
+  /* form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     flex-grow: 1;
     gap: 1rem;
-  }
-.form-group {
+  } */
+/* .form-group {
     text-align: left;
     margin-left: 0.5rem;
     display: flex;
@@ -52,9 +52,9 @@
   
   a, a:visited {
       color: #fff;
-  }
+  } */
   
-  input[type="text"],
+  /* input[type="text"],
   input[type="password"],
   textarea {
     font-family: 'Inder', sans-serif;
@@ -67,9 +67,9 @@
     border: 1px solid #ffffff;
     margin-bottom: 0.5rem;
     padding-left: 0.5rem;
-  }
+  } */
 
-  label,
+  /* label,
   button {
     margin-top: 1rem;
   }
@@ -109,8 +109,8 @@
       color: black;
     
     }
-  
-    button {
+   */
+    /* button {
     position: relative;
     width: 150px;
     height: 30px;
@@ -127,10 +127,10 @@
     justify-content: center;
     color: black;
 
-}
+} */
 
 
-  .instructions {
+  /* .instructions {
     font-size: 0.75rem;
     border-radius: 0.5rem;
     background: #cc0303;
@@ -151,7 +151,7 @@
   
   .hide {
      display: none;
-  }
+  } */
   
   /* .valid {
     color: limegreen;
@@ -192,7 +192,7 @@
     text-align: center;
   }
    */
-  .line {
+  /* .line {
     display: inline-block;
   }
   
@@ -221,5 +221,5 @@
   position: relative;
   margin-left:px;
   top: -70px;
-}
+} */
 

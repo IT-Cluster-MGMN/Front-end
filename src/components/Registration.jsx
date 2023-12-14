@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../styles/Registration.css";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa';
 
 const NAMES_REGEX = /[a-zA-Zа-яА-Я]{3,20}$/;
@@ -11,14 +11,9 @@ const PHONE_NUMBER_REGEX = /^\+\d{1,3}\d{9}$/;
 
 const API_ENDPOINT = 'http://localhost:8088/api/register';
 
-function isInputValid(value, regex, isOptional){
-    if(value === '' && isOptional){
-        return true;
-    }
-    else{
-        return regex.test(value);
-    }
-}
+// tailwind frequently used values
+const FONT_CLASS = "font-sans"
+const HINT_WIDTH = "w-[92.3%]"
 
 const Registration = () => {
 
@@ -27,18 +22,7 @@ const Registration = () => {
     const emailRef = useRef();
     const errRef = useRef();
 
-    const [name, setName] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [nameFocus, setNameFocus] = useState(false);
-
-    const [surname, setSurname] = useState('');
-    const [validSurname, setValidSurname] = useState(false);
-    const [surnameFocus, setSurnameFocus] = useState(false);
-
-    // const [patronymic, setPatronymic] = useState('');
-    // const [validPatronymic, setValidPatronymic] = useState(true);
-    // const [patronymicFocus, setPatronymicFocus] = useState(false);
-
+    // Mandatory fields
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
@@ -50,10 +34,17 @@ const Registration = () => {
     const [matchPassword, setMatchPassword] = useState('');
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
+    
+
+    // Additional fields
+    const [name, setName] = useState('');
+    const [validName, setValidName] = useState(false);
+
+    const [surname, setSurname] = useState('');
+    const [validSurname, setValidSurname] = useState(false);
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [validPhoneNumber, setValidPhoneNumber] = useState(false);
-    const [phoneNumberFocus, setPhoneNumberFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
     const [emailErrMsg, setEmailErrMsg] = useState('');
@@ -77,41 +68,22 @@ const Registration = () => {
     }, [password, matchPassword])
 
     useEffect(() => {
+      setValidName(NAMES_REGEX.test(name));
+    }, [name])
+
+    useEffect(() => {
+      setValidSurname(NAMES_REGEX.test(surname));
+    }, [surname]);
+
+    useEffect(() => {
+      setValidPhoneNumber(PHONE_NUMBER_REGEX.test(phoneNumber));
+    }, [phoneNumber])
+
+    useEffect(() => {
         setErrMsg('');
     }, [email, password, matchPassword])
 
-    // const togglePasswordVisibility = () => {
-    //     setPasswordVisible(!passwordVisible);
-    // };
-
-    // const handleInputChange = (e, setValue, setValid, regex, setFocus, isOptional) => {
-    //     const value = e.target.value;
-    //     setValue(value);
-    //     setFocus(true);
-    //     setValid(isInputValid(value, regex, isOptional))
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (validName && validSurname && validEmail && validPhoneNumber && validPatronymic && validPassword) {
-    //       try{
-    //         const createUser = {'name': name, 'surname': surname, 'number': phoneNumber,
-    //         'username': email, 'password':password};
-    //         axios.post(API_ENDPOINT, createUser)
-    //         .then((res) => {
-    //           navigate("/login");
-    //         })
-    //         // .catch((error) => {
-
-    //         // })
-    //         setSuccess(true);
-    //       } catch (error){
-    //         setErrMsg('An error occured while registering. Please try later.')
-    //       }
-    //     } else {
-    //         setErrMsg('Please fill in all required fields correctly.');
-    //     }
-    // };
+ 
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -123,7 +95,7 @@ const Registration = () => {
       }
       try {
           const response = await axios.post(
-              REGISTER_URL,
+              API_ENDPOINT,
               JSON.stringify({ email, password }),
               {
                   headers: { 'Content-Type': 'application/json' },
@@ -145,7 +117,7 @@ const Registration = () => {
               setErrMsg('No Server Response');
           } else if (err.response?.status === 409) {
               setErrMsg('Username(email) Taken');
-          } else if (!validName){
+          } else if (!validEmail){
               setEmailErrMsg('Invalid Username(email)');
           } else {
               setErrMsg('Registration Failed')
@@ -154,86 +126,12 @@ const Registration = () => {
       }
   };
 
-    // const renderError = (focus, valid, message) => {
-    //     if (focus && valid) {
-    //       return <div className="error">{message}</div>;
-    //     }
-    //     return null;
-    // };
-
-    // return (
-    //     <div>
-    //       <form className="authentication-form" onSubmit={handleSubmit}>
-    //         <div className="row">
-    //           {renderError(nameFocus, !validName, 'Name must contain only letters and have less than 20 symbols')}
-    //           <input
-    //             type="text"
-    //             id="name"
-    //             name="name"
-    //             placeholder="Name"
-    //             value={name}
-    //             onChange={(e) => handleInputChange(e, setName, setValidName, NAMES_REGEX, setNameFocus, false)}
-    //             ref={nameRef}
-    //           />
-    //         </div>
-    //         <div className="row">
-    //           {renderError(surnameFocus, !validSurname, 'Surname must contain only letters and have less than 20 symbols')}
-    //           <input
-    //             type="text"
-    //             id="surname"
-    //             name="surname"
-    //             placeholder="Surname"
-    //             value={surname}
-    //             onChange={(e) => handleInputChange(e, setSurname, setValidSurname, NAMES_REGEX, setSurnameFocus, false)}
-    //           />
-    //         </div>
-    //         <div className="row">
-    //           {renderError(emailFocus, !validEmail, 'Please enter a valid email.')}
-    //           <input
-    //             type="email"
-    //             id="email"
-    //             name="email"
-    //             placeholder="Email"
-    //             value={email}
-    //             onChange={(e) => handleInputChange(e, setEmail, setValidEmail, EMAIL_REGEX, setEmailFocus, false)}
-    //           />
-    //         </div>
-    //         <div className="row">
-    //           {renderError(passwordFocus, !validPassword, 'Please enter a valid password.')}
-    //           <input
-    //             type={passwordVisible ? 'text' : 'password'}
-    //             id="password"
-    //             name="password"
-    //             placeholder="Password"
-    //             value={password}
-    //             onChange={(e) => handleInputChange(e, setPassword, setValidPassword, PASSWORD_REGEX, setPasswordFocus, false)}
-    //           />
-    //           <button className="password-toggle" onClick={togglePasswordVisibility}>
-    //             {passwordVisible ? 'Hide' : 'Show'}
-    //           </button>
-    //         </div>
-    //         <div className="row">
-    //           {renderError(phoneNumberFocus, !validPhoneNumber, 'Please enter a valid phone number.')}
-    //           <input
-    //             type="text"
-    //             id="phoneNumber"
-    //             placeholder="Phone Number"
-    //             name="phoneNumber"
-    //             value={phoneNumber}
-    //             onChange={(e) => handleInputChange(e, setPhoneNumber, setValidPhoneNumber, PHONE_NUMBER_REGEX, setPhoneNumberFocus, false)}
-    //           />
-    //         </div>
-    //         <div>
-    //           <button type="submit">Register</button>
-    //         </div>
-    //       </form>
-    //     </div>
-    //   );
-
+    
 
     return (
         <>
           {success ? (
+            // if success = 1
             <section className="section">
               <h1>Success!</h1>
               <p>
@@ -241,36 +139,47 @@ const Registration = () => {
               </p>
             </section>
           ) : (
-            <section>
-              <p
-                ref={errRef}
-                className={errMsg ? 'errmsg' : 'offscreen'}
-                aria-live="assertive"
-              >
-                {errMsg}
-              </p>
-              <p
-                ref={errRef}
-                className={
-                  emailFocus && email && !validEmail ? 'errmsg' : 'offscreen'
-                }
-                aria-live="assertive"
-              >
-                {emailErrMsg}
-              </p>
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="username" className="labelWithIcon">
-                  Username:
+            // if success = 0
+
+            <section className="flex items-center justify-center min-h-screen">
+
+              <form onSubmit={handleSubmit} className="
+                flex flex-col
+                w-full max-w-[420px] min-h-[400px] 
+                justify-center 
+                pt-10
+                pb-10
+                pl-4
+                pr-4 
+                items-center
+                rounded-[2rem] 
+                bg-darkgrey
+                drop-shadow-xl">
+
+
+                {!errMsg ? <></> :
+                  <label
+                    ref={errRef}
+                    className={`bg-[red] ${FONT_CLASS} text-[pink]`}
+                    aria-live="assertive"
+                  >
+                    {errMsg}
+                  </label>}
+
+
+                <label htmlFor="username" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>
                   {email && (
                     <>
                       {validEmail ? (
-                        <FaCheck className="valid-icon" />
+                        <FaCheck className="mr-[10px]" />
                       ) : (
-                        <FaTimes className="invalid-icon" />
+                        <FaTimes className="mr-[10px]" />
                       )}
                     </>
                   )}
+                  Email:
                 </label>
+
                 <input
                   type="text"
                   id="username"
@@ -283,37 +192,37 @@ const Registration = () => {
                   aria-describedby="uidnote"
                   onFocus={() => setEmailFocus(true)}
                   onBlur={() => setEmailFocus(false)}
+                  className={`${FONT_CLASS} text-base p-2 w-[90%] h-full rounded-md mt-[5px]`}
                 />
+
+                {(!emailFocus || validEmail) ? <></> : 
                 <p
-                  id="uidnote"
-                  className={
-                    emailFocus && email && !validEmail
-                      ? 'instructions bg-[#606060]'
-                      : 'offscreen'
-                  }
+                id="uidnote"
+                className={
+                  `text-xs bg-black text-white ${FONT_CLASS} rounded-md p-1 relative ${HINT_WIDTH}`}
                 >
                   <FaInfoCircle />
-                  <p className="font-inder text white">
                     4 to 24 characters.
                     <br />
                     Must begin with a letter.
                     <br />
                     Letters, numbers, underscores, hyphens allowed.
-                  </p>
                 </p>
+                }
       
-                <label htmlFor="password" className="labelWithIcon">
-                  Password:
-                  {passwordFocus && password && (
+                <label htmlFor="password" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>                  
+                  {password && (
                     <>
                       {validPassword ? (
-                        <FaCheck className="valid-icon" />
+                        <FaCheck className="mr-[10px]" />
                       ) : (
-                        <FaTimes className="invalid-icon" />
+                        <FaTimes className="mr-[10px]" />
                       )}
                     </>
                   )}
+                  Password:
                 </label>
+
                 <input
                   type="password"
                   id="password"
@@ -324,15 +233,16 @@ const Registration = () => {
                   aria-describedby="pwdnote"
                   onFocus={() => setPasswordFocus(true)}
                   onBlur={() => setPasswordFocus(false)}
+                  className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                 />
+
+                {!passwordFocus || validPassword ? <></> :
                 <p
                   id="pwdnote"
                   className={
-                    passwordFocus && password
-                      ? 'instructions instructions bg-[#606060]'
-                      : 'offscreen'
+                    `text-xs bg-black text-white ${FONT_CLASS} rounded-md p-1 relative bottom-[10px] ${HINT_WIDTH}`
                   }
-                >
+                  >
                   <FaInfoCircle />
                   8 to 24 characters.
                   <br />
@@ -343,18 +253,19 @@ const Registration = () => {
                   <span aria-label="dollar sign">$</span> 
                   <span aria-label="percent">%</span>
                 </p>
-      
-                <label htmlFor="confirm_pwd" className="labelWithIcon">
-                  Confirm Password:
-                  {matchFocus && matchPassword && (
+                }
+
+                <label htmlFor="confirm_pwd" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>                  
+                  { matchPassword && (
                     <>
                       {validMatch ? (
-                        <FaCheck className="valid-icon" />
+                        <FaCheck className="mr-[10px]" />
                       ) : (
-                        <FaTimes className="invalid-icon" />
+                        <FaTimes className="mr-[10px]" />
                       )}
                     </>
                   )}
+                  Confirm Password:
                 </label>
                 <input
                   type="password"
@@ -366,25 +277,34 @@ const Registration = () => {
                   aria-describedby="confirmnote"
                   onFocus={() => setMatchFocus(true)}
                   onBlur={() => setMatchFocus(false)}
+                  className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                 />
+
+                {!matchFocus || validMatch ? <></> :
                 <p
                   id="confirmnote"
                   className={
-                    matchFocus && !validMatch
-                      ? 'instructions instructions bg-[#606060]'
-                      : 'offscreen'
-                  }
+                    `text-xs bg-black text-white ${FONT_CLASS} rounded-md p-1 relative bottom-[10px] ${HINT_WIDTH}`}
                 >
                   <FaInfoCircle />
                   Must match the first password input field.
-                </p>  
+                </p>
+                }  
       
                 {showAdditionalFields && (
                   <>
                     {/* Additional fields */}
-                    <label htmlFor="name" className="labelWithIcon">
+                    <label htmlFor="name" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>
+                    {name && (
+                      <>
+                        {validName ? (
+                          <FaCheck className="mr-[10px]" />
+                        ) : (
+                          <FaTimes className="mr-[10px]" />
+                        )}
+                      </>
+                    )}
                       Name:
-                      {/* Validation icons here */}
                     </label>
                     <input
                       type="text"
@@ -392,11 +312,20 @@ const Registration = () => {
                       onChange={(e) => setName(e.target.value)}
                       value={name}
                       required
+                      className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                     />
       
-                    <label htmlFor="surname" className="labelWithIcon">
+                    <label htmlFor="surname" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>
+                    {surname && (
+                      <>
+                        {validSurname ? (
+                          <FaCheck className="mr-[10px]" />
+                        ) : (
+                          <FaTimes className="mr-[10px]" />
+                        )}
+                      </>
+                    )}
                       Surname:
-                      {/* Validation icons here */}
                     </label>
                     <input
                       type="text"
@@ -404,11 +333,21 @@ const Registration = () => {
                       onChange={(e) => setSurname(e.target.value)}
                       value={surname}
                       required
+                      className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                     />
       
-                    <label htmlFor="phoneNumber" className="labelWithIcon">
+                    <label htmlFor="phoneNumber" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>
+                    {phoneNumber && (
+                      <>
+                        {validPhoneNumber ? (
+                          <FaCheck className="mr-[10px]" />
+                        ) : (
+                          <FaTimes className="mr-[10px]" />
+                        )}
+                      </>
+                    )}
                       Phone Number:
-                      {/* Validation icons here */}
+
                     </label>
                     <input
                       type="tel"
@@ -416,35 +355,28 @@ const Registration = () => {
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       value={phoneNumber}
                       required
-                      style={{ width: "420px", height: "40px", borderRadius: "8px" }}
+                      className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                     />
                   </>
                 )}
       
-                <div className="buttons-container">
+                <div className="w-[95%]">
                   <button
-                    className="relative w-40 h-8 text-base mt-5 font-Inder rounded-full bg-white p-2 ml-32 text-center flex items-center justify-center text-black"
-                    disabled={!validName || !validPassword || !validMatch ? true : false}
+                    className={`${FONT_CLASS} text-[20px] text-black rounded-md h-full mt-[30px] p-2 w-full`}
+                    disabled={validEmail && validPassword && validMatch ? false : true}
                   >
                     Sign Up
                   </button>
-
-                  <button
-                    className="button3"
-                    onClick={() => setShowAdditionalFields(!showAdditionalFields)}
-                  >
-                    More
-                  </button>
-        
                 </div>
       
-                <p className="sign1">
-                  Already registered?<br />
-                  <span className="line">
-                    <a className='sign2' href="#">
-                      Sign In
-                      </a>
-                  </span>
+                <p className="flex justify-between sign2 text-white mt-[50px] w-[90%]">
+                    <Link className={`${FONT_CLASS} no-underline visited:text-white text-[15px]`} to="/login">Sign in</Link>
+                    <button
+                      className={`${FONT_CLASS} text-[15px] text-white bg-inherit border-none`}
+                      onClick={() => setShowAdditionalFields(!showAdditionalFields)}
+                    >
+                      {!showAdditionalFields ? "More" : "Hide"}
+                    </button>
                 </p>
               </form>
             </section>
