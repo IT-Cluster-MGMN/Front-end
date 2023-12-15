@@ -4,6 +4,7 @@ import Registration from "./components/Registration"
 import Login from "./components/Login"
 import Home from "./components/Home"
 import ResetPassword from "./components/ResetPassword";
+import ProductPage from "./components/ProductPage";
 
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Home/>} />
             <Route path="/resetpassword" element={<ResetPassword/>} />
+            <Route path="/products/:productId" element={<ProductPage/>} />
           </Routes>
         </BrowserRouter>
       </div>
