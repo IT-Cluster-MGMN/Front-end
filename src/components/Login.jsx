@@ -204,8 +204,8 @@ const Login = () => {
 
                 {/* ссилки на інші сторінки */}
                 <p className="flex justify-between sign2 text-white mt-[50px] w-[90%]">
-                    <Link className={`${FONT_CLASS} no-underline visited:text-white`} to="/resetpassword">Забули пароль?</Link>
-                    <Link className={`${FONT_CLASS} no-underline visited:text-white`}  to="/registration">Немає акаунту?</Link>
+                    <Link className={`${FONT_CLASS} text-white no-underline visited:text-white`} to="/resetpassword">Забули пароль?</Link>
+                    <Link className={`${FONT_CLASS} text-white no-underline visited:text-white`}  to="/registration">Немає акаунту?</Link>
                 </p>
                 </form>
             </section>
