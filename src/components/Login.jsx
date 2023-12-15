@@ -12,7 +12,7 @@ const API_ENDPOINT = ""
 
 const AuthContext = createContext({});
 
-const FONT_CLASS = "font-sans"
+const FONT_CLASS = "font-Inder, sans-serif"
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
@@ -110,9 +110,10 @@ const Login = () => {
                 drop-shadow-xl">
                 
                 {/* помилки */}
-                <p ref={errRef} className={`text-red-500 ${errMsg ? 'errmsg' : 'offscreen'} w-full`} aria-live="assertive">
+                <p ref={errRef} className={`text-red-500 w-40 inline-block bg-white text-center rounded-2xl border-white ${errMsg ? 'errmsg' : 'offscreen'}`} aria-live="assertive">
                     {errMsg}
                 </p>
+
 
 
                 {/* Картинка профілю */}

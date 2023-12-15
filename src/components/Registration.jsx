@@ -12,7 +12,7 @@ const PHONE_NUMBER_REGEX = /^\+\d{1,3}\d{9}$/;
 const API_ENDPOINT = 'http://localhost:8088/api/register';
 
 // tailwind frequently used values
-const FONT_CLASS = "font-sans"
+const FONT_CLASS = "font-Inder, sans-serif"
 const HINT_WIDTH = "w-[92.3%]"
 
 const Registration = () => {
@@ -160,7 +160,7 @@ const Registration = () => {
                 {!errMsg ? <></> :
                   <label
                     ref={errRef}
-                    className={`bg-[red] ${FONT_CLASS} text-[pink]`}
+                    className={`text-red-500 w-40 inline-block bg-white text-center rounded-2xl border-white ${FONT_CLASS} `}
                     aria-live="assertive"
                   >
                     {errMsg}
