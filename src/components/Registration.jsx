@@ -54,6 +54,7 @@ const Registration = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [showAdditionalFields, setShowAdditionalFields] = useState(false);
 
+
     useEffect(() => {
         emailRef.current.focus();
     }, []);
