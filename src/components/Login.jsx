@@ -24,10 +24,6 @@ export const AuthProvider = ({ children }) => {
     )
 }
 
-function isInputValid(value, regex){
-    return regex.test(value);
-};
-
 const Login = () => {
 
   const { setAuth } = useContext(AuthContext);
@@ -51,31 +47,30 @@ const Login = () => {
       e.preventDefault();
 
       try {
-          const response = await axios.post(LOGIN_URL,
-              JSON.stringify({ user, pwd }),
-              {
-                  headers: { 'Content-Type': 'application/json' },
-                  withCredentials: true
-              }
-          );
-          console.log(JSON.stringify(response?.data));
-          //console.log(JSON.stringify(response));
-          const accessToken = response?.data?.accessToken;
-          const roles = response?.data?.roles;
-          setAuth({ user, pwd, roles, accessToken });
-          setUser('');
-          setPwd('');
-          setSuccess(true);
+          const toPost = {'email':email, 'password':password};
+          axios.post(API_ENDPOINT, toPost)
+          .then((res) => {
+            navigate('/')
+          })
+          // console.log(JSON.stringify(response?.data));
+          // //console.log(JSON.stringify(response));
+          // const accessToken = response?.data?.accessToken;
+          // const roles = response?.data?.roles;
+          // setAuth({ user, pwd, roles, accessToken });
+          // setUser('');
+          // setPwd('');
+          // setSuccess(true);
       } catch (err) {
-          if (!err?.response) {
-              setErrMsg('No Server Response');
-          } else if (err.response?.status === 400) {
-              setErrMsg('Missing Username or Password');
-          } else if (err.response?.status === 401) {
-              setErrMsg('Unauthorized');
-          } else {
-              setErrMsg('Login Failed');
-          }
+          // if (!err?.response) {
+          //     setErrMsg('No Server Response');
+          // } else if (err.response?.status === 400) {
+          //     setErrMsg('Missing Username or Password');
+          // } else if (err.response?.status === 401) {
+          //     setErrMsg('Unauthorized');
+          // } else {
+          //     setErrMsg('Login Failed');
+          // }
+          setErrMsg('error WIP')
           errRef.current.focus();
       }
   }
