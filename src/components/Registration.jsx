@@ -46,6 +46,8 @@ const Registration = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [validPhoneNumber, setValidPhoneNumber] = useState(false);
 
+    
+    // Functional fields
     const [errMsg, setErrMsg] = useState('');
     const [emailErrMsg, setEmailErrMsg] = useState('');
 
@@ -54,10 +56,10 @@ const Registration = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [showAdditionalFields, setShowAdditionalFields] = useState(false);
 
-
-    useEffect(() => {
-        emailRef.current.focus();
-    }, []);
+    //initial focus
+    // useEffect(() => {
+    //     emailRef.current.focus();
+    // }, []);
 
     useEffect(() => {
         setValidEmail(EMAIL_REGEX.test(email));
@@ -85,7 +87,6 @@ const Registration = () => {
     }, [email, password, matchPassword])
 
  
-
     const handleSubmit = async (e) => {
       e.preventDefault();
       const v1 = EMAIL_REGEX.test(email);
@@ -95,34 +96,23 @@ const Registration = () => {
           return;
       }
       try {
-          const response = await axios.post(
-              API_ENDPOINT,
-              JSON.stringify({ email, password }),
-              {
-                  headers: { 'Content-Type': 'application/json' },
-                  withCredentials: true
-              }
-          );
-          console.log(response?.data);
-          console.log(response?.accessToken);
-          console.log(JSON.stringify(response))
-          console.log("Name:", name);
-          console.log("Surname:", surname);
-          console.log("Phone Number:", phoneNumber);
-          setSuccess(true);
-          setEmail('');
-          setPassword('');
-          setMatchPassword('');
+          const createUser = {'email':email, 'password':password, 'name':name, 'surname':surname, 'phoneNumber':phoneNumber}
+          axios.post(API_ENDPOINT, createUser)
+          .then((res) => {
+            navigate('/');
+          })
+      // WIP
       } catch (err) {
-          if (!err?.response) {
-              setErrMsg('No Server Response');
-          } else if (err.response?.status === 409) {
-              setErrMsg('Username(email) Taken');
-          } else if (!validEmail){
-              setEmailErrMsg('Invalid Username(email)');
-          } else {
-              setErrMsg('Registration Failed')
-          }
+          // if () {
+          //     setErrMsg('No Server Response');
+          // } else if (err.response?.status === 409) {
+          //     setErrMsg('Username(email) Taken');
+          // } else if (!validEmail){
+          //     setEmailErrMsg('Invalid Username(email)');
+          // } else {
+          //     setErrMsg('Registration Failed')
+          // }
+          setErrMsg('error');
           errRef.current.focus();
       }
   };
@@ -181,9 +171,10 @@ const Registration = () => {
                   Email:
                 </label>
 
+
                 <input
                   type="text"
-                  id="username"
+                  id="email"
                   ref={emailRef}
                   autoComplete="off"
                   onChange={(e) => setEmail(e.target.value)}
