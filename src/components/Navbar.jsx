@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsSearch, BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
+import { BsSearch, BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill, BsHouse } from "react-icons/bs";
+import ProfileDropdown from "./ProfileDropdown";
+import CategoriesMenu from "./CategoriesMenu";
 
 const GENERIC_BUTTON_BACKGROUND = 'flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2';
 const GENERIC_TEXT = 'font-sans font-bold text-white text-[15px] no-underline';
-const DROPDOWN_TEXT = 'font-sans font-semibold text-white text-[10px] no-underline';
 const MINOR_BUTTON_BACKGROUND = 'flex rounded-[7px] hover:bg-zinc-700 w-full justify-center h-7 items-center gap-2 bg-inherit border-none';
 // TODO: constant for search bar text
 
 const Navbar = () => {
 
     const [openProfileDropdown, setOpenProfileDropdown] = useState(false);
+    const [openCategoriesMenu, setOpenCategoriesMenu] = useState(false);
 
     const handleOpenProfileDropdown = () => {
-        setOpenProfileDropdown(!openProfileDropdown)
+        setOpenProfileDropdown(!openProfileDropdown);
     };
 
+    const handleOpenCategoriesMenu = () => {
+        setOpenCategoriesMenu(!openCategoriesMenu);
+    }; 
 
 
     return(
@@ -48,7 +53,8 @@ const Navbar = () => {
                                 </div>
                             </Link>
                             {/* Catalogue button */}
-                            <button className={`${GENERIC_BUTTON_BACKGROUND} self-center gap-2 bg-inherit border-none`}>
+                            <button className={`${GENERIC_BUTTON_BACKGROUND} self-center gap-2 bg-inherit border-none`}
+                            onClick={handleOpenCategoriesMenu}>
                                 <div className={`${GENERIC_TEXT} flex items-center gap-2 bg-inherit border-none`}>
                                     Catalogue
                                     <BsGrid3X3Gap/>
@@ -132,28 +138,9 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* Dropdown menu */}
-                    {openProfileDropdown && (
-                        <div className="absolute right-0 self-start text-white bg-black w-fit">
-                            <div className="flex flex-col">
-                                    <div className="flex items-center justify-center px-10 py-2 bg-zinc-700">
-                                        <p className={DROPDOWN_TEXT}>Profile</p>
-                                    </div>
-                                    <div className="flex items-center justify-center px-10 py-2 bg-zinc-700">
-                                        <p className={DROPDOWN_TEXT}>Exit</p>
-                                    </div>
-                                <Link className="no-underline" to={"/registration"}>
-                                    <div className="flex items-center justify-center px-10 py-2 bg-zinc-700 hover:bg-darkgrey">
-                                        <p className={DROPDOWN_TEXT}>Registration</p>
-                                    </div>
-                                </Link>
-                                <Link className="no-underline" to={"/login"}>
-                                    <div className="flex items-center justify-center px-10 py-2 bg-zinc-700 hover:bg-darkgrey">
-                                        <p className={DROPDOWN_TEXT}>Login</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-                    )}
+                    {openProfileDropdown ? (<ProfileDropdown/>) : null}
+                    {/* Categories menu */}
+                    {openCategoriesMenu ? (<CategoriesMenu/>):null}
                 </nav>
             </div>
         </>
