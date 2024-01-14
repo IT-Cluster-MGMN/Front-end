@@ -16,10 +16,12 @@ const Navbar = () => {
 
     const handleOpenProfileDropdown = () => {
         setOpenProfileDropdown(!openProfileDropdown);
+        setOpenCategoriesMenu(false);
     };
 
     const handleOpenCategoriesMenu = () => {
         setOpenCategoriesMenu(!openCategoriesMenu);
+        setOpenProfileDropdown(false);
     }; 
 
 
