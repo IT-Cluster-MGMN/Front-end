@@ -15,8 +15,8 @@ const TestPage = () => {
       <button onClick={handleClick}>
         Change token
       </button>
+      <p>{Cookies.get('token')}</p>
       <p>{Cookies.get('accessToken')}</p>
-      <p>{Cookies.get('refreshToken')}</p>
     </>
   );
 };
