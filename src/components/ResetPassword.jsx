@@ -1,88 +1,53 @@
-import { useState, useRef, useEffect } from "react";
-
-import "../App.css";
-
-const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-const API_ENDPOINT = '';
-
-function isInputValid(value, regex){
-    return regex.test(value);
-};
+import { useEffect, useState } from "react";
 
 const ResetPassword = () => {
-
-    const emailRef = useRef();
-    
     const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState(false);
-    const [emailFocus, setEmailFocus] = useState(false);
+    const [emailSent, setEmailSent] = useState(false);
+    const [confirmationCode, setConfirmationCode] = useState('');
+
+    const [identityConfirmed, setIdentityConfirmed] = useState(false);
+    const [newPassword, setNewPassword] = useState('');
+    const [matchPassword, setMatchPassword] = useState('');
 
     const [errMsg, setErrMsg] = useState('');
 
-    useEffect(() => {
-        emailRef.current.focus();
-    }, []);
-
-    const handleInputChange = (e, setValue, setValid, setFocus, regex) => {
-        const value = e.target.value;
-        setValue(value);
-        setFocus(true);
-        setValid(isInputValid(value, regex));
+    const handleEmailSubmit = () => {
+        // TODO: send email to backend to check if it exists then send 
+        setEmailSent(true);
     };
 
-    const renderError = (focus, notValid, message) => {
-        if(focus && notValid){
-            return <div className="error">{message}</div>
-        }
-        return null;
+    const handleConfirmationCodeSubmit = () => {
+        // TODO: send confirmation code to backend
+        setIdentityConfirmed(true);
     };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validEmail && validPassword) {
-            try{
-                // const loginUser = {"username":email, "password":password}
-                // axios.post(API_ENDPOINT, loginUser)
-                // .push("/");
-                // setSuccess(true);
-                setErrMsg("Success")
-            }
-            catch(error){
-                setErrMsg("Wrong email or password!")
-            }
-        } else {
-            setErrMsg('Please fill in all required fields correctly.');
-        }
-    };
-
-    return (
-        <div>
-            <form className="authentication-form" onSubmit={handleSubmit}>
-                <div className="row">
-                    <div className="reset-password-hint">
-                    <p>Please enter your email...WIP</p>                        
+    return(
+        <>
+            <div className="bg-darkgrey w-[20%] h-[30%]">
+                {identityConfirmed ? (
+                    <div className="flex flex-col w-full h-full">
+                        <label>New password</label>
+                        <input onChange={(e) => setNewPassword(e.target.value)}/>
+                        <label>Confirm password</label>
+                        <input onChange={(e) => setMatchPassword(e.target.value)}/>
+                        <button>submit</button>
                     </div>
-                </div>
-                <div className="row">
-                {renderError(emailFocus, !validEmail, 'Please enter a valid email.')}
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => handleInputChange(e, setEmail, setValidEmail, setEmailFocus, EMAIL_REGEX)}
-                        ref={emailRef}
-                    />
-                </div>
-                <div>
-                    <button type="submit">ChangePasswordTest</button>
-                </div>
-            </form>
-            {errMsg && <div className="error">{errMsg}</div>}
-        </div>   
+                ) : (emailSent ? (
+                    <div className="flex flex-col w-full h-full">
+                        <label>Input confirmation code for:</label>
+                        <p>{email}</p>
+                        <input onChange={(e) => setConfirmationCode(e.target.value)}/>
+                        <button onClick={handleConfirmationCodeSubmit}>submit</button>
+                    </div>
+                ) : (
+                    <div className="flex flex-col w-full h-full">
+                        <label>Input email</label>
+                        <input onChange={(e) => setEmail(e.target.value)}/>
+                        <button onClick={handleEmailSubmit}>submit</button>
+                    </div>
+                ))
+                }
+            </div>
+        </>
     );
 };
-
-export default ResetPassword
+export default ResetPassword;
