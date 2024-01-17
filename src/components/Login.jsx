@@ -44,13 +44,19 @@ const Login = () => {
       setErrMsg('');
   }, [user, pwd])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
       e.preventDefault();
+
+        const customRequest = axios.create({
+            baseURL: API_ENDPOINT,
+            headers: {'RequestOrigin': 'website'}
+        })
 
       try {
           const toPost = {'username':user, 'password':pwd};
-          axios.post(API_ENDPOINT, toPost)
+          customRequest.post(API_ENDPOINT, toPost)
           .then((res) => {
+            console.log(res);
             const token = res.data.token;
             // const refreshToken = res.data.refreshToken;
             Cookies.set('accessToken', token);
