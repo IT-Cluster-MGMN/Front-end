@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useRef, useState, useEffect, useContext, createContext } from 'react';
+import Cookies from "js-cookie";
 
 // import { AuthContext } from '../functions/auth.jsx';
 import { FunctionComponent } from "react";
@@ -8,7 +9,7 @@ import { FunctionComponent } from "react";
 const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
 
-const API_ENDPOINT = ""
+const API_ENDPOINT = "http://localhost:8000/api/security/login";
 
 const AuthContext = createContext({});
 
@@ -47,29 +48,16 @@ const Login = () => {
       e.preventDefault();
 
       try {
-          const toPost = {'email':email, 'password':password};
+          const toPost = {'username':user, 'password':pwd};
           axios.post(API_ENDPOINT, toPost)
           .then((res) => {
+            const token = res.data.token;
+            // const refreshToken = res.data.refreshToken;
+            Cookies.set('accessToken', token);
+            // Cookies.set('refreshToken', refreshToken)
             navigate('/')
           })
-          // console.log(JSON.stringify(response?.data));
-          // //console.log(JSON.stringify(response));
-          // const accessToken = response?.data?.accessToken;
-          // const roles = response?.data?.roles;
-          // setAuth({ user, pwd, roles, accessToken });
-          // setUser('');
-          // setPwd('');
-          // setSuccess(true);
       } catch (err) {
-          // if (!err?.response) {
-          //     setErrMsg('No Server Response');
-          // } else if (err.response?.status === 400) {
-          //     setErrMsg('Missing Username or Password');
-          // } else if (err.response?.status === 401) {
-          //     setErrMsg('Unauthorized');
-          // } else {
-          //     setErrMsg('Login Failed');
-          // }
           setErrMsg('error WIP')
           errRef.current.focus();
       }
@@ -113,20 +101,8 @@ const Login = () => {
 
                 {/* Картинка профілю */}
                 <div className="relative w-40 h-40">
-                    <label className="
-                    absolute flex 
-                    items-center 
-                    rounded-full 
-                    justify-center
-                    bg-white 
-                    shadow-inset 
-                    text-align-center
-                    w-full h-full">
-                    <img className="
-                        absolute top-2 left-2 
-                        w-36 h-36 
-                        object-cover 
-                        rounded-full"
+                    <label className="absolute flex items-center justify-center w-full h-full bg-white rounded-full shadow-inset text-align-center">
+                    <img className="absolute object-cover rounded-full top-2 left-2 w-36 h-36"
                         // потрібно додати функцію, яка буде посилати гет запит по введеному емейлу, щоб показувало
                         // картинку профілю
                         alt="profile_logo"
@@ -150,7 +126,7 @@ const Login = () => {
                 text-[20px]
                 w-[94%]
                 mt-[30px]`}>
-                    <img className="icon  w-6" alt="google_logo" src="google.png" />
+                    <img className="w-6 icon" alt="google_logo" src="google.png" />
                     Увійти за допомогою Google
                 </button>
 
