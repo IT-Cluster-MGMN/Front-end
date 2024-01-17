@@ -27,6 +27,8 @@ export const AuthProvider = ({ children }) => {
 
 const Login = () => {
 
+    let navigate = useNavigate();
+
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -58,9 +60,9 @@ const Login = () => {
           .then((res) => {
             console.log(res);
             const token = res.data.token;
-            // const refreshToken = res.data.refreshToken;
+            const refreshToken = res.data.refreshToken;
             Cookies.set('accessToken', token);
-            // Cookies.set('refreshToken', refreshToken)
+            Cookies.set('refreshToken', refreshToken);
             navigate('/')
           })
       } catch (err) {
