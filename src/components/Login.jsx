@@ -49,7 +49,7 @@ const Login = () => {
 
         const customRequest = axios.create({
             baseURL: API_ENDPOINT,
-            headers: {'RequestOrigin': 'website'}
+            headers: {'RequestOrigin': 'http://localhost:8000/api/security/login'}
         })
 
       try {
