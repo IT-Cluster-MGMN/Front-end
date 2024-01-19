@@ -6,8 +6,8 @@ import Home from "./components/Home"
 import ResetPassword from "./components/ResetPassword";
 import ProductPage from "./components/ProductPage";
 import TestPage from "./components/TestPage";
-
-import './App.css'
+import Favourite from "./components/Favourite.jsx";
+import SellPage from "./components/SellPage.jsx";
 
 function App() {
 
@@ -22,6 +22,8 @@ function App() {
             <Route path="/resetpassword" element={<ResetPassword/>} />
             <Route path="/products/:productId" element={<ProductPage/>} />
             <Route path="/test" element={<TestPage/>} />
+            <Route path="/favourite" element={<Favourite/>} />
+            <Route path="/sell" element={<SellPage/>}/>
           </Routes>
         </BrowserRouter>
       </div>
