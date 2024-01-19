@@ -29,36 +29,11 @@ const HomeSidePanel = () => {
     return(
         <>
             <div className="flex bg-zinc-200 w-[20%] left-[0px] h-[2000px]">
-                <div className="transition duration-300 delay-300">
-                    {/* {categories.map(category => (
-                        <ul className="font-sans text-xl font-bold list-none list-inside">
-                            <li >
-                                <div className="flex flex-row items-center gap-2">
-                                    {category['icon']}
-                                    {category['title']}
-                                </div>
-                            </li>
-                            {category['subcategories'].map(subcategory => (
-                                <ul className="font-sans text-lg font-semibold list-none list-inside">
-                                    <li>
-                                        {subcategory['title']}
-                                        {subcategory['subsubcategory'].map(subsubcategory => (
-                                            <ul className="font-sans text-[15px] font-medium list-none">
-                                                <li>
-                                                    <Link className="no-underline " to={subsubcategory['url']}>{subsubcategory['title']}</Link>
-                                                </li>
-                                            </ul>
-                                        ))}
-                                    </li>
-                                </ul>
-                            ))}
-                        </ul>
-                    ))} */}
-
+                <div className="">
                     {categories.map(category => (
-                        <ul className="list-none">
-                            <li>
-                                <button className="border-none bg-inherit hover:underline" onClick={() => handleCategoryFocus(category)}>
+                        <ul className="list-none h-fit">
+                            <li >
+                                <button className="border-none bg-inherit hover:underline text-[14px]" onClick={() => handleCategoryFocus(category)}>
                                     <div className="flex flex-row items-center gap-2">
                                         {categoryFocusCheck(category) ? (<BsCaretUp/>) : category['icon']}
                                         {category['title']}
@@ -69,13 +44,13 @@ const HomeSidePanel = () => {
                                 <ul className="list-none">
                                     {category['subcategories'].map(subcategory => (
                                         <li>
-                                            <Link to={subcategory['url']}>
+                                            <Link className="font-sans text-[13px] no-underline hover:underline text-black" to={subcategory['url']}>
                                                 {subcategory['title']}
                                             </Link>
                                         </li>
                                     ))}
                                 </ul>
-                            ) : null}
+                            ) : <></>}
                         </ul>
                     ))}
                 </div>
