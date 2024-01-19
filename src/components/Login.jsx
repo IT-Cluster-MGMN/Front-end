@@ -51,7 +51,8 @@ const Login = () => {
 
         const customRequest = axios.create({
             baseURL: API_ENDPOINT,
-            headers: {'RequestOrigin': 'http://localhost:8000'}
+            headers: {'RequestOrigin': 'http://localhost:8000'},
+            withCredentials:true
         })
 
       try {
@@ -59,10 +60,9 @@ const Login = () => {
           customRequest.post(API_ENDPOINT, toPost)
           .then((res) => {
             console.log(res);
-            const token = res.data.token;
-            const refreshToken = res.data.refreshToken;
-            Cookies.set('accessToken', token);
-            Cookies.set('refreshToken', refreshToken);
+            // console.log(res.data.accessToken);
+            // const accessToken = res.data.accessToken;
+            // Cookies.set('accessToken', accessToken);
             navigate('/')
           })
       } catch (err) {
