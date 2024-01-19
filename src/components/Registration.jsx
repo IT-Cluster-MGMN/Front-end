@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import "../styles/Registration.css";
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa';
