@@ -1,12 +1,50 @@
 import { BsCarFront, BsPhone, BsSuitHeart } from "react-icons/bs";
 import { VscJersey } from "react-icons/vsc";
 
+
+// БАЖАНО ЩОБ НАЗВА КАТЕГОРІЇ МАЛА +-20 СИМВОЛІВ
 export const categoriesData = [
     {
         title:'Electronics',
         id:'electronics',
         icon:<BsPhone/>,
         subcategories:[
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
+            {title:'1sub2', url:'/test', subsubcategory:[
+                {title:'12subsub1', url:'link'},
+                {title:'12subsub2', url:'link'}
+            ]},
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
+            {title:'1sub2', url:'/test', subsubcategory:[
+                {title:'12subsub1', url:'link'},
+                {title:'12subsub2', url:'link'}
+            ]},
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
+            {title:'1sub1', url:'/test', subsubcategory:[
+                {title:'11subsub1', url:'link'},
+                {title:'11subsub2', url:'link'}
+            ]},
             {title:'1sub1', url:'/test', subsubcategory:[
                 {title:'11subsub1', url:'link'},
                 {title:'11subsub2', url:'link'}
