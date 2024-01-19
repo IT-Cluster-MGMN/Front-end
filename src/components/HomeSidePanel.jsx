@@ -28,12 +28,12 @@ const HomeSidePanel = () => {
 
     return(
         <>
-            <div className="flex bg-zinc-200 w-[20%] left-[0px] h-[2000px]">
-                <div className="">
+            <div className="flex bg-zinc-100 min-w-[18%] left-[0px]">
+                <div className="left-[0px] fixed">
                     {categories.map(category => (
-                        <ul className="list-none h-fit">
+                        <ul className="p-0 pl-2 list-none h-fit">
                             <li >
-                                <button className="border-none bg-inherit hover:underline text-[14px]" onClick={() => handleCategoryFocus(category)}>
+                                <button className="border-none bg-inherit hover:underline text-[14px] font-sans" onClick={() => handleCategoryFocus(category)}>
                                     <div className="flex flex-row items-center gap-2">
                                         {categoryFocusCheck(category) ? (<BsCaretUp/>) : category['icon']}
                                         {category['title']}
