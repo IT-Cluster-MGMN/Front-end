@@ -11,14 +11,10 @@ const ProductPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
-    axios.get(`${API_ENDPOINT}/products/${productId}`)
+    axios.get(`${API_ENDPOINT}/product/${productId}`)
       .then(res => setProduct(res.data))
       .catch(error => console.error('Error fetching product data:', error));
   }, [productId]);
-
-  const handleAddToCart = () => {
-    console.log("add to cart");
-  };
 
   return (
     <>
@@ -61,7 +57,7 @@ const ProductPage = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...WIP</p>
+        <p>Loading...WIP {productId}</p>
       )}
     </>
   );

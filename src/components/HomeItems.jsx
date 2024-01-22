@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import dummyData from "../dummyData.json";
+import { useState } from "react";
+import ProductDetails from './ProductDetails';
 
 const HomeItems = () => {
 
@@ -7,22 +9,10 @@ const HomeItems = () => {
 
     return(
         <>
-            <div className=" px-[3px] bg-zinc-100">
-                <div className="grid justify-between w-full grid-cols-5 gap-[1px] bg-inherit">
-                    {data.map(item => (
-                        <Link className={`no-underline bg-white text-black p-5 duration-300 delay-150 border-none rounded-b-[10px] rounded-tl-[10px] hover:shadow-[inset_0_-2px_4px_rgba(0,0,0,0.5)]`}>
-                            <div className="bg-inherit rounded-b-[10px] rounded-tl-[10px]">
-                                <div className="flex flex-col gap-y-5 items-center h-fit w-fit max-h-[300px]">
-                                    <img className="w-[100%] h-[56,25%]" src={item['photo']}/>
-                                    <div className="flex flex-col">
-                                        <span className="self-start font-sans font-bold">{item['title']}</span>
-                                        <span className="self-start px-2 overflow-hidden font-sans ">{item['description'].substring(0,70)+'...'}</span>
-                                        <span className="self-start font-sans font-semibold text-[23px]">{item['price']}₴</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+            <div className=" px-[0.3rem] bg-zinc-300">
+                <div className="grid justify-between w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
+                xl:grid-cols-4 2xl:grid-cols-6 gap-[0.3rem] bg-inherit">
+                    {data.map(item => <ProductDetails item={item}/>)}
                 </div>
                 <div className="w-full bg-white h-[60px] flex items-center justify-center">
                     <button className="w-[100px] bg-inherit border-spacing-1 rounded-[20px] h-[30px]">
