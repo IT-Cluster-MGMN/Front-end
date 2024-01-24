@@ -9,6 +9,8 @@ const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
 const PHONE_NUMBER_REGEX = /^\+\d{1,3}\d{9}$/;
 
 const API_ENDPOINT = 'http://localhost:8088/api/register';
+const PROFILE_API = '';
+const SECURITY_API = '';
 
 // tailwind frequently used values
 const FONT_CLASS = "font-Inder, sans-serif"
@@ -96,11 +98,17 @@ const Registration = () => {
       }
       try {
           const createUser = {'email':email, 'password':password, 'name':name, 'surname':surname, 'phoneNumber':phoneNumber}
-          axios.post(API_ENDPOINT, createUser)
-          .then((res) => {
-            navigate('/');
+          axios.all([
+            axios.post(PROFILE_API, createUser),
+            axios.post(SECURITY_API, createUser)
+            ])
+          .then((response)=>{
+            console.log(response.data); 
           })
-      // WIP
+          .catch((error)=>{
+            console.log(error);
+          })
+     // WIP
       } catch (err) {
           // if () {
           //     setErrMsg('No Server Response');
