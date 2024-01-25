@@ -4,10 +4,11 @@ import Registration from "./components/Registration"
 import Login from "./components/Login"
 import Home from "./components/Home"
 import ResetPassword from "./components/ResetPassword";
-import ProductPage from "./components/ProductPage";
+import ProductDetails from "./components/ProductDetails.jsx";
 import TestPage from "./components/TestPage";
 import Favourite from "./components/Favourite.jsx";
 import SellPage from "./components/SellPage.jsx";
+import SearchPage from "./components/SearchPage.jsx";
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Home/>} />
             <Route path="/resetpassword" element={<ResetPassword/>} />
-            <Route path="/product/:productId" element={<ProductPage/>} />
+            <Route path="/product/:productId" element={<ProductDetails/>} />
+            <Route path="/search/:searchRequest" element={<SearchPage/>}/>
             <Route path="/test" element={<TestPage/>} />
             <Route path="/favourite" element={<Favourite/>} />
             <Route path="/sell" element={<SellPage/>}/>

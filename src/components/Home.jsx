@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import HomeSidePanel from "./HomeSidePanel";
 import Footer from "./Footer";
-import HomeItems from "./HomeItems";
+import HomeProducts from "./HomeProducts";
 
 const Home = () => {
     return(
@@ -10,7 +10,7 @@ const Home = () => {
                 {<Navbar/>}
                 <div className="flex flex-row">
                     {<HomeSidePanel/>}
-                    {<HomeItems/>}
+                    {<HomeProducts/>}
                 </div>
                 {<Footer/>}
             </div>
