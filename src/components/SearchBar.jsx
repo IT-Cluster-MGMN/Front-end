@@ -5,10 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
 
-    const [searchInput, setSetSearchInput] = useState(null);
-
-    const [searchFocus, setSearchFocus] = useState(false);
-    
+    const [searchInput, setSetSearchInput] = useState(null);    
     const navigate = useNavigate();
 
 
@@ -17,7 +14,7 @@ const SearchBar = () => {
     };
 
     const handleSubmit = () => {
-        searchInput ? navigate(`../search?ids=${searchInput}`) : null
+        navigate('/search', {state:{ids:searchInput}})
     };
 
     return(

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import ProductList from './ProductList';
 
-const SearchProducts = ({searchRequest}) => {
+const SearchProducts = () => {
 
     const [data, setData] = useState(null);
     
-    const [searchParams] = useSearchParams();
-    const ids = searchParams.get('ids');
+    const location = useLocation();
+
+    const ids = location.state.ids;
 
     const [test, setTest] = useState(false);
 
@@ -39,7 +40,7 @@ const SearchProducts = ({searchRequest}) => {
                     
                 ):(
                     <>
-                        <p>no data SearchReq:{typeof(ids)}</p>
+                        <p>no data SearchReq:{typeof(ids)} | {ids}</p>
                         <button onClick={handleTest}>test</button>
                     </>
                 )}
