@@ -58,7 +58,7 @@ const ProductDetails = () => {
                 <Link className='no-underline font-sans font-light text-[1.5rem] text-zinc-700'>Subcategory</Link>
               </div>
               <div className='w-[87%] xl:h-[10rem] bg-zinc-300 p-2 border-[rgba(0,0,0,0.3)] border-solid border-[1px] rounded-[0.4rem]'>
-                <span className='font-sans font-normal'>{product.description}</span>
+                <span className='font-sans font-normal break-all'>{product.description}</span>
               </div>
               <div className='flex flex-row items-center gap-2'>
                 <span className='font-sans font-semibold bg-zinc-300 rounded-[0.4rem] p-1 border-solid border-[1px] border-[rgba(0,0,0,0.3)]'>Sold by:</span>
