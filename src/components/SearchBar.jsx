@@ -1,18 +1,29 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+
 
 const SearchBar = () => {
 
     const [searchInput, setSetSearchInput] = useState(null);
 
+    const [searchFocus, setSearchFocus] = useState(false);
+    
+    const navigate = useNavigate();
+
+
     const handleInput = (e) => {
         setSetSearchInput(e);
-        console.log(searchInput);
+    };
+
+    const handleSubmit = () => {
+        searchInput ? navigate(`../search?ids=${searchInput}`) : null
     };
 
     return(
         <>
-            <div 
+            <form
+                onSubmit={handleSubmit}
                 className="
                 flex 
                 flex-row 
@@ -44,11 +55,11 @@ const SearchBar = () => {
                     type="text"
                     placeholder="Search"
                     onChange={(e) => handleInput(e.target.value)}/>
-                    <button className="h-full bg-darkgrey border-none rounded-[1.5rem] 
+                    <button type="submit" className="h-full bg-darkgrey border-none rounded-[1.5rem] 
                     hover:bg-[rgba(100,100,100,1)] py-1 delay-100 duration-150">
                         <BsSearch className="px-3 text-[0.8rem] text-white"/>
                     </button>
-            </div>
+            </form>
         </>
     );
 };
