@@ -17,7 +17,7 @@ const CategoriesMenu = () => {
 
     return(
         <>
-            <div className="flex flex-row absolute justify-self-center left-[3%] w-[94%] max-h-[300px]">
+            <div className="flex flex-row absolute justify-self-center left-[3%] z-10 w-[94%] max-h-[300px]">
                 {/* Basic categories */}
                 <div className="flex flex-col items-start w-[25%] bg-zinc-300 rounded-bl-[10px] py-4 overflow-y-auto">
                     {categories.map(value => (

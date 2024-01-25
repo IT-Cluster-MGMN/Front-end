@@ -5,7 +5,7 @@ const ProfileDropdown = () => {
 
     return(
         <>
-            <div className="absolute right-0 self-start w-fit">
+            <div className="absolute right-0 z-10 self-start w-fit">
                 <div className="flex flex-col">
                         <div className="flex items-center justify-center px-10 py-2 bg-zinc-700">
                             <p className={DROPDOWN_TEXT}>Profile</p>
