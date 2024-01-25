@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import FilterSideBar from "./FilterSideBar";
+import SearchProducts from "./SearchProducts";
 
-const SearchProducts = () => {
+const SearchPage = () => {
 
-    const searchRequest = useParams();
+    const {searchRequest} = useParams();
 
     return(
-        <div className="absolute top-0 left-0">
+        <div className="absolute top-0 left-0 w-full">
             <Navbar/>
             <div className="flex flex-row">
                 <FilterSideBar/>
@@ -16,4 +17,4 @@ const SearchProducts = () => {
         </div>
     )
 };
-export default SearchProducts;
+export default SearchPage;
