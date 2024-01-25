@@ -140,9 +140,19 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/* Dropdown menu */}
-                {openProfileDropdown ? (<ProfileDropdown/>) : null}
+                {openProfileDropdown ? (
+                    <>
+                        <ProfileDropdown/>
+                        <div onClick={handleOpenProfileDropdown} className="absolute z-0 w-screen h-screen bg-black opacity-70"/>
+                    </>
+                ) : null}
                 {/* Categories menu */}
-                {openCategoriesMenu ? (<CategoriesMenu/>):null}
+                {openCategoriesMenu ? (
+                    <>
+                        <CategoriesMenu/>
+                        <div onClick={handleOpenCategoriesMenu} className="absolute z-0 w-screen h-screen bg-black opacity-70"/>
+                    </>
+                ):null}
             </nav>
         </>
     );
