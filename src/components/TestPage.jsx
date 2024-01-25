@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
+import FilterSideBar from './FilterSideBar';
 
 
 const TestPage = () => {
@@ -30,16 +31,7 @@ const TestPage = () => {
 
   return(
     <>
-      <p>{Cookies.get('accessToken')}</p>
-      <button onClick={handleDataReveal}>Data</button>
-      {usersData!==null ? (<div>
-        {usersData.map(user => (
-          <div>
-            <p>{user['username']}</p>
-            <p>{user['password']}</p>
-          </div>
-        ))}
-      </div>) : null}
+      <FilterSideBar/>
     </>
   );
 };
