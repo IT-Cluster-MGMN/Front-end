@@ -9,6 +9,7 @@ import TestPage from "./components/TestPage";
 import Favourite from "./components/Favourite.jsx";
 import SellPage from "./components/SellPage.jsx";
 import SearchPage from "./components/SearchPage.jsx";
+import ProfilePage from "./components/ProfilePage.jsx";
 
 function App() {
 
@@ -22,10 +23,11 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/resetpassword" element={<ResetPassword/>} />
             <Route path="/product/:productId" element={<ProductDetails/>} />
-            <Route path="/search/:searchRequest" element={<SearchPage/>}/>
+            <Route path="/search" element={<SearchPage/>}/>
             <Route path="/test" element={<TestPage/>} />
             <Route path="/favourite" element={<Favourite/>} />
             <Route path="/sell" element={<SellPage/>}/>
+            <Route path="/profile" element={<ProfilePage/>}/>
           </Routes>
         </BrowserRouter>
       </div>
