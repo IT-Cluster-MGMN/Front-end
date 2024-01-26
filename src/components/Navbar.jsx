@@ -72,10 +72,10 @@ const Navbar = () => {
                             <BsFillHeartFill style={{color:"white"}}/>
                             <p className={GENERIC_TEXT}>Favourite</p>
                         </button>
-                        <button className={`${MINOR_BUTTON_BACKGROUND}`}>
+                        <Link to="../sell" className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
                             <BsFillTagsFill style={{color:"white"}}/>
                             <p className={GENERIC_TEXT}>Sell</p>
-                        </button>
+                        </Link>
                     </div>
                     {/* Profile icon */}
                     <div className="flex-col w-[10%] grow:1">

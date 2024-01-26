@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import {  useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,8 @@ const SearchBar = () => {
         setSetSearchInput(e);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         navigate('/search', {state:{ids:searchInput}})
     };
 
