@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import ProductList from './ProductList';
+import ProductList from '../../../components/ProductList';
 
 const SearchProducts = () => {
 
@@ -28,7 +28,7 @@ const SearchProducts = () => {
         .catch((error) => {
             console.log(error);
         })
-    }, [])
+    }, [ids])
 
     return(
         <>

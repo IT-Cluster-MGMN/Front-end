@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { BsHouse, BsPhone } from "react-icons/bs";
 import { useState } from "react";
-import { categoriesData } from "./CategoriesMenuItems";
+import { categoriesData } from "../../../jsons/CategoriesMenuItems";
 
 const CategoriesMenu = () => {
     const CATEGORIES_MENU_TEXT = 'font-sans font-semibold text-black text-[10px] no-underline';

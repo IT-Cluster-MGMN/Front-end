@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import dummyData from "../dummyData.json";
+import dummyData from "../../../jsons/dummyData.json";
 import { useState } from "react";
-import ProductList from "./ProductList";
+import ProductList from "../../../components/ProductList";
 
 const HomeProducts = () => {
     const data = dummyData;

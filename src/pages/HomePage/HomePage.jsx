@@ -1,9 +1,9 @@
-import Navbar from "./Navbar";
-import HomeSidePanel from "./HomeSidePanel";
-import Footer from "./Footer";
-import HomeProducts from "./HomeProducts";
+import Navbar from "../../components/Navbar/Navbar";
+import HomeSidePanel from "./components/HomeSidePanel";
+import Footer from "../../components/Footer";
+import HomeProducts from "./components/HomeProducts";
 
-const Home = () => {
+const HomePage = () => {
     return(
         <>
             <div className="flex flex-col absolute left-[0px] top-[0px] w-full">
@@ -17,4 +17,4 @@ const Home = () => {
         </>
     );
 };
-export default Home;
+export default HomePage;

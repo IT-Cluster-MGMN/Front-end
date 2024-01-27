@@ -1,8 +1,7 @@
-import { useParams } from "react-router-dom";
-import Navbar from "./Navbar";
-import FilterSideBar from "./FilterSideBar";
-import SearchProducts from "./SearchProducts";
-import SortBar from "./SortBar";
+import Navbar from "../../components/Navbar/Navbar";
+import FilterSideBar from "./components/FilterSideBar";
+import SearchProducts from "./components/SearchProducts";
+import SortBar from "./components/SortBar";
 
 const SearchPage = () => {
     return(
@@ -10,7 +9,7 @@ const SearchPage = () => {
             <Navbar/>
             <SortBar/>
             <div className="flex flex-row">
-                <FilterSideBar/>
+                {/* <FilterSideBar/> */}
                 <SearchProducts/>
             </div>
         </div>

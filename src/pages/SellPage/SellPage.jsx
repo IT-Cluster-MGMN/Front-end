@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Navbar from './Navbar'
+import { useState } from 'react';
+import Navbar from '../../components/Navbar/Navbar'
 import axios from 'axios';
 
 const SellPage = () => {

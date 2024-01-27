@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
-import ProfileDropdown from "./ProfileDropdown";
-import CategoriesMenu from "./CategoriesMenu";
-import SearchBar from "./SearchBar";
+import ProfileDropdown from "./components/ProfileDropdown";
+import CategoriesMenu from "./components/CategoriesMenu";
+import SearchBar from "./components/SearchBar";
 
 const GENERIC_BUTTON_BACKGROUND = 'flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2';
 const GENERIC_TEXT = 'font-sans font-bold text-white text-[15px] no-underline';
