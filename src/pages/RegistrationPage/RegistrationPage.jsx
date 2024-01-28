@@ -8,17 +8,16 @@ const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
 const PHONE_NUMBER_REGEX = /^\+\d{1,3}\d{9}$/;
 
-const API_ENDPOINT = 'http://localhost:8088/api/register';
-const PROFILE_API = '';
-const SECURITY_API = '';
+const PROFILE_API = 'http://localhost:8000/api/account/create/personal';
+const SECURITY_API = 'http://localhost:8000/api/security/register';
 
 // tailwind frequently used values
 const FONT_CLASS = "font-Inder, sans-serif"
 const HINT_WIDTH = "w-[92.3%]"
 
-const Registration = () => {
+const RegistrationPage = () => {
 
-    let navigate = useNavigate();
+  const navigate = useNavigate();
 
     const emailRef = useRef();
     const errRef = useRef();
@@ -38,13 +37,13 @@ const Registration = () => {
     
 
     // Additional fields
-    const [name, setName] = useState('');
+    const [name, setName] = useState('null');
     const [validName, setValidName] = useState(false);
 
-    const [surname, setSurname] = useState('');
+    const [surname, setSurname] = useState('null');
     const [validSurname, setValidSurname] = useState(false);
 
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('null');
     const [validPhoneNumber, setValidPhoneNumber] = useState(false);
 
     
@@ -90,6 +89,9 @@ const Registration = () => {
  
     const handleSubmit = async (e) => {
       e.preventDefault();
+      const customRequest = axios.create(
+        {withCredentials:true}
+      )
       const v1 = EMAIL_REGEX.test(email);
       const v2 = PASSWORD_REGEX.test(password);
       if (!v1 || !v2) {
@@ -97,13 +99,17 @@ const Registration = () => {
           return;
       }
       try {
-          const createUser = {'email':email, 'password':password, 'name':name, 'surname':surname, 'phoneNumber':phoneNumber}
-          axios.all([
-            axios.post(PROFILE_API, createUser),
-            axios.post(SECURITY_API, createUser)
-            ])
-          .then((response)=>{
-            console.log(response.data); 
+        const createSecurity = {'username':email, 'password':password};
+          const createPersonal = {'username':email, 'name':name, 'surname':surname};
+          customRequest.post(SECURITY_API, createSecurity)
+          .then(()=>{
+            customRequest.post(PROFILE_API, createPersonal)
+            .then(() => {
+              navigate('/');
+            })
+            .catch((error) => {
+              console.log(error)
+            })
           })
           .catch((error)=>{
             console.log(error);
@@ -194,11 +200,11 @@ const Registration = () => {
                   className={`${FONT_CLASS} text-base p-2 w-[90%] h-full rounded-md mt-[5px]`}
                 />
 
-                {(!emailFocus || validEmail) ? <></> : 
                 <p
                 id="uidnote"
-                className={
-                  `text-xs bg-black text-white ${FONT_CLASS} rounded-md p-1 relative ${HINT_WIDTH}`}
+                className={(!emailFocus || validEmail) ? 'w-0 overflow-hidden text-transparent h-0 transition-transform delay-150 duration-300' :
+                  `text-xs bg-black text-white ${FONT_CLASS} overflow-hidden rounded-md p-1 h-[3.5rem] relative 
+                  transition-all delay-150 duration-300 ${HINT_WIDTH}`}
                 >
                   <FaInfoCircle />
                     4 to 24 characters.
@@ -207,7 +213,6 @@ const Registration = () => {
                     <br />
                     Letters, numbers, underscores, hyphens allowed.
                 </p>
-                }
       
                 <label htmlFor="password" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>                  
                   {password && (
@@ -235,12 +240,11 @@ const Registration = () => {
                   className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                 />
 
-                {!passwordFocus || validPassword ? <></> :
                 <p
                   id="pwdnote"
-                  className={
-                    `text-xs bg-black text-white ${FONT_CLASS} rounded-md p-1 relative bottom-[10px] ${HINT_WIDTH}`
-                  }
+                  className={(!passwordFocus || validPassword) ? 'w-0 overflow-hidden text-transparent h-0 transition-transform delay-150 duration-300' :
+                  `text-xs bg-black text-white ${FONT_CLASS} overflow-hidden rounded-md p-1 h-[4.6rem] relative 
+                  transition-all delay-150 duration-300 ${HINT_WIDTH}`}
                   >
                   <FaInfoCircle />
                   8 to 24 characters.
@@ -252,7 +256,6 @@ const Registration = () => {
                   <span aria-label="dollar sign">$</span> 
                   <span aria-label="percent">%</span>
                 </p>
-                }
 
                 <label htmlFor="confirm_pwd" className={`${FONT_CLASS} flex flex-row items-center text-white mt-[20px] text-left`}>                  
                   { matchPassword && (
@@ -279,16 +282,15 @@ const Registration = () => {
                   className={`${FONT_CLASS} text-base p-2 w-[90%] rounded-md h-full mt-[5px]`}
                 />
 
-                {!matchFocus || validMatch ? <></> :
                 <p
                   id="confirmnote"
-                  className={
-                    `text-xs bg-black text-white ${FONT_CLASS} rounded-md p-1 relative bottom-[10px] ${HINT_WIDTH}`}
+                  className={(!matchFocus || validMatch) ? 'w-0 overflow-hidden text-transparent h-0 transition-transform delay-150 duration-300' :
+                  `text-xs bg-black text-white ${FONT_CLASS} overflow-hidden rounded-md p-1 h-[1.6rem] relative 
+                  transition-all delay-150 duration-300 ${HINT_WIDTH}`}
                 >
                   <FaInfoCircle />
                   Must match the first password input field.
                 </p>
-                }  
       
                 {showAdditionalFields && (
                   <>
@@ -383,4 +385,4 @@ const Registration = () => {
         </>
       );
     }      
-export default Registration;      
+export default RegistrationPage;      

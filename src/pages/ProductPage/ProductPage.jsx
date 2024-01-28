@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './Navbar';
-import { BsArrowRight, BsChat, BsHeart, BsMessenger } from 'react-icons/bs';
+import Navbar from '../../components/Navbar/Navbar';
+import { BsArrowRight, BsChat, BsHeart } from 'react-icons/bs';
 
-const ProductDetails = () => {
+const ProductPage = () => {
   const { productId } = useParams();
 
   const [product, setProduct] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(0);
+  // const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
     axios.get(`http://localhost:8000/api/product/${productId}`, {withCredentials:true})
@@ -87,4 +87,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default ProductPage;

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsSearch, BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill, BsHouse } from "react-icons/bs";
-import ProfileDropdown from "./ProfileDropdown";
-import CategoriesMenu from "./CategoriesMenu";
+import { BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
+import ProfileDropdown from "./components/ProfileDropdown";
+import CategoriesMenu from "./components/CategoriesMenu";
+import SearchBar from "./components/SearchBar";
 
 const GENERIC_BUTTON_BACKGROUND = 'flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2';
 const GENERIC_TEXT = 'font-sans font-bold text-white text-[15px] no-underline';
@@ -64,70 +65,17 @@ const Navbar = () => {
                         </button>
                     </div>
                     {/* Search bar */}
-                    <div 
-                    className="
-                    flex 
-                    flex-row 
-                    items-center 
-                    w-full
-                    bg-white 
-                    rounded-[7px] 
-                    px-2 
-                    pb-[3px]
-                    pt-2
-
-                    border-b-[3px]
-                    border-t-[0px]
-                    border-x-[0px]
-                    border-solid
-                    border-white
-            
-                    focus-within:border-b-[3px]
-                    focus-within:border-t-[0px]
-                    focus-within:border-x-[0px]
-                    focus-within:border-green-700
-                    focus-within:border-solid
-
-                    hover:border-b-[3px]
-                    hover:border-t-[0px]
-                    hover:border-x-[0px]
-                    hover:border-green-700
-                    hover:border-solid
-
-                    delay-300 
-                    duration-300 
-                    hover:delay-300 
-                    hover:duration-300
-                    focus-within:delay-300
-                    focus-within:delay-300
-                    "
-                    >
-                        <BsSearch className="px-2"/>
-                        <input className="
-                        bg-white 
-                        w-full 
-                        h-full
-                        border-none
-                        font-sans
-                        font-bold
-                        text-black
-                        text-[15px]
-                        rounded-[7px]
-                        !outline-none
-                        "
-                        type="text"
-                        placeholder="Search"/>
-                    </div>
+                    <SearchBar/>
                     {/* Minor functional buttons */}
                     <div className="flex flex-row items-center justify-evenly gap-[5%] py-2 w-full max-w-[20%]">
                         <button className={`${MINOR_BUTTON_BACKGROUND}`}>
                             <BsFillHeartFill style={{color:"white"}}/>
                             <p className={GENERIC_TEXT}>Favourite</p>
                         </button>
-                        <button className={`${MINOR_BUTTON_BACKGROUND}`}>
+                        <Link to="../sell" className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
                             <BsFillTagsFill style={{color:"white"}}/>
                             <p className={GENERIC_TEXT}>Sell</p>
-                        </button>
+                        </Link>
                     </div>
                     {/* Profile icon */}
                     <div className="flex-col w-[10%] grow:1">

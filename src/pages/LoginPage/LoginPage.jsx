@@ -1,35 +1,34 @@
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
-import { useRef, useState, useEffect, useContext, createContext } from 'react';
-import Cookies from "js-cookie";
+import { useRef, useState, useEffect} from 'react';
+// import { useContext, createContext } from "react"
 
 // import { AuthContext } from '../functions/auth.jsx';
-import { FunctionComponent } from "react";
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
+// const EMAIL_REGEX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+// const PASSWORD_REGEX = /^[a-zA-Z0-9-]{8,20}$/;
 
 const API_ENDPOINT = "http://localhost:8000/api/security/login";
 
-const AuthContext = createContext({});
+// const AuthContext = createContext({});
 
 const FONT_CLASS = "font-Inder, sans-serif"
 
-export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({});
+// export const AuthProvider = ({ children }) => {
+//     const [auth, setAuth] = useState({});
 
-    return (
-        <AuthContext.Provider value={{ auth, setAuth }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+//     return (
+//         <AuthContext.Provider value={{ auth, setAuth }}>
+//             {children}
+//         </AuthContext.Provider>
+//     )
+// }
 
 const Login = () => {
 
     let navigate = useNavigate();
 
-  const { setAuth } = useContext(AuthContext);
+//   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -63,7 +62,8 @@ const Login = () => {
             // console.log(res.data.accessToken);
             // const accessToken = res.data.accessToken;
               // Cookies.set('accessToken', accessToken);
-            navigate('/')
+            setSuccess(true);
+            navigate('/');
           })
       } catch (err) {
           setErrMsg('error WIP')
@@ -127,7 +127,6 @@ const Login = () => {
                 justify-evenly 
                 bg-white 
                 text-black
-                text-[20px]
                 rounded-md
                 h-full
                 p-2
