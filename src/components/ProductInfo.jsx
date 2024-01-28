@@ -9,9 +9,11 @@ const ProductInfo = ({item}) => {
             transition delay-75 duration-100" to={`../product/${item.productId}`}>
                 <img src={`${item.images[0] ? item.images[0] : 'src/assets/not-found.png'}`} alt="image" className="self-center w-full aspect-square"/>
                 <span className="font-semibold text-[1.5rem]">{item.title}</span>
-                <span className="text-zinc-500 text-[0.8rem]">category name</span>
-                <span className="text-[0.8rem] line-clamp-3 break-all">{item.description}</span>
+                {/* <span className="text-zinc-500 text-[0.8rem]">category name</span> */}
                 <span className="font-semibold text-[2rem]">{item.price}</span>
+                <button className="w-56 bg-gray-600 text-white py-2 px-5 text-center no-underline text-lg m-2 mx-auto cursor-pointer rounded-full shadow-md transition-all duration-300 ease-in-out block clear-both hover:bg-orange-600 hover:shadow-lg">Add to Favourites</button>
+                {/* <span className="text-[0.8rem] line-clamp-3 break-all">{item.description}</span> */}
+                
             </Link>
         </>
     );
