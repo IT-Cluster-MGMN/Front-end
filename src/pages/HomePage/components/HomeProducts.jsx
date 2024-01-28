@@ -8,7 +8,7 @@ const HomeProducts = () => {
 
     return(
         <>
-            <div className=" px-[0.3rem] bg-zinc-300">
+            <div className=" px-[0.3rem] bg-[#fff]">
                 <ProductList data={data}/>
                 <div className="w-full bg-white h-[60px] flex items-center justify-center">
                     <button className="w-[100px] bg-inherit border-spacing-1 rounded-[20px] h-[30px]">

@@ -3,6 +3,15 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      transitionProperty: {
+        'bg-box-shadow': 'background-color, box-shadow',
+      },
+      transitionDuration: {
+        '300': '0.3s',
+      },
+      boxShadow: {
+        'custom': '2px 2px 5px #888888',
+      },
       colors: {
         white: "#fff",
         gray: {

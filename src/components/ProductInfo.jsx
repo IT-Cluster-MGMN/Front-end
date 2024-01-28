@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
+import "../App.css";
 
 const ProductInfo = ({item}) => {
 
     return(
         <>
-            <Link className="flex flex-col font-sans text-black no-underline bg-white 
-            hover:shadow-[inset_0_-2px_4px_rgba(0,0,0,0.6)] p-3 rounded-b-[0.4rem] rounded-tl-[0.4rem]
-            transition delay-75 duration-100" to={`../product/${item.productId}`}>
-                <img src={`${item.images[0] ? item.images[0] : 'src/assets/not-found.png'}`} alt="image" className="self-center w-full aspect-square"/>
-                <span className="font-semibold text-[1.5rem]">{item.title}</span>
+            <Link className="card" to={`../product/${item.productId}`}>
+                <img src={`${item.images[0] ? item.images[0] : 'src/assets/not-found.png'}`} alt="image" className="card-image"/>
+                <span className="card-title">{item.title}</span>
                 {/* <span className="text-zinc-500 text-[0.8rem]">category name</span> */}
-                <span className="font-semibold text-[2rem]">{item.price}</span>
-                <button className="w-56 bg-gray-600 text-white py-2 px-5 text-center no-underline text-lg m-2 mx-auto cursor-pointer rounded-full shadow-md transition-all duration-300 ease-in-out block clear-both hover:bg-orange-600 hover:shadow-lg">Add to Favourites</button>
+                <span className="card-price">{item.price}</span>
+                <button className="add-to-cart">Add to Favourites</button>
                 {/* <span className="text-[0.8rem] line-clamp-3 break-all">{item.description}</span> */}
                 
             </Link>

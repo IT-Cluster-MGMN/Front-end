@@ -1,10 +1,10 @@
 import ProductInfo from "./ProductInfo";
+import "../App.css";
 
 const ProductList = ({data}) => {
     return(
         <>
-            <div className="grid justify-between w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-4 
-                xl:grid-cols-5 2xl:grid-cols-6 gap-[0.3rem] bg-inherit">
+            <div className = "card-container">
                 {data.map(product => (
                     <>
                         <ProductInfo item={product}/>
