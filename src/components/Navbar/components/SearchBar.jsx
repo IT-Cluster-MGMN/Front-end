@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
 
-    const [searchInput, setSetSearchInput] = useState(null);    
+    const [searchInput, setSetSearchInput] = useState(null);
     const navigate = useNavigate();
 
 
@@ -15,7 +15,7 @@ const SearchBar = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/search', {state:{ids:searchInput}})
+        navigate(`/search?query=${searchInput}`);
     };
 
     return(
@@ -23,24 +23,24 @@ const SearchBar = () => {
             <form
                 onSubmit={handleSubmit}
                 className="
-                flex 
-                flex-row 
-                items-center 
+                flex
+                flex-row
+                items-center
                 w-full
-                bg-white 
-                rounded-[7px] 
+                bg-white
+                rounded-[7px]
                 px-2
-                py-1 
+                py-1
 
-                delay-300 
-                duration-300 
-                hover:delay-300 
+                delay-300
+                duration-300
+                hover:delay-300
                 hover:duration-300
                 "
                 >
                     <input className="
-                    bg-white 
-                    w-full 
+                    bg-white
+                    w-full
                     h-full
                     border-none
                     font-sans
@@ -53,7 +53,7 @@ const SearchBar = () => {
                     type="text"
                     placeholder="Search"
                     onChange={(e) => handleInput(e.target.value)}/>
-                    <button type="submit" className="h-full bg-darkgrey border-none rounded-[1.5rem] 
+                    <button type="submit" className="h-full bg-darkgrey border-none rounded-[1.5rem]
                     hover:bg-[rgba(100,100,100,1)] py-1 delay-100 duration-150">
                         <BsSearch className="px-3 text-[0.8rem] text-white"/>
                     </button>

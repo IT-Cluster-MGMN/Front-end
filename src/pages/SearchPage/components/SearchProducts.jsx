@@ -4,13 +4,9 @@ import { useLocation } from 'react-router-dom';
 import ProductList from '../../../components/ProductList';
 
 const SearchProducts = () => {
-
     const [data, setData] = useState(null);
-    
     const location = useLocation();
-
-    const ids = location.state.ids;
-
+    const searchInput = new URLSearchParams(location.search).get('query');
     const [test, setTest] = useState(false);
 
     const handleTest = () => {
@@ -18,29 +14,30 @@ const SearchProducts = () => {
     };
 
     useEffect(() => {
-        axios.post("http://localhost:8000/api/product/search", {
-            "ids":ids
-        }, {withCredentials:true})
-        .then((response) => {
-            console.log(response);
-            setData(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }, [ids])
+        if (searchInput) {
+            axios.post("http://localhost:8000/api/product/search", {
+                "query": searchInput
+            }, { withCredentials: true })
+                .then((response) => {
+                    console.log(response);
+                    setData(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, [searchInput]);
 
-    return(
+    return (
         <>
             <div className='bg-zinc-300 px-[0.3rem] min-h-screen'>
                 {data ? (
                     <>
-                        <ProductList data={data}/>
+                        <ProductList data={data} />
                     </>
-                    
-                ):(
+                ) : (
                     <>
-                        <p>no data SearchReq:{typeof(ids)} | {ids}</p>
+                        <p>No data for SearchReq: {typeof (searchInput)} | {searchInput}</p>
                         <button onClick={handleTest}>test</button>
                     </>
                 )}
