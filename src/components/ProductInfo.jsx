@@ -6,7 +6,7 @@ const ProductInfo = ({item}) => {
     return(
         <>
             <Link className="card" to={`../product/${item.productId}`}>
-                <img src={`${item.images[0] ? item.images[0] : 'src/assets/not-found.png'}`} alt="image" className="card-image"/>
+                <img src={`$'src/assets/not-found.png'}`} alt="image" className="card-image"/>
                 <span className="card-title">{item.title}</span>
                 {/* <span className="text-zinc-500 text-[0.8rem]">category name</span> */}
                 <span className="card-price">{item.price}</span>
