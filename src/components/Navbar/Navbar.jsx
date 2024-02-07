@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Overlay from '../Overlay'; 
 import { Link } from "react-router-dom";
 import { BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
 import ProfileDropdown from "./components/ProfileDropdown";
@@ -91,14 +92,14 @@ const Navbar = () => {
                 {openProfileDropdown ? (
                     <>
                         <ProfileDropdown/>
-                        <div onClick={handleOpenProfileDropdown} className="absolute z-0 w-screen h-screen bg-black opacity-70"/>
+                        <Overlay onClick={() => handleOpenProfileDropdown()}/>
                     </>
                 ) : null}
                 {/* Categories menu */}
                 {openCategoriesMenu ? (
                     <>
                         <CategoriesMenu/>
-                        <div onClick={handleOpenCategoriesMenu} className="absolute z-0 w-screen h-screen bg-black opacity-70"/>
+                        <Overlay onClick={()=> handleOpenCategoriesMenu()}/>
                     </>
                 ):null}
             </nav>
