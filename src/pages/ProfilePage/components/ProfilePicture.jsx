@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Avatar from '../../../components/Avatar';
+import EditProfileButton from "../../../components/EditProfileButton";
 
 const ProfilePicture = ({pfp}) => {
 
@@ -14,19 +16,16 @@ const ProfilePicture = ({pfp}) => {
 
   return(
     <>
-      {pfpChange ? (
-        <div>
-          <img/>
-          <button>Change profile picture</button>
+      <div className="w-[60%] flex flex-col h-full">
+        <Avatar/>
+        <div className="flex flex-row items-center">
+          <EditProfileButton/>
+          <span>Edit profile picture</span>
         </div>
-      ) : (
-        <>
-            {/*TODO: make generic overlay cliclable component*/}
-            <div>
-              {/*photo croper component*/}
-            </div>
-        </>
-      )}
+        {pfpChange ? (
+          <div>TODO</div>
+        ) : (null)}
+      </div>
     </>
   )
 };
