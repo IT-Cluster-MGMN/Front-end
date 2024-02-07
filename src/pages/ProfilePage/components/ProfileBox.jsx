@@ -1,6 +1,6 @@
 import { useState } from "react"
 import ProfileInfo from "./ProfileInfo"
-import EditProfileButton from "../../../components/EditProfileButton";
+import EditProfileButton from "./EditProfileButton";
 import ProfileEdit from "./ProfileEdit";
 import ProfilePicture from "./ProfilePicture";
 

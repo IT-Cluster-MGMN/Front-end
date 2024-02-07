@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Avatar from '../../../components/Avatar';
-import EditProfileButton from "../../../components/EditProfileButton";
+import EditProfileButton from './EditProfileButton';
 
 const ProfilePicture = ({pfp}) => {
 
