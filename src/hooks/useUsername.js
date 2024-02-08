@@ -5,7 +5,7 @@ const useUsername = () => {
 
   const [username, setUsername] = useState(null);
 
-  const USERNAME_ENDPOINT = '';
+  const USERNAME_ENDPOINT = 'http://localhost:8000/api/data/username';
 
   useEffect(()=>{
     requestWithCredentials.get(USERNAME_ENDPOINT)
