@@ -30,7 +30,7 @@ const SearchProducts = () => {
 
     return (
         <>
-            <div className='bg-zinc-300 px-[0.3rem] min-h-screen'>
+            <div className=' px-[0.3rem] min-h-screen'>
                 {data ? (
                     <>
                         <ProductList data={data} />

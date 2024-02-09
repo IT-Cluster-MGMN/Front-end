@@ -17,10 +17,10 @@ const ProfilePicture = ({pfp}) => {
   return(
     <>
       <div className="w-[60%] flex flex-col h-full">
-        <Avatar/>
+        {/* <Avatar/> */}
         <div className="flex flex-row items-center">
-          <EditProfileButton/>
-          <span>Edit profile picture</span>
+          {/* <EditProfileButton/> */}
+          {/* <span>Edit profile picture</span> */}
         </div>
         {pfpChange ? (
           <div>TODO</div>
