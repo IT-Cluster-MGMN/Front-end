@@ -59,11 +59,11 @@ const ProfileEdit = () => {
       </form> 
       <div className='absolute bottom-[26%] left-[24%] w-full justify-between items-center px-4 py-2 '>
         <h3>Do you have telegram by this number?</h3>
-        <MyComponent />
+        {/* <MyComponent /> */}
       </div>
       <div className='absolute bottom-[16%] left-[24%] w-full justify-between items-center px-4 py-2 '>
         <h3>Do you have Viber by this number?</h3>
-        <MyComponent />
+        {/* <MyComponent /> */}
       </div>
     </>
   )
