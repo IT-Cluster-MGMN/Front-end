@@ -1,7 +1,6 @@
 const FilterSideBar = () => {
     return(
         <>
-        
         </>
     );
 };
@@ -135,4 +134,3 @@ export default FilterSideBar;
 //   };
 
 // export { Price, Colors, Category };
-// export default FilterSideBar;
