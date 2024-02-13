@@ -1,9 +1,4 @@
-import useUserData from '../../../hooks/useUserData.js';
-import ProfilePicture from './ProfilePicture.jsx';
-
-const ProfileInfo = () => {
-
-  const user = useUserData();
+const ProfileInfo = ({user}) => {
 
   return(
     <>

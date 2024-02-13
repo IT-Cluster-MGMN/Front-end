@@ -1,5 +1,4 @@
 import Navbar from "../../components/Navbar/Navbar"; // Ensure this is imported correctl
-import Footer from '../../components/Footer';
 import ProfileBox from './components/ProfileBox';
 import { CiClock1 } from "react-icons/ci";
 
