@@ -3,13 +3,16 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import { BsArrowRight, BsChat, BsHeart, BsCart2, BsFillHeartFill, BsChatLeftFill    } from 'react-icons/bs';
+import MainImage from './components/MainImage';
+import useAPIMainImage from '../../hooks/useAPIMainImage';
 // can you import app.css?
 
-
 const ProductPage = () => {
+
   const { productId } = useParams();
 
   const [product, setProduct] = useState(null);
+  const mainImage = useAPIMainImage(productId);
   // const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
@@ -26,28 +29,9 @@ const ProductPage = () => {
       <Navbar/>
       {product ? (
         <div className='flex flex-row w-full h-full'>
-          {/* Product Images
-           <div className='w-[100rem] bg-[#fff] h-full'>
-            Image Selector
-            <div>
-              {product.productImages.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Product ${index + 1}`}
-                  onClick={() => setSelectedImage(index)}
-                  className={index === selectedImage ? 'selected' : ''}
-                />
-              ))}
-            </div>
-            Main Image
-            <div>
-              <img
-                src={product.productImages[selectedImage]}
-                alt={`Product ${selectedImage + 1}`}
-              />
-            </div>
-          </div>  */}
+          <div>
+            <MainImage image={mainImage}/>
+          </div>
           {/* Product Info + Buttons */}
           <div className='w-full h-full bg-[#fff] pl-[1rem] px-0'>
             {/* Product Info */}
