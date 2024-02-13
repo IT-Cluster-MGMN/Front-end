@@ -14,7 +14,7 @@ const ProfileBox = () => {
   
   return(
     <>
-      <div className=" my-[2rem] w-[90%] h-full flex flex-row   self-center rounded-[1.5rem] p-[2rem] gap-[1rem]">
+      <div className=" my-[2rem] w-[90%] h-full flex flex-row rounded-[1.5rem] p-[2rem] gap-[1rem]">
         <ProfilePicture className="w-[10%]"/>
         <div className="w-full">
           {isEditting ? (<ProfileEdit/>) : (<ProfileInfo/>)}
