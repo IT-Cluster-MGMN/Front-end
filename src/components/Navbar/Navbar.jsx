@@ -5,6 +5,7 @@ import { BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
 import ProfileDropdown from "./components/ProfileDropdown";
 import CategoriesMenu from "./components/CategoriesMenu";
 import SearchBar from "./components/SearchBar";
+import useIsLogged from '../../hooks/useIsLogged';
 
 const GENERIC_BUTTON_BACKGROUND = 'flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2';
 const GENERIC_TEXT = 'font-sans font-bold text-white text-[15px] no-underline';
@@ -25,6 +26,8 @@ const Navbar = () => {
         setOpenCategoriesMenu(!openCategoriesMenu);
         setOpenProfileDropdown(false);
     }; 
+
+  const isLogged = useIsLogged();
 
 
     return(
@@ -69,11 +72,11 @@ const Navbar = () => {
                     <SearchBar/>
                     {/* Minor functional buttons */}
                     <div className="flex flex-row items-center justify-evenly gap-[5%] py-2 w-full max-w-[20%]">
-                        <button className={`${MINOR_BUTTON_BACKGROUND}`}>
+                        <Link to={isLogged ? "../favourites" : "../login"} className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
                             <BsFillHeartFill style={{color:"white"}}/>
                             <p className={GENERIC_TEXT}>Favourite</p>
-                        </button>
-                        <Link to="../sell" className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
+                        </Link>
+                        <Link to={isLogged ? "../sell" : "../login"} className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
                             <BsFillTagsFill style={{color:"white"}}/>
                             <p className={GENERIC_TEXT}>Sell</p>
                         </Link>
@@ -91,7 +94,7 @@ const Navbar = () => {
                 {/* Dropdown menu */}
                 {openProfileDropdown ? (
                     <>
-                        <ProfileDropdown/>
+                        <ProfileDropdown isLogged={isLogged}/>
                         <Overlay onClick={() => handleOpenProfileDropdown()}/>
                     </>
                 ) : null}
