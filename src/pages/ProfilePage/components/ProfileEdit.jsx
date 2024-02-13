@@ -106,7 +106,8 @@ const UserProfile = () => {
       height: '680px',
       borderRadius: '120px',
       marginRight: '160px', 
-      marginLeft: '20px' 
+      marginLeft: '20px', 
+      marginTop: '20px',
     }}>
        <div className="flex flex-col font-sans items-center stroke-[#000000] w-[360px] h-[520px] bg-white border border-black rounded-[32px] shadow-inner"
        style={{ position: 'absolute', border: '2px solid gray', bottom: '25%', left: '30%' }}>
