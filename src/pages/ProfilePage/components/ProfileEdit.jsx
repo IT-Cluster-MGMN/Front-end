@@ -100,7 +100,7 @@ const UserProfile = () => {
 
   
   return (
-    <div className="flex justify-end items-start h-screen stroke-[#000000] bg-gray-400 shadow-inner rounded-lg p-8"
+    <div className="flex justify-end items-start h-screen stroke-[#000000] bg-gray-400 border-black shadow-inner rounded-lg p-8 " 
     style={{
       width: '950px',
       height: '680px',
@@ -108,6 +108,7 @@ const UserProfile = () => {
       marginRight: '160px', 
       marginLeft: '20px', 
       marginTop: '20px',
+      border: '2px solid gray'
     }}>
          <button className="absolute left-[32%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2 text-black  border-none">
           My DashBoard
