@@ -109,6 +109,15 @@ const UserProfile = () => {
       marginLeft: '20px', 
       marginTop: '20px',
     }}>
+         <button className="absolute left-[32%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2 text-black  border-none">
+          My DashBoard
+        </button>
+        <button className="absolute left-[50%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2 text-black  rounded-md border-none">
+          Chats
+        </button>
+        <button className="absolute left-[65%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2  text-black  rounded-md border-none">
+          Cart
+        </button>
        <div className="flex flex-col font-sans items-center stroke-[#000000] w-[360px] h-[520px] bg-white border border-black rounded-[32px] shadow-inner"
        style={{ position: 'absolute', border: '2px solid gray', bottom: '25%', left: '30%' }}>
         <img className="rounded-full opacity-90% w-45 h-40 mx-auto" src={user.photo} alt="User" />

@@ -9,15 +9,6 @@ const ProfilePage = () => {
     <>
       <div className='h-screen w-screen max-w-screen flex flex-col absolute top-0 left-0 overflow-hidden'>
         <Navbar className='z-10 relative'/>
-        <button className="absolute left-[32%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2 text-black  border-none">
-          My DashBoard
-        </button>
-        <button className="absolute left-[50%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2 text-black  rounded-md border-none">
-          Chats
-        </button>
-        <button className="absolute left-[65%] text-[32px] top-[8%] w-auto text-[20px] px-4 py-2  text-black  rounded-md border-none">
-          Cart
-        </button>
 
       {/* <div className="lines">
         <div className="absolute left-[10%] top-[40%] left-0 w-full h-0.5 bg-[#0C0C0D] opacity-[90%]"></div>
