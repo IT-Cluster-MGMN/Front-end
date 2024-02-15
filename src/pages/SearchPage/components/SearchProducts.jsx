@@ -7,11 +7,6 @@ const SearchProducts = () => {
     const [data, setData] = useState(null);
     const location = useLocation();
     const searchInput = new URLSearchParams(location.search).get('query');
-    const [test, setTest] = useState(false);
-
-    const handleTest = () => {
-        setTest(!test);
-    };
 
     useEffect(() => {
         if (searchInput) {
@@ -19,11 +14,9 @@ const SearchProducts = () => {
                 "query": searchInput
             }, { withCredentials: true })
                 .then((response) => {
-                    console.log(response);
                     setData(response.data);
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
         }
     }, [searchInput]);
@@ -38,7 +31,6 @@ const SearchProducts = () => {
                 ) : (
                     <>
                         <p>No data for SearchReq: {typeof (searchInput)} | {searchInput}</p>
-                        <button onClick={handleTest}>test</button>
                     </>
                 )}
             </div>

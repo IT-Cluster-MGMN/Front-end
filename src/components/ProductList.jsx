@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import PageSelector from "./PageSelector";
 import usePagination from '../hooks/usePagination';
 
-const ProductList = ({data}) => {
+const ProductList = ({data }) => {
   
   const paginatedData = usePagination(data, 20);
 
