@@ -105,6 +105,7 @@ const RegistrationPage = () => {
           .then(()=>{
             customRequest.post(PROFILE_API, createPersonal)
             .then(() => {
+              console.log('profile created')
               navigate('/');
             })
             .catch((error) => {

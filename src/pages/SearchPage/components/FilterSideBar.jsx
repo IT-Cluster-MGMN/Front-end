@@ -1,6 +1,18 @@
 const FilterSideBar = () => {
     return(
         <>
+          <div className="h-full flex flex-col">
+            <div className="flex flex-col">
+              <label>Color</label>
+              <input type="checkbox"/>
+              <input type="checkbox"/>
+              <input type="checkbox"/>
+            </div>
+            <div className="flex flex-col">
+              <label>Producer</label>
+              <input type="checkbox"/>
+            </div>
+          </div>
         </>
     );
 };

@@ -9,8 +9,8 @@ const SearchPage = () => {
             <Navbar/>
             <SortBar/>
             <div className="flex flex-row">
-                {/* <FilterSideBar/> */}
-                <SearchProducts/>
+                <FilterSideBar/>
+                <SearchProducts />
             </div>
         </div>
     )

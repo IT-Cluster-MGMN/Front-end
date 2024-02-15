@@ -34,6 +34,7 @@ const Navbar = () => {
         <>
             <nav className="
             bg-darkgrey
+            z-10
             w-full
             sticky
             top-[0px]
