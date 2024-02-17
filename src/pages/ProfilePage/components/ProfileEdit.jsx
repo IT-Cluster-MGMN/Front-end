@@ -283,7 +283,7 @@ const ProfileEdit = ({user}) => {
     console.log(data);
 
     useEditProfile(data);
-    window.location.reload(false) 
+    window.location.reload() 
   };
 
   return(
