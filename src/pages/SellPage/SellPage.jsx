@@ -1,23 +1,12 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar'
 import axios from 'axios';
+import ProductImageCreate from './components/ProductImageCreate';
 
 const SellPage = () => {
-    const [username, setUsername] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDesctiption] = useState('');
-    const [price, setPrice] = useState('');
+
 
     const handleSubmit = () => {
-        axios.post("http://localhost:8000/api/product/add", {
-            "username":username,
-            "price": price,
-            "title": title,
-            "description": description
-        })
-        .then((res)=>{
-            console.log(res);
-        });
     };
     return(
         <>
