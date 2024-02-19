@@ -4,3 +4,6 @@ export const nameRegex =/[a-zA-Zа-яА-Я]{3,20}$/;
 export const phoneNumberRegex =/^\+\d{1,3}\d{9}$/;
 export const telegramRegex = /^@[\w\d_]{5,32}$/;
 export const viberRegex = /^[a-zA-Z][a-zA-Z0-9_]{5,24}$/;
+export const prodNameRegex = /^[a-zA-Z0-9\s\-_&',.()]+$/;
+export const prodDescRegex = /^[\s\S]*$/;
+export const prodPriceRegex = /^\d+(\.\d{1,2})?$/;

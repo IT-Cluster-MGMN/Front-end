@@ -1,10 +1,5 @@
-const ProductImageCreate = (onSubmit) => {
+const ProductImageCreate = ({ onSubmit }) => {
 
-  const onSubmit = () => {
-  
-    
-
-  }
   
   
 };
