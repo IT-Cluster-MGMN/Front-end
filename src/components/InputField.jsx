@@ -1,6 +1,8 @@
-const InputField = ({ label, onChange, className, placeholder }) => {
+const InputField = ({ label, onChange, className, placeholder, isValid=true }) => {
+  //TODO: make isValid handling
   return (
     <div className={`mb-4 ${className}`}>
+      {isValid ? (<p>Valid</p>) : (<p>Invalid</p>)}
       <label className="block text-gray-700 text-sm font-bold mb-2 w-1/2">
         {label}
       </label>
