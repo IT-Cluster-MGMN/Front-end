@@ -1,4 +1,4 @@
-const ProfileInfo = ({user}) => {
+const ProfileInfo = ({user, contacts}) => {
 
   return(
     <>
