@@ -147,6 +147,13 @@ import photo from './1.jpg';
 import { FaTelegram, FaGithub, FaDiscord } from "react-icons/fa6";
 import { Input } from 'postcss';
 import InputField from '../../../components/InputField.jsx';
+import { useEffect } from 'react';
+import useRegexValidation from '../../../hooks/useRegexValidation.js';
+import { nameRegex, phoneNumberRegex } from '../../../utils/regexPatterns.js';
+import useEditProfile from '../../../hooks/useEditProfile.js';
+import useUserData from '../../../hooks/useUserData.js';
+import { useNavigate } from 'react-router-dom';
+ 
 
 const renderLine = () => (
   <div className="w-full h-[2px] bg-[#0C0C0D] opacity-90"></div>
@@ -156,23 +163,37 @@ const renderLine2 = () => (
   <div className="w-[125px] h-0.5 bg-[#0C0C0D] opacity-90"></div>
 );
 
-const UserProfile = () => {
-  const [user, setUser] = useState({
-    photo: photo, // Replace with actual image path
-    name: 'Maxym',
-    surname: 'Makaryk',
-    patronymic: 'Ivanovych',
-    phone: '380937881503',
-    email: '',
-    gender: 'Man',
-    city: 'Turka',
-    birthday: '02/08/2005',
-    github: 'github-link', 
-    telegram: '@Apolloshka',
-    discord: 'Apollones'
-  });
+const ProfileEdit = ({user}) => {
 
+  const username = user.username;
+
+  const [name, isValidName, setName] = useRegexValidation(user.name, nameRegex);
+  const [surname, isValidSurname, setSurname] = useRegexValidation(user.surname, nameRegex);
+  const [additional, isValidAdditional, setAdditional] = useRegexValidation(user.additional, nameRegex);
+  const [sex, isValidSex, setSex] = useRegexValidation(user.sex, nameRegex);
+  const [date_birth, isValidBirthDate, setDate_birth] = useRegexValidation(user.date_birth, nameRegex);
   
+  const handleInputChange = (newValue, setter) => {
+    setter(newValue);
+  };
+
+  const handleSubmit = () => {
+
+    const data = {
+      name,
+      surname,
+      sex,
+      username,
+      additional,
+      date_birth,
+    };
+
+    console.log(data);
+
+    useEditProfile(data);
+    window.location.reload(false) 
+  };
+
   return (
     <div className="flex justify-end items-start h-screen stroke-[#000000] bg-gray-400 border-black shadow-inner rounded-lg p-8 " 
     style={{
@@ -214,7 +235,7 @@ const UserProfile = () => {
             <label className=" text-[22px]">Surname:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.username}/>
+              <InputField onChange={(e) => handleInputChange(e.target.value, setSurname)} label="" placeholder={user.username}/>
               </div>
               {renderLine()}
             </div>
@@ -225,7 +246,7 @@ const UserProfile = () => {
             <label className=" text-[22px]">Patronymic:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.patronymic}/>
+              <InputField onChange={(e) => handleInputChange(e.target.value, setAdditional)} label="" placeholder={user.patronymic}/>
               </div>
               {renderLine()}
             </div>
@@ -234,7 +255,7 @@ const UserProfile = () => {
           <label className=" font-sans text-[20px]">Sex:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.gender}/>
+              <InputField onChange={(e) => handleInputChange(e.target.value, setSex)} label="" placeholder={user.gender}/>
               </div>
               {renderLine()}
             </div>
@@ -249,7 +270,7 @@ const UserProfile = () => {
             </div>
           </div>  
         </div>
-        <button className='add-to-cart absolute bottom-[3%]'>Save</button>
+        <button onClick={handleSubmit} className='add-to-cart absolute bottom-[3%]'>Save</button>
       </div>
       <div className="flex flex-col w-[320px] h-[300px] items-center w-1/4 bg-white border border-black rounded-[32px]  p-2 shadow" style={{ position: 'absolute', border: '2px solid gray', bottom: '50%', left: '55%' }}>
         <div className="mt-2 absolute left-[1%] bottom-[70%]">
@@ -278,7 +299,7 @@ const UserProfile = () => {
             <label className=" text-[20px]">Date of Birthday:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.birthday}/>
+              <InputField onChange={(e) => handleInputChange(e.target.value, setDate_birth)} label="" placeholder={user.birthday}/>
               </div>
               {renderLine()}
             </div>
@@ -327,4 +348,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default ProfileEdit;
