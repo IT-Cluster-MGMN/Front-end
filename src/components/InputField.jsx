@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const InputField = ({ label, className, placeholder }) => {
+const InputField = ({ label, className, placeholder, onChange }) => {
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef(null);
 
@@ -12,6 +12,7 @@ const InputField = ({ label, className, placeholder }) => {
     if (inputRef.current) {
       inputRef.current.style.width = `${textWidth + padding}px`;
     }
+    onChange(inputValue);
   }, [inputValue]);
 
   return (

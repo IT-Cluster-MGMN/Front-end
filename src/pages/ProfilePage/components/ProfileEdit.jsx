@@ -1,147 +1,4 @@
 
-
-// import { useEffect } from 'react';
-// import InputField from '../../../components/InputField.jsx';
-// import useRegexValidation from '../../../hooks/useRegexValidation.js';
-// import { nameRegex, phoneNumberRegex } from '../../../utils/regexPatterns.js';
-// import EditProfileButton from './EditProfileButton.jsx';
-// import MyComponent from './MyComponents.jsx';
-// import useEditProfile from '../../../hooks/useEditProfile.js';
-// import useUserData from '../../../hooks/useUserData.js';
-// import { useNavigate } from 'react-router-dom';
-
-// const ProfileEdit = ({user}) => {
-
-//   const [name, isValidName, setName] = useRegexValidation(user.name, nameRegex);
-//   const [surname, isValidSurname, setSurname] = useRegexValidation(user.surname, nameRegex);
-//   const [additional, isValidAdditional, setAdditional] = useRegexValidation(user.additional, nameRegex);
-//   const [phoneNumber, isValidPhoneNumber, setPhoneNumber] = useRegexValidation(null, phoneNumberRegex);
-//   const [sex, isValidSex, setSex] = useRegexValidation(user.sex, nameRegex);
-//   const [date_birth, isValidBirthDate, setDate_birth] = useRegexValidation(user.date_birth, nameRegex);
-
-//   const handleInputChange = (newValue, setter) => {
-//     setter(newValue);
-//   };
-
-//   const username = user.username;
-
-//   const handleSubmit = () => {
-
-//     const data = {
-//       name,
-//       surname,
-//       sex,
-//       username,
-//       additional,
-//       date_birth,
-//     };
-
-//     console.log(data);
-
-//     useEditProfile(data);
-//     window.location.reload(false) 
-//   };
-
-//   return(
-//     <>
-//       <h1 className=' flex  flex-col absolute left-[25%]'>Personal Data</h1>
-//       <div className="flex absolute flex-wrap text-2xl left-[25%] bottom-[70%]" >
-//         <InputField onChange={(e) => handleInputChange(e.target.value, setName)} className = 'absoulute  w-1/2 'label="Name" placeholder={user.name}/>
-        
-//         <InputField onChange={(e) => handleInputChange(e.target.value, setSurname)} className='absolute left-[100%] w-1/2'  label="Surname" placeholder={user.surname}/>
-//         <InputField onChange={(e) => handleInputChange(e.target.value, setAdditional)} className= 'absolute w-1/2 left-[200%]' label="Patronymic" placeholder={user.additional}/>
-//         <InputField onChange={(e) => handleInputChange(e.target.value, setSex)} className='absolute left-[300%] flex-nowrap w-1/2 whitespace-nowrap' label="Sex" placeholder={user.sex}/>
-//         <InputField onChange={(e) => handleInputChange(e.target.value, setDate_birth)} className='absolute left-[400%] flex-nowrap w-1/2 whitespace-nowrap' label="Birth date" placeholder={user.date_birth}/>
-//         <button onClick={handleSubmit}>submit</button>
-//             </div>
-
-//       <h1 className=' flex  flex-col absolute left-[25%] bottom-[50%]'>Contacts</h1>
-//       <form className="flex absolute flex-wrap text-2xl left-[25%] bottom-[40%]" onSubmit={handleSubmit}>
-//         <InputField onChange={(e) => handleInputChange(e, setEmail)} className = 'absoulute   'label="Email"/>
-//         <InputField onChange={(e) => handleInputChange(e, setPhoneNumber)} className='absolute top-[100%] flex-nowrap  whitespace-nowrap' label="Phone number"/>
-//       </form> 
-//       <div className='absolute bottom-[26%] left-[24%] w-full justify-between items-center px-4 py-2 '>
-//         <h3>Do you have telegram by this number?</h3>
-//         <MyComponent />
-//       </div>
-//       <div className='absolute bottom-[16%] left-[24%] w-full justify-between items-center px-4 py-2 '>
-//         <h3>Do you have Viber by this number?</h3>
-//         <MyComponent />
-//       </div>
-//     </>
-//   )
-// };
-
-// export default ProfileEdit;
-
-{/* import { useEffect } from 'react';
-import InputField from '../../../components/InputField.jsx';
-import useRegexValidation from '../../../hooks/useRegexValidation.js';
-import { nameRegex, phoneNumberRegex, telegramRegex, viberRegex } from '../../../utils/regexPatterns.js';
-import EditProfileButton from './EditProfileButton.jsx';
-import MyComponent from './MyComponents.jsx';
-import useEditProfile from '../../../hooks/useEditProfile.js';
-import useEditContactsProfile from '../../../hooks/useEditContactsProfile';
-import useUserData from '../../../hooks/useUserData.js';
-import { useNavigate } from 'react-router-dom';
-
-const ProfileEdit = ({user, contacts}) => {
-
-  const [name, isValidName, setName] = useRegexValidation(user.name, nameRegex);
-  const [surname, isValidSurname, setSurname] = useRegexValidation(user.surname, nameRegex);
-  const [additional, isValidAdditional, setAdditional] = useRegexValidation(user.additional, nameRegex);
-  const [sex, isValidSex, setSex] = useRegexValidation(user.sex, nameRegex);
-  const [date_birth, isValidBirthDate, setDate_birth] = useRegexValidation(user.date_birth, nameRegex);
-
-  const [phone, isValidPhone, setPhone] = useRegexValidation(contacts.phone, phoneNumberRegex);
-  const [telegram, isValidTelegram, setTelegram] = useRegexValidation(contacts.telegram, telegramRegex);
-  const [viber, isValidViber, setViber] = useRegexValidation(contacts.viber, viberRegex);
-
-  const handleInputChange = (newValue, setter) => {
-    setter(newValue);
-  };
-
-  const username = user.username;
-
-  const handleInfoSubmit = () => {
-
-    const data = {
-      name,
-      surname,
-      sex,
-      username,
-      additional,
-      date_birth,
-    };
-
-    useEditProfile(data);
-    window.location.reload() 
-  };
-
-  const handleContactsSubmit = () => {
-
-    const data = {
-      phone,
-      telegram,
-      viber,
-    };
-
-    useEditContactsProfile(data);
-    window.location.reload();
-  };
-
-  return(
-    <>
-      <h1 className=' flex  flex-col absolute left-[25%]'>Personal Data</h1>
-      <div className="flex absolute flex-wrap text-2xl left-[25%] bottom-[70%]" >
-        <InputField onChange={(e) => handleInputChange(e.target.value, setName)} className = 'absoulute  w-1/2 'label="Name" placeholder={user.name}/>
-        
-        <InputField onChange={(e) => handleInputChange(e.target.value, setSurname)} className='absolute left-[100%] w-1/2'  label="Surname" placeholder={user.surname}/>
-        <InputField onChange={(e) => handleInputChange(e.target.value, setAdditional)} className= 'absolute w-1/2 left-[200%]' label="Patronymic" placeholder={user.additional}/>
-        <InputField onChange={(e) => handleInputChange(e.target.value, setSex)} className='absolute left-[300%] flex-nowrap w-1/2 whitespace-nowrap' label="Sex" placeholder={user.sex}/>
-        <InputField onChange={(e) => handleInputChange(e.target.value, setDate_birth)} className='absolute left-[400%] flex-nowrap w-1/2 whitespace-nowrap' label="Birth date" placeholder={user.date_birth}/>
-        <button onClick={handleInfoSubmit}>submit</button> */}
-
 import React, { useState } from 'react';
 import photo from './1.jpg';
 import { FaTelegram, FaGithub, FaDiscord } from "react-icons/fa6";
@@ -179,6 +36,7 @@ const ProfileEdit = ({user}) => {
 
   const handleSubmit = () => {
 
+
     const data = {
       name,
       surname,
@@ -188,7 +46,6 @@ const ProfileEdit = ({user}) => {
       date_birth,
     };
 
-    console.log(data);
 
     useEditProfile(data);
     window.location.reload(false) 
@@ -224,7 +81,7 @@ const ProfileEdit = ({user}) => {
             <label className=" text-[22px]">Name:</label>
             <div className="flex flex-col">
               <div className="flex  items-center gap-5">
-                <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.name}/>
+                <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.name}/>
               </div>
               {renderLine()}
             </div>
@@ -235,7 +92,7 @@ const ProfileEdit = ({user}) => {
             <label className=" text-[22px]">Surname:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setSurname)} label="" placeholder={user.username}/>
+              <InputField onChange={(e) => handleInputChange(e, setSurname)} label="" placeholder={user.username}/>
               </div>
               {renderLine()}
             </div>
@@ -246,7 +103,7 @@ const ProfileEdit = ({user}) => {
             <label className=" text-[22px]">Patronymic:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setAdditional)} label="" placeholder={user.patronymic}/>
+              <InputField onChange={(e) => handleInputChange(e, setAdditional)} label="" placeholder={user.patronymic}/>
               </div>
               {renderLine()}
             </div>
@@ -255,7 +112,7 @@ const ProfileEdit = ({user}) => {
           <label className=" font-sans text-[20px]">Sex:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setSex)} label="" placeholder={user.gender}/>
+              <InputField onChange={(e) => handleInputChange(e, setSex)} label="" placeholder={user.gender}/>
               </div>
               {renderLine()}
             </div>
@@ -264,7 +121,7 @@ const ProfileEdit = ({user}) => {
             <label className=" text-[20px]">City:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.city}/>
+              <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.city}/>
               </div>
               {renderLine2()}
             </div>
@@ -279,7 +136,7 @@ const ProfileEdit = ({user}) => {
           <label className="text-[20px] whitespace-nowrap">Phone number:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.phone}/>
+              <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.phone}/>
               </div>
               {renderLine()}
             </div>
@@ -290,7 +147,7 @@ const ProfileEdit = ({user}) => {
             <label className=" text-[20px]">Email:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.email}/>
+              <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.email}/>
               </div>
               {renderLine()}
             </div>
@@ -299,7 +156,7 @@ const ProfileEdit = ({user}) => {
             <label className=" text-[20px]">Date of Birthday:</label>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-              <InputField onChange={(e) => handleInputChange(e.target.value, setDate_birth)} label="" placeholder={user.birthday}/>
+              <InputField onChange={(e) => handleInputChange(e, setDate_birth)} label="" placeholder={user.birthday}/>
               </div>
               {renderLine()}
             </div>
@@ -313,7 +170,7 @@ const ProfileEdit = ({user}) => {
             <div className="flex items-center  gap-2">
               <FaGithub size={40} />
               <div className="flex flex-col flex-grow">
-                  <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.github}/>
+                  <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.github}/>
                 {renderLine()}
               </div>
             </div>
@@ -324,7 +181,7 @@ const ProfileEdit = ({user}) => {
               <div className="flex items-center gap-2">
                 <FaTelegram className='text-blue-500' size={40} />
               <div className='flex flex-col flex-grow'>
-                  <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.telegram}/>
+                  <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.telegram}/>
                 {renderLine()}
               </div>
             </div>
@@ -335,7 +192,7 @@ const ProfileEdit = ({user}) => {
               <div className="flex items-center gap-2">
                <FaDiscord className='text-blue-900' size={40} />
               <div className='flex flex-col flex-grow'>
-                 <InputField onChange={(e) => handleInputChange(e.target.value, setName)} label="" placeholder={user.discord}/>
+                 <InputField onChange={(e) => handleInputChange(e, setName)} label="" placeholder={user.discord}/>
                 {renderLine()}
               </div>
             </div>
