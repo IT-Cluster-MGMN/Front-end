@@ -3,24 +3,25 @@ import requestWithCredentials from "../services/requestWithCredentials";
 import useUsername from "./useUsername";
 
 const useUserContacts = () => {
-  
-  const [data, setData] = useState(null)
-  
+  const API_ENDPOINT = "http://localhost:8000/api/account/contacts";
+
   const username = useUsername();
 
-  const API_ENDPOINT = 'http://localhost:8000/api/account/contacts';
+  const [contacts, setContacts] = useState(null);
 
   useEffect(() => {
-    requestWithCredentials.post(API_ENDPOINT, username)
-    .then((res) => {
-        setData(res.data);
-    })
-    .catch((err) => {
-        console.log(err);
+    requestWithCredentials
+      .post(API_ENDPOINT, { username: username })
+      .then((res) => {
+        console.log(res.data);
+        setContacts(res.data);
       })
-  });
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [username]);
 
-  return data;
+  return contacts;
 };
 
 export default useUserContacts;
