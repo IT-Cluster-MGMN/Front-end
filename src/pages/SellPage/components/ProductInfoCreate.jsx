@@ -1,32 +1,49 @@
-import { useEffect } from 'react';
-import InputField from '../../../components/InputField';
-import useRegexValidation from '../../../hooks/useRegexValidation';
-import { prodNameRegex, prodDescRegex, prodPriceRegex } from '../../../utils/regexPatterns';
+import { useEffect } from "react";
+import InputField from "../../../components/InputField";
+import useRegexValidation from "../../../hooks/useRegexValidation";
+import {
+  prodNameRegex,
+  prodDescRegex,
+  prodPriceRegex,
+} from "../../../utils/regexPatterns";
+import useUsername from "../../../hooks/useUsername";
 
-const ProductInfoCreate = ({ onSubmit }) => {
-// TODO: text input fields for string prod fields
+const ProductInfoCreate = ({ onSubmit, username }) => {
+  // TODO: text input fields for string prod fields
 
-  const [name, isValidName, setName] = useRegexValidation(null, prodNameRegex);
-  const [description,isValidDescription, setDescription] = useRegexValidation(null, prodDescRegex);
-  const [price,isValidPrice, setPrice] = useRegexValidation(null, prodPriceRegex);
-
+  const [title, isValidTitle, setTitle] = useRegexValidation(
+    null,
+    prodNameRegex,
+  );
+  const [description, isValidDescription, setDescription] = useRegexValidation(
+    null,
+    prodDescRegex,
+  );
+  const [price, isValidPrice, setPrice] = useRegexValidation(
+    null,
+    prodPriceRegex,
+  );
   useEffect(() => {
-    isValidName && isValidDescription && isValidPrice ? onSubmit({
-      name,
+    onSubmit({
+      username,
+      title,
       description,
       price,
-    }) : null;
-  }, [name, description, price])
+    });
+  }, [title, description, price]);
 
-  return(
+  return (
     <>
-      <div>
-        <InputField label='Label' onChange={(e)=>setName(e.target.value)}/>
-        <InputField label='Description' onChange={(e)=>setDescription(e.target.value)}/>
-        <InputField label='Price' onChange={(e)=>setPrice(e.target.value)}/>
+      <div className="flex flex-col ">
+        <label>title</label>
+        <input onChange={(e) => setTitle(e.target.value)} />
+        <label>description</label>
+        <input onChange={(e) => setDescription(e.target.value)} />
+        <label>price</label>
+        <input onChange={(e) => setPrice(Number(e.target.value))} />
       </div>
     </>
-  )
+  );
 };
 
 export default ProductInfoCreate;
