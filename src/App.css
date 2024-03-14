@@ -1,36 +1,37 @@
 .add-to-cart {
     width: 220px;
-    background-color: #696969; 
+    background-color: #696969;
     border: none;
-    color: white; 
-    padding: 10px 20px; 
+    color: white;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px; 
-    margin: 8px auto; 
-    cursor: pointer; 
-    border-radius: 20px; 
-    box-shadow: 2px 2px 5px #888888; 
-    transition: background-color 0.3s, box-shadow 0.3s;
+    font-size: 16px;
+    margin: 8px auto;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px #888888;
+    transition:
+        background-color 0.3s,
+        box-shadow 0.3s;
     display: block;
     clear: both;
 }
-  
+
 .add-to-cart:hover {
-    background-color: #FF4500; 
-    box-shadow: 0px 0px 8px #888888; 
+    background-color: #ff4500;
+    box-shadow: 0px 0px 8px #888888;
 }
 
 .card-price {
     color: black;
-    order: 0; 
+    order: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
     font-size: 20px;
 }
-  
 
 .card-container {
     display: flex;
@@ -44,7 +45,7 @@
     gap: 20px;
     padding-right: -120px;
 }
-  
+
 .card {
     flex: 4 2 calc(5% - 20px);
     text-decoration: none;
@@ -72,16 +73,19 @@
     font-weight: bold;
     color: black;
     margin-bottom: 8px;
-
 }
 
 .add-to-cart11 {
-    position: absolute; /* Changed to absolute positioning */
-    bottom: 20%; /* Adjust this value to move the button lower or higher */
-    left: 60%; /* Centers the button horizontally */
-    transform: translateX(-50%); /* Adjusts the horizontal centering */
+    position: absolute;
+    /* Changed to absolute positioning */
+    bottom: 20%;
+    /* Adjust this value to move the button lower or higher */
+    left: 60%;
+    /* Centers the button horizontally */
+    transform: translateX(-50%);
+    /* Adjusts the horizontal centering */
     width: 340px;
-    background-color: #0C0C0D;
+    background-color: #0c0c0d;
     opacity: 90%;
     border: none;
     color: white;
@@ -92,27 +96,27 @@
     cursor: pointer;
     border-radius: 24px;
     box-shadow: 2px 2px 5px #888888;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition:
+        background-color 0.3s,
+        box-shadow 0.3s;
 }
 
 .add-to-cart11:hover {
-    background-color: #FF4500;
+    background-color: #ff4500;
     box-shadow: 0px 0px 8px #888888;
 }
 
-
-
 .add-to-cart11 .BsCart2 {
-    margin-right: 8px; 
+    margin-right: 8px;
 }
 
 .add-to-cart2 {
-    position: absolute; 
+    position: absolute;
     bottom: 66%;
-    left: 68%; 
-    transform: translateX(-50%); 
+    left: 68%;
+    transform: translateX(-50%);
     width: 180px;
-    background-color: #0C0C0D;
+    background-color: #0c0c0d;
     opacity: 90%;
     border: none;
     color: white;
@@ -123,27 +127,27 @@
     cursor: pointer;
     border-radius: 24px;
     box-shadow: 2px 2px 5px #888888;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition:
+        background-color 0.3s,
+        box-shadow 0.3s;
 }
 
 .add-to-cart2:hover {
-    background-color: #FF4500;
+    background-color: #ff4500;
     box-shadow: 0px 0px 8px #888888;
 }
 
-
-
 .add-to-cart2 .BsHeart2 {
-    margin-right: 8px; 
+    margin-right: 8px;
 }
 
 .add-to-cart3 {
-    position: absolute; 
+    position: absolute;
     bottom: 59%;
-    left: 68%; 
-    transform: translateX(-50%); 
+    left: 68%;
+    transform: translateX(-50%);
     width: 180px;
-    background-color: #0C0C0D;
+    background-color: #0c0c0d;
     opacity: 90%;
     border: none;
     color: white;
@@ -154,23 +158,23 @@
     cursor: pointer;
     border-radius: 24px;
     box-shadow: 2px 2px 5px #888888;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition:
+        background-color 0.3s,
+        box-shadow 0.3s;
 }
 
 .add-to-cart3:hover {
-    background-color: #FF4500;
+    background-color: #ff4500;
     box-shadow: 0px 0px 8px #888888;
 }
 
-
-
 .add-to-cart3 .BsChatLeftFill2 {
-    margin-right: 8px; 
+    margin-right: 8px;
 }
 
 .product-description {
     position: absolute;
-    border-color: black; 
+    border-color: black;
     border-width: 1px;
     padding: 8px;
     border-style: solid;
@@ -180,4 +184,3 @@
     background-color: #fff;
     border-radius: 2rem;
 }
-
