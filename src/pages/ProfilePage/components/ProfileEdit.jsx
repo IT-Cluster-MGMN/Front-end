@@ -17,7 +17,7 @@ const renderLine2 = () => (
   <div className="w-[125px] h-0.5 bg-[#0C0C0D] opacity-90"></div>
 );
 
-const ProfileEdit = ({ user, contacts, editClick }) => {
+const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
   const username = user.username;
 
   const [name, isValidName, setName] = useRegexValidation(user.name, nameRegex);
@@ -63,6 +63,7 @@ const ProfileEdit = ({ user, contacts, editClick }) => {
     };
 
     const contactsData = {
+      username,
       phone,
       viber,
       telegram,
@@ -70,6 +71,7 @@ const ProfileEdit = ({ user, contacts, editClick }) => {
 
     useEditProfile(data);
     useEditContactsProfile(contactsData);
+    onSubmit();
   };
 
   return (
@@ -79,15 +81,20 @@ const ProfileEdit = ({ user, contacts, editClick }) => {
           <div className="flex flex-col h-full w-full">
             <div className="flex flex-row justify-between w-full items-center">
               <h2>Profile Edit</h2>
-              <div>
-                <button onClick={handleSubmit}>Save</button>
+              <div className="flex flex-row gap-x-2">
+                <button
+                  onClick={handleSubmit}
+                  className="rounded-[1rem] border-none hover:bg-zinc-200"
+                >
+                  Save
+                </button>
                 <EditProfileButton onClick={editClick} />
               </div>
             </div>
             <div className="grid-cols-2 grid-rows-2 w-full h-full gap-2 grid">
               <div className="  col-start-1 row-start-1 row-span-2 bg-white p-2 rounded-[1.5rem]">
                 <div className="flex flex-col">
-                  <div className="flex h-[30%] flex-col w-full items-center justify-center">
+                  <div className="flex gap-y-2 mb-2 h-[30%] flex-col w-full items-center justify-center">
                     <img
                       src="../../../../public/profile.png"
                       className="w-[30%] aspect-square bg-red-50 rounded-full"
@@ -97,18 +104,25 @@ const ProfileEdit = ({ user, contacts, editClick }) => {
                   <div>
                     <label>Name:</label>
                     <br />
-                    <input onChange={(e) => handleInputChange(e, setName)} />
+                    <input
+                      placeholder={user.name}
+                      onChange={(e) => handleInputChange(e, setName)}
+                    />
                   </div>
                   <div>
                     <label>Surname:</label>
                     <br />
-                    <input onChange={(e) => handleInputChange(e, setSurname)} />
+                    <input
+                      placeholder={user.surname}
+                      onChange={(e) => handleInputChange(e, setSurname)}
+                    />
                   </div>
                   <div>
                     <label>Additional:</label>
                     <br />
                     <input
                       onChange={(e) => handleInputChange(e, setAdditional)}
+                      placeholder={user.additional}
                     />
                   </div>
                 </div>
@@ -118,13 +132,17 @@ const ProfileEdit = ({ user, contacts, editClick }) => {
                   <div>
                     <label>Sex:</label>
                     <br />
-                    <input onChange={(e) => handleInputChange(e, setSex)} />
+                    <input
+                      onChange={(e) => handleInputChange(e, setSex)}
+                      placeholder={user.sex}
+                    />
                   </div>
                   <div>
                     <label>Birth Date:</label>
                     <br />
                     <input
                       onChange={(e) => handleInputChange(e, setDate_birth)}
+                      placeholder={user.date_birth}
                     />
                   </div>
                 </div>

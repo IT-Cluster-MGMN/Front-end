@@ -13,7 +13,6 @@ const useUserContacts = () => {
     requestWithCredentials
       .post(API_ENDPOINT, { username: username })
       .then((res) => {
-        console.log(res.data);
         setContacts(res.data);
       })
       .catch((err) => {

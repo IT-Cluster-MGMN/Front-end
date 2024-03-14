@@ -5,7 +5,7 @@ import { BsTelegram } from "react-icons/bs";
 const ProfileInfo = ({ user, contacts, editClick }) => {
   return (
     <>
-      {contacts && user ? (
+      {user && contacts ? (
         <>
           <div className="flex flex-col h-full w-full">
             <div className="flex flex-row justify-between w-full items-center">
