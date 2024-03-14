@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Overlay from '../Overlay'; 
+import Overlay from '../Overlay';
 import { Link } from "react-router-dom";
 import { BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
 import ProfileDropdown from "./components/ProfileDropdown";
@@ -25,12 +25,12 @@ const Navbar = () => {
     const handleOpenCategoriesMenu = () => {
         setOpenCategoriesMenu(!openCategoriesMenu);
         setOpenProfileDropdown(false);
-    }; 
+    };
 
-  const isLogged = useIsLogged();
+    const isLogged = useIsLogged();
 
 
-    return(
+    return (
         <>
             <nav className="
             bg-darkgrey
@@ -50,7 +50,7 @@ const Navbar = () => {
                 ">
                     {/* Logo */}
                     <div className="flex-1 w-fit h-fit">
-                        <img className="h-11 w-11" src="logo_placeholder.png" alt="logo"/>
+                        <img className="h-11 w-11" src="logo_placeholder.png" alt="logo" />
                     </div>
                     {/* Home and catalogue */}
                     <div className="flex flex-row w-full max-w-[25%] justify-evenly gap-[5%]">
@@ -62,50 +62,50 @@ const Navbar = () => {
                         </Link>
                         {/* Catalogue button */}
                         <button className={`${GENERIC_BUTTON_BACKGROUND} self-center gap-2 bg-inherit border-none`}
-                        onClick={handleOpenCategoriesMenu}>
+                            onClick={handleOpenCategoriesMenu}>
                             <div className={`${GENERIC_TEXT} flex items-center gap-2 bg-inherit border-none`}>
                                 Catalogue
-                                <BsGrid3X3Gap/>
+                                <BsGrid3X3Gap />
                             </div>
                         </button>
                     </div>
                     {/* Search bar */}
-                    <SearchBar/>
+                    <SearchBar />
                     {/* Minor functional buttons */}
                     <div className="flex flex-row items-center justify-evenly gap-[5%] py-2 w-full max-w-[20%]">
                         <Link to={isLogged ? "../favourites" : "../login"} className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
-                            <BsFillHeartFill style={{color:"white"}}/>
+                            <BsFillHeartFill style={{ color: "white" }} />
                             <p className={GENERIC_TEXT}>Favourite</p>
                         </Link>
                         <Link to={isLogged ? "../sell" : "../login"} className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}>
-                            <BsFillTagsFill style={{color:"white"}}/>
-                            <p className={GENERIC_TEXT}>Sell</p>
+                            <BsFillTagsFill style={{ color: "white" }} />
+                            <p className={GENERIC_TEXT}>Add Product</p>
                         </Link>
                     </div>
                     {/* Profile icon */}
                     <div className="flex-col w-[10%] grow:1">
-                        <button 
-                        className="flex bg-white border-none rounded-full w-11 h-11"
-                        onClick={handleOpenProfileDropdown}
+                        <button
+                            className="flex bg-white border-none rounded-full w-11 h-11"
+                            onClick={handleOpenProfileDropdown}
                         >
-                            <img className="self-stretch w-full opacity-100 hover:opacity-25" src="profile-svgrepo-com.svg" alt="Profile"/>
+                            <img className="self-stretch w-full opacity-100 hover:opacity-25" src="profile-svgrepo-com.svg" alt="Profile" />
                         </button>
                     </div>
                 </div>
                 {/* Dropdown menu */}
                 {openProfileDropdown ? (
                     <>
-                        <ProfileDropdown isLogged={isLogged}/>
-                        <Overlay onClick={() => handleOpenProfileDropdown()}/>
+                        <ProfileDropdown isLogged={isLogged} />
+                        <Overlay onClick={() => handleOpenProfileDropdown()} />
                     </>
                 ) : null}
                 {/* Categories menu */}
                 {openCategoriesMenu ? (
                     <>
-                        <CategoriesMenu/>
-                        <Overlay onClick={()=> handleOpenCategoriesMenu()}/>
+                        <CategoriesMenu />
+                        <Overlay onClick={() => handleOpenCategoriesMenu()} />
                     </>
-                ):null}
+                ) : null}
             </nav>
         </>
     );
