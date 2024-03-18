@@ -1,3 +1,5 @@
+import GreenButton from "../../../components/GreenButton";
+
 const ProfilePicture = ({ onChange }) => {
   return (
     <div className="flex flex-col items-center justify-center">
@@ -7,9 +9,7 @@ const ProfilePicture = ({ onChange }) => {
           alt="add profile picture"
           className="aspect-square bg-white p-4 rounded-full w-[15rem]"
         />
-        <button className="p-2 rounded border-none bg-white text-green-600 hover:bg-green-700 text-[1rem] transition duration-200 font-sans font-bold hover:text-white">
-          Add Profile Picture
-        </button>
+        <GreenButton hasHover={true}>Add profile picture</GreenButton>
       </div>
     </div>
   );

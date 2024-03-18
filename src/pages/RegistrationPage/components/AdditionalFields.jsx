@@ -11,6 +11,8 @@ import flags from "react-phone-number-input/flags";
 import "react-phone-number-input/style.css";
 import { FaCircleInfo } from "react-icons/fa6";
 import Hint from "./Hint";
+import SexSelector from "../../../components/SexSelector";
+import DateOfBirthSelector from "../../../components/DateOfBirthSelector";
 
 const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
   const [name, setName] = useState("");
@@ -141,28 +143,11 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               <Hint type={"name"} />
             ) : null}
           </div>
-          <div className="flex flex-col">
-            <label>Sex</label>
-            <select
-              onChange={(e) => setSex(e.target.value)}
-              className={`bg-inherit text-white p-2 border-t-transparent border-x-transparent  border-[2px] focus:outline-none ${sex && sex !== "-" ? "border-b-green-500" : ""} ${sex === "-" ? "border-b-red-500" : ""}`}
-            >
-              <option disabled selected value>
-                -
-              </option>
-              <option className="text-black">Male</option>
-              <option className="text-black">Female</option>
-              <option className="text-black">Other</option>
-            </select>
-          </div>
-          <div className="flex flex-col">
-            <label>Date of birth</label>
-            <input
-              type="date"
-              onChange={(e) => setDateBirth(e.target.value)}
-              className={`bg-inherit text-white border-t-transparent border-x-transparent  border-[2px] p-2 dark:[color-scheme:dark] ${date_birth ? "border-b-green-500" : ""} focus:outline-none`}
-            />
-          </div>
+          <SexSelector onChange={(e) => setSex(e)} sex={sex} />
+          <DateOfBirthSelector
+            onChange={(e) => setDateBirth(e)}
+            date_birth={date_birth}
+          />
           <button
             onClick={handleSavePersonal}
             disabled={

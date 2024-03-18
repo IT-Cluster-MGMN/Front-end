@@ -16,7 +16,7 @@ const Hint = ({ type }) => {
   };
 
   return (
-    <div className="absolute bg-[rgba(0,0,0,0.75)] shadow-[2rem] backdrop-blur-[2px] z-10 gap-2 rounded p-2 w-[19rem] mt-12  flex flex-row">
+    <div className="absolute bg-[rgba(0,0,0,0.75)] text-white font-sans shadow-[2rem] backdrop-blur-[2px] z-10 gap-2 rounded p-2 w-[19rem] mt-12  flex flex-row">
       <div className="relative flex flex-row">
         <FaCircleInfo className="justify-self-center w-[25%] self-center" />
         <span className="line-clamp-4 text-[0.8rem] font-semibold">
