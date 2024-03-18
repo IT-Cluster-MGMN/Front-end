@@ -22,8 +22,8 @@ const ProfileBox = () => {
 
   return (
     <>
-      <div className="flex items-center flex-col h-full justify-center p-2 px-[15rem] gap-y-2">
-        <div className="bg-zinc-400 w-full h-full flex flex-row rounded-[3rem] p-[2rem] gap-[1rem]">
+      <div className="flex items-center flex-col h-full justify-center p-8 px-[15rem] gap-y-2">
+        <div className="bg-darkgrey w-full h-full flex flex-row rounded-[1rem] p-[2rem] gap-[1rem]">
           {isEditting ? (
             <ProfileEdit
               user={user}
