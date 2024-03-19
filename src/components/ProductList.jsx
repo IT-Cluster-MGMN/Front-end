@@ -22,21 +22,23 @@ const ProductList = ({ data }) => {
 
   return (
     <>
-      <div className="card-container">
-        {renderData
-          ? renderData.map((product) => (
-              <>
-                <ProductInfo item={product} />
-              </>
-            ))
-          : null}
-      </div>
+      <div className="flex flex-col pb-8">
+        <div className="grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  justify-around p-8 gap-4">
+          {renderData
+            ? renderData.map((product) => (
+                <>
+                  <ProductInfo item={product} />
+                </>
+              ))
+            : null}
+        </div>
 
-      <PageSelector
-        numPages={paginatedData.length}
-        currentPage={currentPage}
-        selectPage={(e) => handlePageChange(e)}
-      />
+        <PageSelector
+          numPages={paginatedData.length}
+          currentPage={currentPage}
+          selectPage={(e) => handlePageChange(e)}
+        />
+      </div>
     </>
   );
 };
