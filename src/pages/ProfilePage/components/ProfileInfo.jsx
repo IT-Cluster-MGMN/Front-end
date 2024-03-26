@@ -2,6 +2,7 @@ import { FaViber } from "react-icons/fa";
 import EditProfileButton from "./EditProfileButton";
 import { BsTelegram } from "react-icons/bs";
 import GreenButton from "../../../components/GreenButton";
+import Loading from "../../../components/Loading";
 
 const ProfileInfo = ({ user, contacts, editClick }) => {
   return (
@@ -101,7 +102,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <Loading darkTheme={true} />
       )}
     </>
   );
