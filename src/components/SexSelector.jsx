@@ -1,7 +1,7 @@
 const SexSelector = ({ onChange, sex, lightTheme }) => {
   return (
     <div className="flex flex-col font-sans">
-      <label>Sex</label>
+      <label className="font-sans font-bold">Sex</label>
       <select
         onChange={(e) => onChange(e.target.value)}
         className={`bg-inherit ${lightTheme ? "text-black" : "text-white"} p-2 border-t-transparent border-x-transparent  border-[2px] focus:outline-none ${sex ? "border-b-green-500" : ""} `}
