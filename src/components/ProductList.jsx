@@ -3,6 +3,7 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import PageSelector from "./PageSelector";
 import usePagination from "../hooks/usePagination";
+import ProductEmpty from "./ProductEmpty";
 
 const ProductList = ({ data }) => {
   const paginatedData = usePagination(data, 20);
@@ -23,15 +24,17 @@ const ProductList = ({ data }) => {
   return (
     <>
       <div className="flex flex-col pb-8">
-        <div className="grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  justify-around p-8 gap-4">
-          {renderData
-            ? renderData.map((product) => (
-                <>
-                  <ProductInfo item={product} />
-                </>
-              ))
-            : null}
-        </div>
+        {renderData ? (
+          <div className="grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  justify-around p-8 gap-4">
+            {renderData.map((product) => (
+              <>
+                <ProductInfo item={product} />
+              </>
+            ))}
+          </div>
+        ) : (
+          <ProductEmpty />
+        )}
 
         <PageSelector
           numPages={paginatedData.length}
