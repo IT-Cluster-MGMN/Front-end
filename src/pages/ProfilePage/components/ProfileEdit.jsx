@@ -17,6 +17,7 @@ import GreenButton from "../../../components/GreenButton.jsx";
 import SaveButton from "./SaveButton.jsx";
 import SexSelector from "../../../components/SexSelector.jsx";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector.jsx";
+import Loading from "../../../components/Loading.jsx";
 
 const renderLine = () => (
   <div className="w-full h-[2px] bg-[#0C0C0D] opacity-90"></div>
@@ -283,7 +284,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </>
   );

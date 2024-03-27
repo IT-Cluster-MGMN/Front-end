@@ -18,7 +18,7 @@ const useUserContacts = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [username]);
+  }, [contacts]);
 
   return contacts;
 };

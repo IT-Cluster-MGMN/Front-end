@@ -13,14 +13,13 @@ const useUserData = () => {
     requestWithCredentials
       .post(USERDATA_API, { username: username })
       .then((res) => {
-        console.log(res.data);
         setUser(res.data);
       })
       .catch((err) => {
         // TODO: make universal error page(with props)
         console.log(err);
       });
-  }, [username]);
+  }, [user]);
 
   return user;
 };
