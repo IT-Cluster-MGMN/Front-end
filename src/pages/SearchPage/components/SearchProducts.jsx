@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ProductList from "../../../components/ProductList";
+import Loading from "../../../components/Loading";
 
 const SearchProducts = () => {
   const [data, setData] = useState(null);
@@ -35,9 +36,7 @@ const SearchProducts = () => {
           </>
         ) : (
           <>
-            <p>
-              No data for SearchReq: {typeof searchInput} | {searchInput}
-            </p>
+            <Loading darkTheme={true} />
           </>
         )}
       </div>
