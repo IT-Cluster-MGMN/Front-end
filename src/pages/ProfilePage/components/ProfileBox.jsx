@@ -17,7 +17,7 @@ const ProfileBox = () => {
   };
 
   const handleSubmit = () => {
-    window.location.reload(false);
+    setIsEditting(false);
   };
 
   return (

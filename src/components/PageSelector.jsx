@@ -4,19 +4,30 @@ import PageButton from "./PageButton";
 
 const PageSelector = ({ numPages, currentPage, selectPage }) => {
   const middleButtons = [];
-  console.log(currentPage);
   let i, j;
+  if (currentPage > 3 && currentPage === numPages) {
+    middleButtons.push(currentPage - 5);
+    middleButtons.push(currentPage - 4);
+  } else if (currentPage > 3) {
+    middleButtons.push(currentPage - 2);
+    middleButtons.push(currentPage - 1);
+  }
   if (currentPage === 1) {
-    for (i = currentPage + 1, j = 0; i < numPages && j < 3; i++, j++) {
+    for (i = currentPage + 1, j = 0; i < numPages && j < 4; i++, j++) {
+      middleButtons.push(i);
+    }
+  } else if (currentPage > 1 && currentPage < 4) {
+    for (i = 2, j = 0; i < numPages && j < 5; i++, j++) {
       middleButtons.push(i);
     }
   } else if (currentPage >= numPages - 2) {
-    console.log("lol");
     for (i = numPages - 3, j = 0; i < numPages && j < 3; i++, j++) {
-      middleButtons.push(i);
+      if (i > 1) {
+        middleButtons.push(i);
+      }
     }
   } else {
-    for (i = currentPage, j = 0; i < numPages && j < 3; i++, j++) {
+    for (i = currentPage, j = 0; i < numPages && i > 0 && j < 3; i++, j++) {
       middleButtons.push(i);
     }
   }
@@ -24,7 +35,7 @@ const PageSelector = ({ numPages, currentPage, selectPage }) => {
   return (
     <>
       <div className="w-full flex flex-row justify-center">
-        {numPages !== 1 ? (
+        {numPages > 1 ? (
           <>
             <PageButton
               label={<GrFormPrevious />}

@@ -30,7 +30,7 @@ const InputField = ({
         <div className="flex flex-row items-center gap-2">
           {label ? (
             <label
-              className={`${lightTheme ? "text-black" : "text-white"} font-sans`}
+              className={`${lightTheme ? "text-black" : "text-white"} font-bold font-sans`}
             >
               {label}
             </label>
@@ -79,7 +79,7 @@ const InputField = ({
         )}
 
         {(isFocus && !isValidField && field && hintTag) ||
-          (isMouseOver && hintTag) ? (
+        (isMouseOver && hintTag) ? (
           <Hint type={hintTag} />
         ) : null}
       </div>

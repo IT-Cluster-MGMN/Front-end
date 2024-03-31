@@ -2,6 +2,7 @@ import { FaViber } from "react-icons/fa";
 import EditProfileButton from "./EditProfileButton";
 import { BsTelegram } from "react-icons/bs";
 import GreenButton from "../../../components/GreenButton";
+import Loading from "../../../components/Loading";
 
 const ProfileInfo = ({ user, contacts, editClick }) => {
   return (
@@ -24,7 +25,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                     <GreenButton>{user.username}</GreenButton>
                   </div>
                   <div className=" flex flex-col">
-                    <label className="font-sans">Name</label>
+                    <label className="font-sans font-bold">Name</label>
                     {user.name ? (
                       <span className="font-sans">{user.name}</span>
                     ) : (
@@ -32,7 +33,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                     )}
                   </div>
                   <div className="flex flex-col ">
-                    <label className="font-sans">Surname</label>
+                    <label className="font-sans font-bold">Surname</label>
                     {user.surname ? (
                       <span className="font-sans">{user.surname}</span>
                     ) : (
@@ -40,7 +41,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                     )}
                   </div>
                   <div className="flex flex-col ">
-                    <label className="font-sans">Patronymic</label>
+                    <label className="font-sans font-bold">Patronymic</label>
                     {user.additional ? (
                       <span className="font-sans">{user.additional}</span>
                     ) : (
@@ -52,7 +53,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
               <div className="col-start-2 p-2 row-start-1 bg-white rounded-[1.5rem]">
                 <div className="flex flex-col h-full gap-2">
                   <div className="flex flex-col gap-2">
-                    <label className="font-sans">Sex</label>
+                    <label className="font-sans font-bold">Sex</label>
                     {user.sex ? (
                       <span className="font-sans">{user.sex}</span>
                     ) : (
@@ -60,7 +61,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                     )}
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="font-sans">Date of birth</label>
+                    <label className="font-sans font-bold">Date of birth</label>
                     {user.date_birth ? (
                       <span className="font-sans">{user.date_birth}</span>
                     ) : (
@@ -72,7 +73,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
               <div className="p-2 col-start-2 row-start-2 bg-white rounded-[1.5rem]">
                 <div className="flex flex-col">
                   <div className="flex flex-col ">
-                    <label className="font-sans">Phone number</label>
+                    <label className="font-sans font-bold">Phone number</label>
                     {contacts.phone ? (
                       <span className="font-sans">{contacts.phone}</span>
                     ) : (
@@ -80,7 +81,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                     )}
                   </div>
                   <div className="flex flex-col ">
-                    <label className="font-sans">Viber</label>
+                    <label className="font-sans font-bold">Viber</label>
                     {contacts.viber ? (
                       <span className="font-sans">{contacts.viber}</span>
                     ) : (
@@ -88,7 +89,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                     )}
                   </div>
                   <div className="flex flex-col ">
-                    <label className="font-sans">Telegram</label>
+                    <label className="font-sans font-bold">Telegram</label>
                     {contacts.telegram ? (
                       <span className="font-sans">{contacts.telegram}</span>
                     ) : (
@@ -101,7 +102,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
           </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <Loading darkTheme={true} />
       )}
     </>
   );

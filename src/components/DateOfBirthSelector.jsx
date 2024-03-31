@@ -1,7 +1,7 @@
 const DateOfBirthSelector = ({ onChange, date_birth, lightTheme }) => {
   return (
     <div className="flex flex-col">
-      <label className="font-sans">Date of birth</label>
+      <label className="font-sans font-bold">Date of birth</label>
       <input
         type="date"
         onChange={(e) => onChange(e.target.value)}
