@@ -3,6 +3,7 @@ import EditProfileButton from "./EditProfileButton";
 import { BsTelegram } from "react-icons/bs";
 import GreenButton from "../../../components/GreenButton";
 import Loading from "../../../components/Loading";
+import EmailLabel from "./EmailLabel";
 
 const ProfileInfo = ({ user, contacts, editClick }) => {
   return (
@@ -22,7 +23,7 @@ const ProfileInfo = ({ user, contacts, editClick }) => {
                       src="../../../../public/profile-svgrepo-com.svg"
                       className="w-[30%] aspect-square p-2 shadow rounded-full"
                     />
-                    <GreenButton>{user.username}</GreenButton>
+                    <EmailLabel currentState={1}>{user.username}</EmailLabel>
                   </div>
                   <div className=" flex flex-col">
                     <label className="font-sans font-bold">Name</label>

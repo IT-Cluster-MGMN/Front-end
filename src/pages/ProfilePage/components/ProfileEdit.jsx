@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTelegram, FaGithub, FaDiscord } from "react-icons/fa6";
 import InputField from "../../../components/InputField.jsx";
-import useRegexValidation from "../../../hooks/useRegexValidation.js";
 import {
   nameRegex,
   phoneNumberRegex,
@@ -10,25 +8,30 @@ import {
 } from "../../../utils/regexPatterns.js";
 import useEditProfile from "../../../hooks/useEditProfile.js";
 import EditProfileButton from "./EditProfileButton.jsx";
-import useEditContactsProfile from "../../../hooks/useEditContactsProfile.js";
-import { BsTelegram } from "react-icons/bs";
-import { FaViber } from "react-icons/fa";
 import GreenButton from "../../../components/GreenButton.jsx";
 import SaveButton from "./SaveButton.jsx";
 import SexSelector from "../../../components/SexSelector.jsx";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector.jsx";
 import Loading from "../../../components/Loading.jsx";
-
-const renderLine = () => (
-  <div className="w-full h-[2px] bg-[#0C0C0D] opacity-90"></div>
-);
-
-const renderLine2 = () => (
-  <div className="w-[125px] h-0.5 bg-[#0C0C0D] opacity-90"></div>
-);
+import EmailLabel from "./EmailLabel.jsx";
 
 const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
   const username = user.username;
+
+  const [hiddenPersonal, setHiddenPersonal] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [hiddenContacts, setHiddenContacts] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   const [name, setName] = useState("");
   const [isValidName, setIsValidName] = useState(false);
@@ -54,7 +57,6 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
     if (nameRegex.test(surname)) {
       setIsValidSurname(true);
       setSubmitSurname(surname);
-      console.log(surname);
     } else {
       setSubmitSurname(user.surname);
       setIsValidSurname(false);
@@ -150,11 +152,39 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
       telegram: submitTelegram,
     };
 
-    console.log(data);
-    console.log(contactsData);
-    useEditProfile(data);
-    useEditContactsProfile(contactsData);
+    const hiddenPersonalData = {
+      username,
+      hiddenFields: hiddenPersonal,
+    };
+
+    const hiddenContactsData = {
+      username,
+      hiddenFields: hiddenContacts,
+    };
+
+    useEditProfile(data, contactsData, hiddenPersonalData, hiddenContactsData);
     onSubmit();
+  };
+
+  const handleHidePersonal = (pos) => {
+    const newArray = [...hiddenPersonal];
+    newArray[pos] = !hiddenPersonal[pos];
+    setHiddenPersonal(newArray);
+  };
+
+  const handleHideContacts = (pos) => {
+    const newArray = [...hiddenContacts];
+    newArray[pos] = !hiddenContacts[pos];
+    setHiddenContacts(newArray);
+  };
+
+  const handleHideUsername = () => {
+    const newPersonal = [...hiddenPersonal];
+    const newContacts = [...hiddenContacts];
+    newPersonal[0] = !hiddenPersonal[0];
+    newContacts[0] = !hiddenContacts[0];
+    setHiddenPersonal(newPersonal);
+    setHiddenContacts(newContacts);
   };
 
   return (
@@ -177,9 +207,12 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                       src="../../../../public/profile-svgrepo-com.svg"
                       className="w-[30%] aspect-square shadow rounded-full p-2"
                     />
-                    <GreenButton hasHover={true}>
-                      Change profile picture
-                    </GreenButton>
+                    <EmailLabel
+                      onChange={handleHideUsername}
+                      currentState={!hiddenPersonal[0]}
+                    >
+                      {username}
+                    </EmailLabel>
                   </div>
                   <InputField
                     label={"Name"}
@@ -195,6 +228,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     isFocus={nameFocus}
                     isMouseOver={mouseOverName}
                     lightTheme={true}
+                    hide={true}
+                    onHide={() => handleHidePersonal(1)}
+                    hidden={hiddenPersonal[1]}
                   />
                   <InputField
                     label={"Surname"}
@@ -210,6 +246,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     isFocus={surnameFocus}
                     isMouseOver={mouseOverSurname}
                     lightTheme={true}
+                    hide={true}
+                    onHide={() => handleHidePersonal(2)}
+                    hidden={hiddenPersonal[2]}
                   />
                   <InputField
                     label={"Patronymic"}
@@ -225,6 +264,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     isFocus={additionalFocus}
                     isMouseOver={mouseOverAdditional}
                     lightTheme={true}
+                    hide={true}
+                    onHide={() => handleHidePersonal(3)}
+                    hidden={hiddenPersonal[3]}
                   />
                 </div>
               </div>
@@ -234,11 +276,17 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     onChange={(e) => handleSexChange(e)}
                     sex={sex}
                     lightTheme={true}
+                    hide={true}
+                    onHide={() => handleHidePersonal(4)}
+                    hidden={hiddenPersonal[4]}
                   />
                   <DateOfBirthSelector
                     onChange={(e) => handleDateChange(e)}
                     date_birth={date_birth}
                     lightTheme={true}
+                    hide={true}
+                    onHide={() => handleHidePersonal(5)}
+                    hidden={hiddenPersonal[5]}
                   />
                 </div>
               </div>
@@ -251,6 +299,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     setField={setPhone}
                     inputType={"text"}
                     lightTheme={true}
+                    hide={true}
+                    hidden={hiddenContacts[1]}
+                    onHide={() => handleHideContacts(1)}
                   />
                   <InputField
                     label={"Viber"}
@@ -264,6 +315,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     isFocus={viberFocus}
                     isMouseOver={mouseOverViber}
                     lightTheme={true}
+                    hide={true}
+                    hidden={hiddenContacts[2]}
+                    onHide={() => handleHideContacts(2)}
                   />
                   <InputField
                     label={"Telegram"}
@@ -277,6 +331,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     isFocus={telegramFocus}
                     isMouseOver={mouseOverTelegram}
                     lightTheme={true}
+                    hide={true}
+                    hidden={hiddenContacts[3]}
+                    onHide={() => handleHideContacts(3)}
                   />
                 </div>
               </div>
