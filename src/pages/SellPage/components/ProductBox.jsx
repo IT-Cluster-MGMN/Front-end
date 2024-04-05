@@ -3,6 +3,7 @@ import ProductInfoCreate from "./ProductInfoCreate";
 import ProductImageCreate from "./ProductImageCreate";
 import useAddProduct from "../../../hooks/useAddProduct";
 import useUsername from "../../../hooks/useUsername";
+import GreenButton from "../../../components/GreenButton";
 
 const ProductBox = () => {
   const [productInfo, setProductInfo] = useState(null);
@@ -25,24 +26,24 @@ const ProductBox = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center w-full h-full">
-        <div className="flex flex-col w-[80%] gap-y-4 bg-zinc-300 p-[2rem] rounded-[1rem]">
+      <div className="flex flex-row w-full h-full justify-center">
+        <div className="flex flex-col w-[70%]   gap-y-4 bg-darkgrey p-[2rem] ">
           <div className="flex flex-row  gap-x-4 w-full">
             <ProductImageCreate
-              onSubmit={(e) => {
+              onChange={(e) => {
                 handleImageSubmit(e);
               }}
             />
             <ProductInfoCreate
-              onSubmit={(e) => {
+              onChange={(e) => {
                 handleInfoSubmit(e);
               }}
               username={username}
             />
           </div>
-          <button className="self-center w-[70%]" onClick={handleSubmit}>
+          <GreenButton hasHover={true} onClick={handleSubmit}>
             Submit
-          </button>
+          </GreenButton>
         </div>
       </div>
     </>

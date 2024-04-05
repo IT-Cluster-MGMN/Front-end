@@ -1,33 +1,93 @@
 import { useState, useEffect } from "react";
+import ImageCropper from "../../../components/ImageCropper";
+import cloneDeep from "lodash/cloneDeep";
 
-const ProductImageCreate = ({ onSubmit }) => {
+const ProductImageCreate = ({ onChange }) => {
   const [images, setImages] = useState([]);
+  const reader = new FileReader();
+  const [draggedImageIndex, setDraggedImageIndex] = useState(null);
 
   const handleFileAddition = (e) => {
-    const file = e.target.files[0];
-    setImages([...images, file]);
+    reader.readAsDataURL(e);
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      setImages([...images, base64]);
+    };
   };
 
   useEffect(() => {
-    onSubmit(images);
-    console.log(images.length);
-  }, [images, onSubmit]);
+    onChange(images);
+  }, [images]);
+
+  const handleImageRemoval = (index) => {
+    const filteredArray = images.filter(
+      (item, itemIndex) => itemIndex !== index,
+    );
+    setImages([...filteredArray]);
+  };
+
+  const handleDragStart = (index) => {
+    setDraggedImageIndex(index);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedImageIndex(null);
+  };
+
+  const handleDrop = (index) => {
+    if (draggedImageIndex !== null && draggedImageIndex !== index) {
+      const temp = images[draggedImageIndex];
+      const updatedImages = cloneDeep(images);
+      updatedImages[draggedImageIndex] = images[index];
+      updatedImages[index] = temp;
+      setImages(updatedImages);
+    }
+    setDraggedImageIndex(null);
+  };
 
   return (
     <>
-      <div className="bg-black h-full">
-        <input
-          type="file"
-          accept="image/jpeg"
-          onChange={(e) => handleFileAddition(e)}
-        />
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={URL.createObjectURL(image)}
-            alt={`image-${index}`}
-          />
-        ))}
+      <div className="h-full w-full">
+        <ImageCropper onChange={(e) => handleFileAddition(e)} />
+        <div
+          className="flex flex-col justify-center aspect-square w-full h-[13rem]"
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={() => handleDrop(0)}
+        >
+          {images[0] ? (
+            <img
+              className="aspect-square w-[13rem] cursor-pointer rounded-[1rem] self-center"
+              src={images[0]}
+              onClick={() => handleImageRemoval(0)}
+              draggable
+              onDragStart={() => handleDragStart(0)}
+              onDragEnd={handleDragEnd}
+            />
+          ) : (
+            <div className="w-full justify-center items-center flex flex-col">
+              <span className="font-sans text-white">No images uploaded</span>
+            </div>
+          )}
+        </div>
+        <div className="flex flex-row gap-1 overflow-x-scroll w-[40rem] h-[5rem] p-1">
+          {images.map((image, index) => (
+            <>
+              {index !== 0 ? (
+                <img
+                  key={index}
+                  src={image}
+                  alt="image"
+                  onDragStart={() => handleDragStart(index)}
+                  onDragEnd={handleDragEnd}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => handleDrop(index)}
+                  className="rounded-[0.5rem] aspect-square w-[4rem] cursor-move"
+                  onClick={() => handleImageRemoval(index)}
+                />
+              ) : null}
+            </>
+          ))}
+        </div>
       </div>
     </>
   );
