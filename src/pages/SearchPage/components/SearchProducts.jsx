@@ -21,9 +21,8 @@ const SearchProducts = () => {
         )
         .then((response) => {
           setData(response.data);
-          console.log(response.data);
         })
-        .catch((error) => {});
+        .catch((error) => { });
     }
   }, [searchInput]);
 

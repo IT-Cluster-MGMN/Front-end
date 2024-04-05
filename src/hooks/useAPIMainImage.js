@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import requestWithCredentials from "../services/requestWithCredentials";
 import requestWithoutCredentials from "../services/requestWithoutCredentials";
 
 const useAPIMainImage = (id) => {

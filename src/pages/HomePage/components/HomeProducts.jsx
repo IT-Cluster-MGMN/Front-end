@@ -4,19 +4,14 @@ import { useState } from "react";
 import ProductList from "../../../components/ProductList";
 
 const HomeProducts = () => {
-    const data = dummyData;
+  const data = dummyData;
 
-    return(
-        <>
-            <div className=" px-[0.3rem] bg-[#fff]">
-                <ProductList data={data}/>
-                <div className="w-full bg-white h-[60px] flex items-center justify-center">
-                    <button className="w-[100px] bg-inherit border-spacing-1 rounded-[20px] h-[30px]">
-                        Show more WIP
-                    </button>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="   bg-[#fff]">
+        <ProductList data={data} />
+      </div>
+    </>
+  );
 };
 export default HomeProducts;

@@ -19,7 +19,7 @@ const useUserData = () => {
         // TODO: make universal error page(with props)
         console.log(err);
       });
-  }, [user]);
+  }, [username]);
 
   return user;
 };

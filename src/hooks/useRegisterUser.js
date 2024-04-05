@@ -20,7 +20,6 @@ const useRegisterUser = (mandatory, initialPersonal, initialContacts) => {
           requestWithCredentials.post(CONTACTS, contacts),
         ])
         .then((res) => {
-          console.log(res);
           window.location.href = "../";
         })
         .catch((err) => {

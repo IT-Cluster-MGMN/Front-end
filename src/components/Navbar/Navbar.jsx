@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Overlay from "../Overlay";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsGrid3X3Gap, BsFillHeartFill, BsFillTagsFill } from "react-icons/bs";
 import ProfileDropdown from "./components/ProfileDropdown";
 import CategoriesMenu from "./components/CategoriesMenu";
 import SearchBar from "./components/SearchBar";
 import useIsLogged from "../../hooks/useIsLogged";
+import newlogo from "@/assets/newlogo.png";
+import defaultProfile from "@/assets/profile.png";
 
 const GENERIC_BUTTON_BACKGROUND =
   "flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2";
@@ -16,7 +18,7 @@ const MINOR_BUTTON_BACKGROUND =
 // TODO: constant for search bar text
 
 const Navbar = () => {
-  const handleLoginAlert = () => {};
+  const handleLoginAlert = () => { };
 
   const [openProfileDropdown, setOpenProfileDropdown] = useState(false);
   const [openCategoriesMenu, setOpenCategoriesMenu] = useState(false);
@@ -32,6 +34,11 @@ const Navbar = () => {
   };
 
   const isLogged = useIsLogged();
+  const navigate = useNavigate();
+
+  const handleHomeRedirection = () => {
+    navigate("../");
+  };
 
   return (
     <>
@@ -62,10 +69,15 @@ const Navbar = () => {
         >
           {/* Logo */}
           <div className="flex-1 w-fit h-fit">
-            <img className="h-11 w-11" src="logo_placeholder.png" alt="logo" />
+            <img
+              className="w-11 aspect-square cursor-pointer rounded-full"
+              onClick={handleHomeRedirection}
+              src={newlogo}
+              alt="logo"
+            />
           </div>
           {/* Home and catalogue */}
-          <div className="flex flex-row w-full max-w-[25%] justify-evenly gap-[5%]">
+          <div className="flex cursor-pointer flex-row w-full max-w-[25%] justify-evenly gap-[5%]">
             {/* Home button */}
             <Link
               className={`${GENERIC_BUTTON_BACKGROUND} no-underline self-center max-h-3`}
@@ -117,7 +129,7 @@ const Navbar = () => {
             >
               <img
                 className="self-stretch w-full opacity-100 hover:opacity-25"
-                src="profile-svgrepo-com.svg"
+                src={defaultProfile}
                 alt="Profile"
               />
             </button>

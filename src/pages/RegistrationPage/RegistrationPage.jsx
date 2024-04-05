@@ -1,30 +1,12 @@
-import { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import {
-  FaCheck,
-  FaTimes,
-  FaInfoCircle,
-  FaBorderStyle,
-  FaPlus,
-} from "react-icons/fa";
-import useRegexValidation from "../../hooks/useRegexValidation.js";
-import {
-  emailRegex,
-  nameRegex,
-  passwordRegex,
-  phoneNumberRegex,
-  telegramRegex,
-  viberRegex,
-} from "../../utils/regexPatterns.js";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { emailRegex, passwordRegex } from "../../utils/regexPatterns.js";
 import useRegisterUser from "../../hooks/useRegisterUser.js";
 import PlusButton from "./components/PlusButton.jsx";
 import MandatoryFields from "./components/MandatoryFields.jsx";
 import AdditionalFields from "./components/AdditionalFields.jsx";
 
 const RegistrationPage = () => {
-  const navigate = useNavigate();
-
   const [mandatory, setMandotory] = useState({
     username: "",
     password: "",
@@ -47,10 +29,6 @@ const RegistrationPage = () => {
 
   // Functional fields
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
-
-  const handleInput = (e, setter) => {
-    setter(e.target.value);
-  };
 
   const handleSubmit = () => {
     if (
