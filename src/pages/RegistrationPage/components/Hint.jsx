@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { FaCircleInfo, FaCross } from "react-icons/fa6";
-import { IoClose } from "react-icons/io5";
+import { FaCircleInfo } from "react-icons/fa6";
 
 const Hint = ({ type }) => {
   const hints = {
@@ -13,12 +11,16 @@ const Hint = ({ type }) => {
       "Add a Viber username starting with a letter, followed by 6 to 25 characters consisting of letters, numbers, or underscores.",
     telegram:
       "Your Telegram username should start with '@' and consist of 5-32 characters, including letters, numbers, or underscores.",
+    title:
+      "Only letters, numbers, spaces, and some punctuation are allowed in product names",
+    description:
+      "Product descriptions can include anything you want - letters, numbers, symbols",
   };
 
   return (
     <div className="absolute bg-[rgba(0,0,0,0.75)] text-white font-sans shadow-[2rem] backdrop-blur-[2px] z-10 gap-2 rounded p-2 w-[19rem] mt-12  flex flex-row">
       <div className="relative flex flex-row">
-        <FaCircleInfo className="justify-self-center w-[25%] self-center" />
+        <FaCircleInfo className=" justify-self-center w-[25%] self-center" />
         <span className="line-clamp-4 text-[0.8rem] font-semibold">
           {hints[type]}
         </span>
