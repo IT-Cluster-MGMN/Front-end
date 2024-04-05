@@ -1,135 +1,53 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import axios from "axios";
-import Navbar from "../../components/Navbar/Navbar";
-import {
-  BsArrowRight,
-  BsChat,
-  BsHeart,
-  BsCart2,
-  BsFillHeartFill,
-  BsChatLeftFill,
-} from "react-icons/bs";
-import MainImage from "./components/MainImage";
+import Navbar from "@/components/Navbar/Navbar.jsx";
+import { Link, useParams } from "react-router-dom";
+import useProductInfo from "../../hooks/useProductInfo";
+import Loading from "@/components/Loading.jsx";
+import { useState } from "react";
+import ProductInfo from "./components/ProductInfo";
 import useAPIMainImage from "../../hooks/useAPIMainImage";
-import Loading from "../../components/Loading";
-// can you import app.css?
 
 const ProductPage = () => {
   const { productId } = useParams();
 
-  const [product, setProduct] = useState(null);
+  const productInfo = useProductInfo(productId);
   const mainImage = useAPIMainImage(productId);
-  // const [selectedImage, setSelectedImage] = useState(0);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/product/${productId}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((error) => console.error("Error fetching product data:", error));
-  }, [productId]);
+  const [isAdditionalInfo, setIsAdditionalInfo] = useState(false);
 
   return (
-    <div className="absolute top-0 left-0 flex flex-col w-full h-screen overflow-hidden">
+    <div className="flex flex-col items-center absolute top-0 left-0 w-screen h-screen overflow-hidden">
       <Navbar />
-      {product ? (
-        <div className="flex flex-row w-full h-full">
-          <div>
-            <MainImage image={mainImage} />
+      {productInfo && mainImage ? (
+        <div className="flex flex-col p-4 w-[80%] max-w-[100rem] bg-zinc-200 gap-2 h-full">
+          <h1 className="font-sans m-0 font-bold text-darkgrey">
+            {productInfo.title}
+          </h1>
+          <Link className="m-0 font-sans text-darkgrey no-underline hover:text-green-600 font-light text-[1.2rem]">
+            Category
+          </Link>
+          <div className="flex flex-row w-[30rem] self-center justify-around border-solid border-[0px] border-b-darkgrey border-b-[2px] rounded">
+            <span
+              className={`${!isAdditionalInfo ? "text-green-600" : "text-darkgrey"} font-sans hover:bg-zinc-100 w-full rounded-l transition text-center`}
+              onClick={() => setIsAdditionalInfo(false)}
+            >
+              Main
+            </span>
+            <span
+              className={`${isAdditionalInfo ? "text-green-600" : "text-darkgrey"} font-sans hover:bg-zinc-100 rounded-r transition text-center w-full`}
+              onClick={() => setIsAdditionalInfo(true)}
+            >
+              Additional
+            </span>
           </div>
-          {/* Product Info + Buttons */}
-          <div className="w-full h-full bg-[#fff] pl-[1rem] px-0">
-            {/* Product Info */}
-            <div className="flex flex-col items-start gap-[0.8rem]">
-              <div className="flex items-center justify-between w-[90%]">
-                <span className=" font-sans text-black text-[3rem] top-[3%]">
-                  {product.title}
-                </span>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <Link className="no-underline font-sans text-black  text-[1.5rem] mr-5 ">
-                  Description
-                </Link>
-                <Link className="no-underline font-sans text-black text-[1.5rem] ">
-                  Characteristics
-                </Link>
-              </div>
-              <svg
-                width="100%"
-                height="15"
-                viewBox="0 0 1440 4"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line
-                  x1="0"
-                  y1="2"
-                  x2="100%"
-                  y2="2"
-                  stroke="black"
-                  stroke-opacity="0.5"
-                />
-              </svg>
 
-              <div className="product-description">
-                <span className="font-sans font-normal break-all">
-                  Description: {product.description}
-                </span>
-              </div>
-              <div className="buttons">
-                <button className="add-to-cart2">
-                  <BsFillHeartFill
-                    style={{ fontSize: 15, color: "white" }}
-                    className="mr-2"
-                  />
-                  <span className="font-sans text-white text-size-[20px] text-center">
-                    Favourite
-                  </span>
-                </button>
-                <button className="add-to-cart3">
-                  <BsChatLeftFill
-                    style={{ fontSize: 15, color: "white" }}
-                    className="mr-2"
-                  />
-                  <span className="font-sans text-white text-size-[20px] text-center ">
-                    Chat
-                  </span>
-                </button>
-                <span className="font-sans text-[64px] absolute bottom-[65%] left-[55%] translate-x-[-50%]">
-                  {product.price}₴
-                </span>
-                <button className="add-to-cart11">
-                  <BsCart2
-                    style={{ fontSize: 20, color: "white" }}
-                    className="mr-2"
-                  />
-                  <span className="font-sans text-white text-size-[20px]">
-                    Add to Cart
-                  </span>
-                </button>
-              </div>
-              {/* <div className='bg-[rgba(0,0,0,0.3)] w-[1px] h-full'></div>
-              <button className='flex items-center justify-center w-[340px] gap-2 transition-colors duration-200 delay-75 rounded-lg bg-[#0C0C0D] opacity-80 '>
-                <BsHeart/>
-                <span className='font-sans text-color-[#fff]'>Add to Cart</span>
-              </button> */}
-              {/* <div className='flex flex-row items-center gap-2'>
-                <span className='font-sans font-semibold bg-zinc-300 rounded-[0.4rem] p-1 border-solid border-[1px] border-[rgba(0,0,0,0.3)]'>Sold by:</span>
-                <span className='font-sans '>{product.username}</span>
-              </div> */}
-              {/* Buttons */}
-              {/* <div className='flex flex-row mt-[5%] w-[90%] h-[2rem] rounded-[0.4rem] overflow-hidden 
-            bg-zinc-300 border-solid border-[1px] border-[rgba(0,0,0,0.3)]'> */}
-            </div>
-          </div>
-          //{" "}
+          {isAdditionalInfo ? (
+            <></>
+          ) : (
+            <ProductInfo mainImage={mainImage} productInfo={productInfo} />
+          )}
         </div>
       ) : (
-        <Loading />
+        <Loading darkTheme={true} />
       )}
     </div>
   );
