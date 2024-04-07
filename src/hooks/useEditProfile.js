@@ -1,7 +1,13 @@
 import axios from "axios";
 import requestWithCredentials from "../services/requestWithCredentials";
 
-const useEditProfile = (data, contacts, hiddenPersonal, hiddenContacts) => {
+const useEditProfile = (
+  data,
+  contacts,
+  hiddenPersonal,
+  hiddenContacts,
+  setErrorMsg,
+) => {
   const API_PERSONAL = "http://localhost:8000/api/account/update/personal";
   const API_CONTACTS = "http://localhost:8000/api/account/update/contacts";
   const API_HIDDEN_PERSONAL =
@@ -17,7 +23,7 @@ const useEditProfile = (data, contacts, hiddenPersonal, hiddenContacts) => {
       requestWithCredentials.patch(API_HIDDEN_CONTACTS, hiddenContacts),
     ])
     .then(() => window.location.reload(false))
-    .catch((err) => console.log(err));
+    .catch((err) => setErrorMsg(err.message));
 };
 
 export default useEditProfile;
