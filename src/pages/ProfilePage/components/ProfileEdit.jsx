@@ -14,6 +14,7 @@ import SexSelector from "../../../components/SexSelector.jsx";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector.jsx";
 import Loading from "../../../components/Loading.jsx";
 import EmailLabel from "./EmailLabel.jsx";
+import ErrorMessage from "../../../components/ErrorMessage.jsx";
 
 const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
   const username = user.username;
@@ -135,6 +136,12 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
     }
   }, [telegram]);
 
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+  useEffect(() => {
+    setIsComplete(false);
+  }, [errorMsg]);
+
   const handleSubmit = () => {
     const data = {
       name: submitName,
@@ -162,7 +169,14 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
       hiddenFields: hiddenContacts,
     };
 
-    useEditProfile(data, contactsData, hiddenPersonalData, hiddenContactsData);
+    useEditProfile(
+      data,
+      contactsData,
+      hiddenPersonalData,
+      hiddenContactsData,
+      setErrorMsg,
+    );
+    setIsComplete(true);
     onSubmit();
   };
 
@@ -343,6 +357,8 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
       ) : (
         <Loading />
       )}
+      {isComplete ? <Loading darkTheme={true} /> : null}
+      <ErrorMessage errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
     </>
   );
 };

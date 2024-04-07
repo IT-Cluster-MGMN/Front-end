@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { emailRegex, passwordRegex } from "../../utils/regexPatterns.js";
 import useRegisterUser from "../../hooks/useRegisterUser.js";
 import PlusButton from "./components/PlusButton.jsx";
 import MandatoryFields from "./components/MandatoryFields.jsx";
 import AdditionalFields from "./components/AdditionalFields.jsx";
+import Loading from "../../components/Loading.jsx";
+import ErrorMessage from "../../components/ErrorMessage.jsx";
 
 const RegistrationPage = () => {
   const [mandatory, setMandotory] = useState({
@@ -30,6 +32,12 @@ const RegistrationPage = () => {
   // Functional fields
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
 
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+  useEffect(() => {
+    setIsComplete(false);
+  }, [errorMsg]);
+
   const handleSubmit = () => {
     if (
       emailRegex.test(mandatory.username) &&
@@ -40,7 +48,9 @@ const RegistrationPage = () => {
         { username: mandatory.username, password: mandatory.password },
         personal,
         contacts,
+        setErrorMsg,
       );
+      setIsComplete(true);
     } else {
       alert("Wrong mandatory information");
     }
@@ -87,6 +97,8 @@ const RegistrationPage = () => {
           </div>
         </div>
       </div>
+      {isComplete ? <Loading darkTheme={true} /> : null}
+      <ErrorMessage errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
     </>
   );
 };

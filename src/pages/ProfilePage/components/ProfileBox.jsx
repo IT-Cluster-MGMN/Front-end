@@ -5,12 +5,14 @@ import ProfileEdit from "./ProfileEdit";
 import ProfilePicture from "./ProfilePicture";
 import useUserData from "../../../hooks/useUserData";
 import useUserContacts from "../../../hooks/useUserContacts";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const ProfileBox = () => {
   const [isEditting, setIsEditting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const user = useUserData();
-  const contacts = useUserContacts();
+  const user = useUserData(setErrorMsg);
+  const contacts = useUserContacts(setErrorMsg);
 
   const handleEditButtonClick = () => {
     setIsEditting(!isEditting);
@@ -40,6 +42,7 @@ const ProfileBox = () => {
           )}
         </div>
       </div>
+      <ErrorMessage errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
     </>
   );
 };

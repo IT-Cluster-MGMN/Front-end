@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useUsername from "./useUsername.js";
 import requestWithCredentials from "../services/requestWithCredentials.js";
 
-const useUserData = () => {
+const useUserData = (setErrorMsg) => {
   const USERDATA_API = "http://localhost:8000/api/account/personal";
 
   const username = useUsername();
@@ -16,8 +16,9 @@ const useUserData = () => {
         setUser(res.data);
       })
       .catch((err) => {
-        // TODO: make universal error page(with props)
-        console.log(err);
+        if (err.response.status !== 500) {
+          setErrorMsg(err.message);
+        }
       });
   }, [username]);
 

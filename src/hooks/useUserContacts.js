@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import requestWithCredentials from "../services/requestWithCredentials";
 import useUsername from "./useUsername";
 
-const useUserContacts = () => {
+const useUserContacts = (setErrorMsg) => {
   const API_ENDPOINT = "http://localhost:8000/api/account/contacts";
 
   const username = useUsername();
@@ -16,7 +16,9 @@ const useUserContacts = () => {
         setContacts(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.status !== 500) {
+          setErrorMsg(err.message);
+        }
       });
   }, [username]);
 

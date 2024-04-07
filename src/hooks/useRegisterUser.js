@@ -2,7 +2,12 @@ import axios from "axios";
 import requestWithCredentials from "../services/requestWithCredentials.js";
 import { useNavigate } from "react-router-dom";
 
-const useRegisterUser = (mandatory, initialPersonal, initialContacts) => {
+const useRegisterUser = (
+  mandatory,
+  initialPersonal,
+  initialContacts,
+  setErrorMsg,
+) => {
   const SECURITY = "http://localhost:8000/api/security/register";
   const PERSONAL = "http://localhost:8000/api/account/create/personal";
   const CONTACTS = "http://localhost:8000/api/account/create/contacts";
@@ -23,11 +28,11 @@ const useRegisterUser = (mandatory, initialPersonal, initialContacts) => {
           window.location.href = "../";
         })
         .catch((err) => {
-          console.log(err);
+          setErrorMsg(err.message);
         });
     })
     .catch((err) => {
-      console.log(err);
+      setErrorMsg(err.message);
     });
 };
 
