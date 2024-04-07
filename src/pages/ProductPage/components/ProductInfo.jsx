@@ -4,34 +4,45 @@ import notFound from "@/assets/not-found-removebg-preview.png";
 import { useState } from "react";
 import MacroImage from "./MacroImage";
 
-const ProductInfo = ({ productInfo, mainImage, minorImages }) => {
-  const testImageArr = [];
-  for (let i = 0; i < 10; i++) {
-    testImageArr.push(notFound);
-  }
+const ProductInfo = ({ productInfo, minorImages }) => {
   const [macroImage, setMacroImage] = useState(0);
-  const images = [mainImage, ...testImageArr];
+  const [largeImage, setLargeImage] = useState(0);
+
+  const images = [];
+  for (let i = 0; i < minorImages.length; i++) {
+    images.push(minorImages[i].photo);
+  }
 
   const handleMacroImage = (index) => {
     setMacroImage(index);
     setShowMacroImage(true);
   };
+
+  const handleLargeImage = (index) => {
+    setLargeImage(index);
+  };
+
   const [showMacroImage, setShowMacroImage] = useState(false);
   return (
     <>
       <div className="flex flex-row items-center h-full  p-4 gap-2">
         <div className="h-[20rem] flex flex-row self-start gap-2">
           <img
-            src={mainImage ? `data:image/jpeg;base64,${mainImage}` : notFound}
+            src={
+              minorImages
+                ? `data:image/jpeg;base64,${images[largeImage]}`
+                : notFound
+            }
             className="aspect-square h-full rounded "
             onClick={() => handleMacroImage(0)}
           />
           <div className="flex flex-col w-[6rem] h-full gap-1  items-center overflow-y-scroll">
-            {testImageArr.map((image, index) => (
+            {images.map((image, index) => (
               <img
-                src={`${image}`}
-                className="w-[5rem] aspect-square "
-                onClick={() => handleMacroImage(index + 1)}
+                src={`data:image/jpeg;base64,${image}`}
+                className={`transition w-[5rem] aspect-square ${index === largeImage ? "brightness-[40%]" : ""} rounded`}
+                onClick={() => handleLargeImage(index)}
+                onDoubleClick={() => handleMacroImage(index)}
               />
             ))}
           </div>
