@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import dummyData from "../../../jsons/dummyData.json";
-import { useState } from "react";
-import ProductList from "../../../components/ProductList";
+import useGetRecents from "../../../hooks/useGetRecents";
+import ProductScroller from "../../../components/ProductsScroller";
+import Loading from "../../../components/Loading";
 
 const HomeProducts = () => {
-  const data = dummyData;
+  const recents = useGetRecents();
 
   return (
     <>
-      <div className="   bg-[#fff]">
-        <ProductList data={data} />
+      <div className=" w-full bg-zinc-200 p-4 h-full min-h-[33rem]">
+        <h1 className="font-sans font-bold">Newest products</h1>
+        {recents ? <ProductScroller data={recents} /> : <Loading />}
       </div>
     </>
   );
