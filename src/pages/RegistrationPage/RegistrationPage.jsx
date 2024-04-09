@@ -29,6 +29,8 @@ const RegistrationPage = () => {
     telegram: null,
   });
 
+  const [image, setImage] = useState();
+
   // Functional fields
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
 
@@ -48,6 +50,7 @@ const RegistrationPage = () => {
         { username: mandatory.username, password: mandatory.password },
         personal,
         contacts,
+        image,
         setErrorMsg,
       );
       setIsComplete(true);
@@ -74,6 +77,8 @@ const RegistrationPage = () => {
             <MandatoryFields
               onValid={(e) => setMandotory(e)}
               currentData={mandatory}
+              onImageChange={(e) => setImage(e)}
+              currentImage={image}
             />
           )}
           <div className="grid grid-cols-2 w-full justify-around">

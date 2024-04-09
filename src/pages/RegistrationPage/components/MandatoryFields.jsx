@@ -3,7 +3,12 @@ import { emailRegex, passwordRegex } from "../../../utils/regexPatterns";
 import ProfilePicture from "./ProfilePicture";
 import InputField from "../../../components/InputField";
 
-const MandatoryFields = ({ onValid, currentData }) => {
+const MandatoryFields = ({
+  onValid,
+  currentData,
+  onImageChange,
+  currentImage,
+}) => {
   const [username, setUsername] = useState(currentData.username);
   const [isValidUsername, setIsValidUsername] = useState(false);
   useEffect(() => {
@@ -46,7 +51,10 @@ const MandatoryFields = ({ onValid, currentData }) => {
   return (
     <>
       <div className="grid grid-cols-2 w-full h-full">
-        <ProfilePicture />
+        <ProfilePicture
+          currentImage={currentImage}
+          onChange={(e) => onImageChange(e)}
+        />
         <div className="flex flex-col text-white font-sans gap-4  w-full justify-center h-full">
           <InputField
             label="Email"

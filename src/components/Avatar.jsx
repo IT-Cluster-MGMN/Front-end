@@ -1,18 +1,24 @@
-const Avatar = () => {
+import useGetAvatar from "../hooks/useGetAvatar";
+import defaultAvatar from "@/assets/profile.png";
+import useIsLogged from "../hooks/useIsLogged";
 
-  const avatar = null; //TODO: make hook that loads pfp
+const Avatar = ({ className, onClick }) => {
+  const avatar = useGetAvatar();
+  const isLogged = useIsLogged();
 
-  return(
+  return (
     <>
-      <div className="w-[60%]  aspect-square m-[3rem] rounded-full overlay-hidden">
-        {avatar ? (
-          <img src={avatar}/>
-        ) : (
-          <img src='../../public/profile.png'/>
-        )}
-      </div>
+      {avatar && isLogged ? (
+        <img
+          src={`data:image/jpeg;base64,${avatar}`}
+          className={className}
+          onClick={onClick}
+        />
+      ) : (
+        <img src={defaultAvatar} className={className} onClick={onClick} />
+      )}
     </>
-  )
+  );
 };
 
 export default Avatar;

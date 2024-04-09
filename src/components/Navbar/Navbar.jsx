@@ -8,6 +8,7 @@ import SearchBar from "./components/SearchBar";
 import useIsLogged from "../../hooks/useIsLogged";
 import newlogo from "@/assets/newlogo.png";
 import defaultProfile from "@/assets/profile.png";
+import Avatar from "../Avatar";
 
 const GENERIC_BUTTON_BACKGROUND =
   "flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2";
@@ -123,16 +124,10 @@ const Navbar = () => {
           </div>
           {/* Profile icon */}
           <div className="flex-col w-[10%] grow:1">
-            <button
-              className="flex bg-white border-none rounded-full w-11 h-11"
+            <Avatar
+              className="bg-white w-[2.5rem] h-[2.5rem] cursor-pointer aspect-square rounded-full"
               onClick={handleOpenProfileDropdown}
-            >
-              <img
-                className="self-stretch w-full opacity-100 hover:opacity-25"
-                src={defaultProfile}
-                alt="Profile"
-              />
-            </button>
+            />
           </div>
         </div>
         {/* Dropdown menu */}

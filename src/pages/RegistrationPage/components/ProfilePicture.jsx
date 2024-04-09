@@ -1,16 +1,30 @@
-import GreenButton from "../../../components/GreenButton";
+import { useEffect, useState } from "react";
+import ImageCropper from "../../../components/ImageCropper";
+import defaultProfile from "@/assets/profile.png";
 
 const ProfilePicture = ({ onChange }) => {
+  const [renderImage, setRenderImage] = useState();
+  const reader = new FileReader();
+
+  const handleImageCrop = (e) => {
+    reader.readAsDataURL(e);
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      setRenderImage(base64);
+      onChange(base64);
+    };
+  };
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-4 h-full justify-center">
         <img
-          src="../../../public/profile-svgrepo-com.svg"
+          src={`${renderImage ? renderImage : defaultProfile} `}
           alt="add profile picture"
-          className="aspect-square bg-white p-4 rounded-full w-[15rem]"
+          className="aspect-square bg-white cursor-pointer  rounded-full w-[15rem]"
         />
-        <GreenButton hasHover={true}>Add profile picture</GreenButton>
       </div>
+      <ImageCropper rounded={true} onChange={(e) => handleImageCrop(e)} />
     </div>
   );
 };
