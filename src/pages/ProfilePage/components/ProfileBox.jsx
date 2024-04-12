@@ -6,13 +6,21 @@ import ProfilePicture from "./ProfilePicture";
 import useUserData from "../../../hooks/useUserData";
 import useUserContacts from "../../../hooks/useUserContacts";
 import ErrorMessage from "../../../components/ErrorMessage";
+import useGetAvatar from "../../../hooks/useGetAvatar";
+import useGetAllUserData from "../../../hooks/useGetAllUserData";
+import useGetAllContacts from "../../../hooks/useGetAllContacts";
 
 const ProfileBox = () => {
   const [isEditting, setIsEditting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const user = useUserData(setErrorMsg);
+  const userAll = useGetAllUserData();
+
   const contacts = useUserContacts(setErrorMsg);
+  const contactsAll = useGetAllContacts();
+
+  const avatar = "data:image/jpeg;base64," + useGetAvatar();
 
   const handleEditButtonClick = () => {
     setIsEditting(!isEditting);
@@ -28,15 +36,21 @@ const ProfileBox = () => {
         <div className="bg-darkgrey w-full h-full flex flex-row rounded-[1rem] p-[2rem] gap-[1rem]">
           {isEditting ? (
             <ProfileEdit
-              user={user}
-              contacts={contacts}
+              user={userAll}
+              userHidden={user}
+              avatar={avatar}
+              contacts={contactsAll}
+              contactsHidden={contacts}
               editClick={handleEditButtonClick}
               onSubmit={handleSubmit}
             />
           ) : (
             <ProfileInfo
-              user={user}
-              contacts={contacts}
+              user={userAll}
+              userHidden={user}
+              avatar={avatar}
+              contacts={contactsAll}
+              contactsHidden={contacts}
               editClick={handleEditButtonClick}
             />
           )}

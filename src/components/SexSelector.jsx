@@ -5,7 +5,7 @@ const SexSelector = ({ onChange, sex, lightTheme, hide, hidden, onHide }) => {
         <label
           className={`font-sans ${hidden ? "text-zinc-400" : ""} font-bold`}
         >
-          Sex
+          Gender
         </label>
         <select
           onChange={(e) => onChange(e.target.value)}

@@ -15,7 +15,9 @@ const useGetAvatar = () => {
       },
       { withCredentials: true },
     )
-    .then((res) => setAvatar(res.data.photo));
+    .then((res) => {
+      setAvatar(res.data.photo);
+    });
 
   return avatar;
 };

@@ -51,10 +51,7 @@ const MandatoryFields = ({
   return (
     <>
       <div className="grid grid-cols-2 w-full h-full">
-        <ProfilePicture
-          currentImage={currentImage}
-          onChange={(e) => onImageChange(e)}
-        />
+        <ProfilePicture onChange={(e) => onImageChange(e)} />
         <div className="flex flex-col text-white font-sans gap-4  w-full justify-center h-full">
           <InputField
             label="Email"

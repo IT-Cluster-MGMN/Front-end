@@ -8,30 +8,39 @@ import {
 } from "../../../utils/regexPatterns.js";
 import useEditProfile from "../../../hooks/useEditProfile.js";
 import EditProfileButton from "./EditProfileButton.jsx";
-import GreenButton from "../../../components/GreenButton.jsx";
 import SaveButton from "./SaveButton.jsx";
 import SexSelector from "../../../components/SexSelector.jsx";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector.jsx";
 import Loading from "../../../components/Loading.jsx";
 import EmailLabel from "./EmailLabel.jsx";
 import ErrorMessage from "../../../components/ErrorMessage.jsx";
+import AvatarEdit from "./AvatarEdit.jsx";
 
-const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
+const ProfileEdit = ({
+  user,
+  avatar,
+  contacts,
+  editClick,
+  onSubmit,
+  userHidden,
+  contactsHidden,
+}) => {
   const username = user.username;
+  const [avatarEdit, setAvatarEdit] = useState(avatar);
 
   const [hiddenPersonal, setHiddenPersonal] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
+    userHidden.username === null,
+    userHidden.name === null,
+    userHidden.surname === null,
+    userHidden.additional === null,
+    userHidden.sex === null,
+    userHidden.date_birth === null,
   ]);
   const [hiddenContacts, setHiddenContacts] = useState([
-    false,
-    false,
-    false,
-    false,
+    contactsHidden.username === null,
+    contactsHidden.phone === null,
+    contactsHidden.viber === null,
+    contactsHidden.telegram === null,
   ]);
 
   const [name, setName] = useState("");
@@ -172,6 +181,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
     useEditProfile(
       data,
       contactsData,
+      avatarEdit,
       hiddenPersonalData,
       hiddenContactsData,
       setErrorMsg,
@@ -217,9 +227,9 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
               <div className="  col-start-1 row-start-1 row-span-2 bg-white p-2 rounded-[1.5rem]">
                 <div className="flex flex-col">
                   <div className="flex gap-y-2 h-[30%] flex-col w-full items-center justify-center">
-                    <img
-                      src="../../../../public/profile-svgrepo-com.svg"
-                      className="w-[30%] aspect-square shadow rounded-full p-2"
+                    <AvatarEdit
+                      onChange={(e) => setAvatarEdit(e)}
+                      currentAvatar={avatar}
                     />
                     <EmailLabel
                       onChange={handleHideUsername}
@@ -229,6 +239,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     </EmailLabel>
                   </div>
                   <InputField
+                    placeholder={user.name}
                     label={"Name"}
                     onMouseOutInfo={() => setMouseOverName(false)}
                     onMouseOverInfo={() => setMouseOverName(true)}
@@ -247,6 +258,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     hidden={hiddenPersonal[1]}
                   />
                   <InputField
+                    placeholder={user.surname}
                     label={"Surname"}
                     onMouseOverInfo={() => setMouseOverSurname(true)}
                     onMouseOutInfo={() => setMouseOverSurname(false)}
@@ -265,6 +277,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     hidden={hiddenPersonal[2]}
                   />
                   <InputField
+                    placeholder={user.additional}
                     label={"Patronymic"}
                     onMouseOverInfo={() => setMouseOverAdditional(true)}
                     onMouseOutInfo={() => setMouseOverAdditional(false)}
@@ -307,6 +320,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
               <div className="p-2 col-start-2 row-start-2 bg-white rounded-[1.5rem]">
                 <div className="flex flex-col">
                   <InputField
+                    placeholder={contacts.phone}
                     label={"Phone number"}
                     field={phone}
                     isValidField={isValidPhone}
@@ -318,6 +332,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     onHide={() => handleHideContacts(1)}
                   />
                   <InputField
+                    placeholder={contacts.viber}
                     label={"Viber"}
                     field={viber}
                     isValidField={isValidViber}
@@ -334,6 +349,7 @@ const ProfileEdit = ({ user, contacts, editClick, onSubmit }) => {
                     onHide={() => handleHideContacts(2)}
                   />
                   <InputField
+                    placeholder={contacts.telegram}
                     label={"Telegram"}
                     field={telegram}
                     isValidField={isValidTelegram}

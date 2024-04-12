@@ -26,6 +26,7 @@ const InputField = ({
   hide,
   onHide,
   hidden,
+  placeholder,
 }) => {
   return (
     <>
@@ -74,6 +75,7 @@ const InputField = ({
                   type={inputType}
                   onFocus={onFocus}
                   onBlur={onBlur}
+                  placeholder={placeholder}
                   onChange={(e) => {
                     setField(e.target.value);
                   }}
@@ -84,7 +86,7 @@ const InputField = ({
           )}
 
           {(isFocus && !isValidField && field && hintTag) ||
-            (isMouseOver && hintTag) ? (
+          (isMouseOver && hintTag) ? (
             <Hint type={hintTag} />
           ) : null}
         </div>

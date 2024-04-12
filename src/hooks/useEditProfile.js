@@ -4,26 +4,46 @@ import requestWithCredentials from "../services/requestWithCredentials";
 const useEditProfile = (
   data,
   contacts,
+  avatar,
   hiddenPersonal,
   hiddenContacts,
   setErrorMsg,
 ) => {
-  const API_PERSONAL = "http://localhost:8000/api/account/update/personal";
-  const API_CONTACTS = "http://localhost:8000/api/account/update/contacts";
+  const PERSONAL = "http://localhost:8000/api/account/update/personal";
+  const CONTACTS = "http://localhost:8000/api/account/update/contacts";
   const API_HIDDEN_PERSONAL =
     "http://localhost:8000/api/account/update/personal/hidden-fields";
   const API_HIDDEN_CONTACTS =
     "http://localhost:8000/api/account/update/contacts/hidden-fields";
+  const AVATAR = "http://localhost:8000/api/account/avatar/set";
+  console.log(avatar);
 
-  axios
-    .all([
-      requestWithCredentials.patch(API_PERSONAL, data),
-      requestWithCredentials.patch(API_CONTACTS, contacts),
-      requestWithCredentials.patch(API_HIDDEN_PERSONAL, hiddenPersonal),
-      requestWithCredentials.patch(API_HIDDEN_CONTACTS, hiddenContacts),
-    ])
-    .then(() => window.location.reload(false))
-    .catch((err) => setErrorMsg(err.message));
+  fetch(avatar)
+    .then((res) => res.blob())
+    .then((blob) => {
+      const file = new File([blob], "file", { type: "image/jpeg" });
+      const formData = new FormData();
+      formData.append("username", data.username);
+      formData.append("avatar", file, "image.jpg");
+
+      axios
+        .all([
+          requestWithCredentials.patch(PERSONAL, data),
+          requestWithCredentials.patch(CONTACTS, contacts),
+          requestWithCredentials.patch(API_HIDDEN_PERSONAL, hiddenPersonal),
+          requestWithCredentials.patch(API_HIDDEN_CONTACTS, hiddenContacts),
+          axios.patch(AVATAR, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true,
+          }),
+        ])
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((err) => {
+          setErrorMsg(err.message);
+        });
+    });
 };
 
 export default useEditProfile;
