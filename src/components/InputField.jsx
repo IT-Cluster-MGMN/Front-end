@@ -48,7 +48,7 @@ const InputField = ({
             ) : null}
           </div>
           {inputType === "password" ? (
-            <div className="relative w-full flex flex-row items-center">
+            <div className=" w-full flex flex-row items-center">
               <input
                 className={`w-full ${lightTheme ? "text-black" : "text-white"} ${hidden ? "text-zinc-400" : ""} bg-inherit shadow-none border-t-transparent  ${field && !isValidField ? "border-b-red-500" : ""} ${field && isValidField ? "border-b-green-500" : ""} border-x-transparent border-[2px] focus:outline-none`}
                 type={isPwdShown ? "text" : "password"}
@@ -61,7 +61,7 @@ const InputField = ({
               />
               <button
                 onClick={onPwdShow}
-                className="bg-inherit right-1 absolute text-white border-none hover:scale-125 transition duration-100"
+                className="bg-inherit right-1 text-white border-none hover:scale-125 transition duration-100"
               >
                 {isPwdShown ? <FaEyeSlash /> : <FaEye />}
               </button>
@@ -84,7 +84,7 @@ const InputField = ({
           )}
 
           {(isFocus && !isValidField && field && hintTag) ||
-          (isMouseOver && hintTag) ? (
+            (isMouseOver && hintTag) ? (
             <Hint type={hintTag} />
           ) : null}
         </div>

@@ -44,9 +44,10 @@ const ProductInfoCreate = ({ onChange, username }) => {
       username,
       title,
       description,
+      categrory,
       price,
     });
-  }, [title, description, price]);
+  }, [title, description, price, categrory]);
 
   return (
     <>

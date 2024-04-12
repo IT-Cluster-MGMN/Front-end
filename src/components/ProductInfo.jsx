@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../App.css";
-import { useEffect, useState } from "react";
 import useAPIMainImage from "../hooks/useAPIMainImage";
 import GreenButton from "./GreenButton";
 
@@ -20,7 +19,7 @@ const ProductInfo = ({ item }) => {
               : `/src/assets/not-found-removebg-preview.png`
           }
           alt="image"
-          className="rounded-[1rem] aspect-square w-[13rem]"
+          className="rounded-[1rem] aspect-square w-[13rem] select-none"
         />
         <span className="font-sans font-semibold text-black">{item.title}</span>
         <span className="font-sans  text-zinc-600 text-[1.2rem]">

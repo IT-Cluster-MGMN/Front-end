@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
-import requestWithCredentials from '../services/requestWithCredentials';
+import requestWithCredentials from "../services/requestWithCredentials";
 
 const useIsLogged = () => {
-
   const [isLogged, setIsLogged] = useState(false);
 
-  const API_ENDPOINT = 'http://localhost:8000/api/security/is-logged-in';
+  const API_ENDPOINT = "http://localhost:8000/api/security/is-logged-in";
 
   useEffect(() => {
-    requestWithCredentials.get(API_ENDPOINT)
-    .then((res) => {
+    requestWithCredentials
+      .get(API_ENDPOINT)
+      .then((res) => {
         setIsLogged(res.data.loggedIn);
       })
-    .catch((err) => {
+      .catch((err) => {
         //TODO: error page
-      })
-  }, [])
+      });
+  }, [isLogged]);
 
   return isLogged;
 };

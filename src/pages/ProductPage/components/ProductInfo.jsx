@@ -5,7 +5,6 @@ import { useState } from "react";
 import MacroImage from "./MacroImage";
 
 const ProductInfo = ({ productInfo, minorImages }) => {
-  const [macroImage, setMacroImage] = useState(0);
   const [largeImage, setLargeImage] = useState(0);
 
   const images = [];
@@ -14,7 +13,6 @@ const ProductInfo = ({ productInfo, minorImages }) => {
   }
 
   const handleMacroImage = (index) => {
-    setMacroImage(index);
     setShowMacroImage(true);
   };
 
@@ -80,7 +78,7 @@ const ProductInfo = ({ productInfo, minorImages }) => {
       {showMacroImage ? (
         <MacroImage
           images={images}
-          index={macroImage}
+          index={largeImage}
           onClick={() => setShowMacroImage(false)}
         />
       ) : null}

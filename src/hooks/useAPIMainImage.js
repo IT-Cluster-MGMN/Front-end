@@ -4,7 +4,7 @@ import requestWithoutCredentials from "../services/requestWithoutCredentials";
 const useAPIMainImage = (id) => {
   const API_REQUEST = "http://localhost:8000/api/product/photo/main";
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
 
   useEffect(() => {
     requestWithoutCredentials
@@ -15,7 +15,7 @@ const useAPIMainImage = (id) => {
       .catch((err) => {
         //TODO: error page
       });
-  }, []);
+  }, [id]);
 
   return image;
 };

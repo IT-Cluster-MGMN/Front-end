@@ -3,9 +3,9 @@ import { useRef, useState } from "react";
 import "react-image-crop/dist/ReactCrop.css";
 import Cropper from "react-easy-crop";
 import { MdOutlineZoomInMap, MdOutlineZoomOutMap } from "react-icons/md";
-import { IoCropSharp } from "react-icons/io5";
+import { IoCropSharp, IoTrashBin } from "react-icons/io5";
 
-const ImageCropper = ({ onChange }) => {
+const ImageCropper = ({ onChange, dropzone, rounded }) => {
   const [src, setSrc] = useState(null);
   const [crop, setCrop] = useState({
     x: 0,
@@ -14,14 +14,20 @@ const ImageCropper = ({ onChange }) => {
   const [zoom, setZoom] = useState(1.3);
   const canvasRef = useRef();
   const [output, setOutput] = useState(null);
-  const [showCropper, setShowCropper] = useState(1);
+  const [showCropper, setShowCropper] = useState(false);
 
   const selectImage = (e) => {
     setSrc(URL.createObjectURL(e));
     setCrop({ x: 0, y: 0 });
     setZoom(1.3);
     setOutput(null);
-    setShowCropper(1);
+    setShowCropper(true);
+  };
+
+  const clearOutput = () => {
+    setSrc(null);
+    setOutput(null);
+    onChange(null);
   };
 
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
@@ -55,6 +61,7 @@ const ImageCropper = ({ onChange }) => {
       );
 
       const canvasURL = canvas.toDataURL("image/jpeg");
+      console.log(canvasURL);
       fetch(canvasURL)
         .then((res) => res.blob())
         .then((blob) => {
@@ -83,11 +90,47 @@ const ImageCropper = ({ onChange }) => {
   return (
     <div>
       <center className="flex flex-col items-center gap-2 p-2">
-        <FileUploader
-          handleChange={selectImage}
-          name="file"
-          types={["JPEG", "JPG", "PNG"]}
-        />
+        {dropzone ? (
+          <FileUploader
+            handleChange={selectImage}
+            name="file"
+            types={["JPEG", "JPG", "PNG"]}
+          />
+        ) : (
+          <>
+            <input
+              type="file"
+              id="upload-button"
+              hidden
+              onChange={(e) => selectImage(e.target.files[0])}
+              onClick={(e) => (e.target.value = null)}
+            />
+            <div className="flex flex-row gap-2 items-center">
+              {src ? (
+                <IoTrashBin
+                  size={"1.7rem"}
+                  color="grey"
+                  className="cursor-pointer hover:bg-zinc-700 p-[0.30rem] rounded-full transition"
+                  onClick={() => clearOutput()}
+                />
+              ) : null}
+              <label
+                for="upload-button"
+                className="text-green-600 p-2 rounded bg-white hover:bg-green-700 select-none cursor-pointer hover:text-white transition font-sans font-bold"
+              >
+                Add profile picture
+              </label>
+              {src ? (
+                <IoCropSharp
+                  size={"1.7rem"}
+                  color="grey"
+                  className="hover:bg-zinc-700 p-[0.30rem] cursor-pointer rounded-full transition"
+                  onClick={() => setShowCropper(true)}
+                />
+              ) : null}
+            </div>
+          </>
+        )}
         <div>
           {src && showCropper && (
             <div>
@@ -96,6 +139,7 @@ const ImageCropper = ({ onChange }) => {
                 crop={crop}
                 zoom={zoom}
                 aspect={1}
+                cropShape={rounded ? "round" : "rect"}
                 onCropChange={setCrop}
                 onCropComplete={onCropComplete}
                 onZoomChange={setZoom}
@@ -124,7 +168,7 @@ const ImageCropper = ({ onChange }) => {
             </div>
           )}
         </div>
-        <canvas ref={canvasRef} className="cursor-pointer w-[0rem] " />
+        <canvas ref={canvasRef} hidden />
       </center>
     </div>
   );

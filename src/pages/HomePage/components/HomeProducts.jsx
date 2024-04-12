@@ -9,7 +9,13 @@ const HomeProducts = () => {
     <>
       <div className=" w-full bg-zinc-200 p-4 h-full min-h-[33rem]">
         <h1 className="font-sans font-bold">Newest products</h1>
-        {recents ? <ProductScroller data={recents} /> : <Loading />}
+        {recents ? (
+          <ProductScroller data={recents} />
+        ) : (
+          <span className="font-sans font-bold">
+            No products have been added yet
+          </span>
+        )}
       </div>
     </>
   );

@@ -48,7 +48,7 @@ const ProductImageCreate = ({ onChange }) => {
   return (
     <>
       <div className="h-full w-full">
-        <ImageCropper onChange={(e) => handleFileAddition(e)} />
+        <ImageCropper dropzone={true} onChange={(e) => handleFileAddition(e)} />
         <div
           className="flex flex-col justify-center aspect-square w-full h-[13rem]"
           onDragOver={(e) => e.preventDefault()}
