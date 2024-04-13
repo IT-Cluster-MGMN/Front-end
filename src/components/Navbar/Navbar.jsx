@@ -9,6 +9,8 @@ import useIsLogged from "../../hooks/useIsLogged";
 import newlogo from "@/assets/newlogo.png";
 import defaultProfile from "@/assets/profile.png";
 import Avatar from "../Avatar";
+import useGetFav from "../../hooks/useGetFav";
+import Favourites from "../Favourites";
 
 const GENERIC_BUTTON_BACKGROUND =
   "flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2";
@@ -23,15 +25,18 @@ const Navbar = () => {
 
   const [openProfileDropdown, setOpenProfileDropdown] = useState(false);
   const [openCategoriesMenu, setOpenCategoriesMenu] = useState(false);
+  const [openFavourites, setOpenFavourites] = useState(false);
 
   const handleOpenProfileDropdown = () => {
     setOpenProfileDropdown(!openProfileDropdown);
     setOpenCategoriesMenu(false);
+    setOpenFavourites(false);
   };
 
   const handleOpenCategoriesMenu = () => {
     setOpenCategoriesMenu(!openCategoriesMenu);
     setOpenProfileDropdown(false);
+    setOpenFavourites(false);
   };
 
   const isLogged = useIsLogged();
@@ -39,6 +44,16 @@ const Navbar = () => {
 
   const handleHomeRedirection = () => {
     navigate("../");
+  };
+
+  const handleFavouriteClick = () => {
+    if (!isLogged) {
+      navigate("../login");
+    } else {
+      setOpenFavourites(!openFavourites);
+      setOpenCategoriesMenu(false);
+      setOpenProfileDropdown(false);
+    }
   };
 
   return (
@@ -105,14 +120,13 @@ const Navbar = () => {
           <SearchBar />
           {/* Minor functional buttons */}
           <div className="flex flex-row items-center justify-evenly gap-[5%] py-2 w-full max-w-[20%]">
-            <Link
-              to={isLogged ? "../favourites" : "../login"}
-              onClick={handleLoginAlert}
+            <button
+              onClick={handleFavouriteClick}
               className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}
             >
               <BsFillHeartFill style={{ color: "white" }} />
               <p className={GENERIC_TEXT}>Favourite</p>
-            </Link>
+            </button>
             <Link
               to={isLogged ? "../sell" : "../login"}
               onClick={handleLoginAlert}
@@ -130,6 +144,12 @@ const Navbar = () => {
             />
           </div>
         </div>
+        {openFavourites ? (
+          <>
+            <Favourites />
+            <Overlay onClick={() => handleFavouriteClick()} />
+          </>
+        ) : null}
         {/* Dropdown menu */}
         {openProfileDropdown ? (
           <>
