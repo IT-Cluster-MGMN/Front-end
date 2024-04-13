@@ -14,7 +14,6 @@ const ProfileInfo = ({
   editClick,
   avatar,
 }) => {
-  console.log(userHidden);
   return (
     <>
       {user && contacts && avatar ? (

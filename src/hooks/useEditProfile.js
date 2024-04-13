@@ -16,7 +16,6 @@ const useEditProfile = (
   const API_HIDDEN_CONTACTS =
     "http://localhost:8000/api/account/update/contacts/hidden-fields";
   const AVATAR = "http://localhost:8000/api/account/avatar/set";
-  console.log(avatar);
 
   fetch(avatar)
     .then((res) => res.blob())
@@ -38,6 +37,7 @@ const useEditProfile = (
           }),
         ])
         .then(() => {
+          localStorage.removeItem("avatar");
           window.location.reload();
         })
         .catch((err) => {

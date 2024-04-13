@@ -16,7 +16,6 @@ const useRegisterUser = (
   personal.username = mandatory.username;
   const contacts = initialContacts;
   contacts.username = mandatory.username;
-  console.log(avatar);
   if (avatar) {
     fetch(avatar)
       .then((res) => res.blob())

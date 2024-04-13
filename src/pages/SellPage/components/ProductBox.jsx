@@ -12,7 +12,6 @@ const ProductBox = () => {
 
   const [isComplete, setIsComplete] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  console.log(errorMsg);
 
   const username = useUsername();
 

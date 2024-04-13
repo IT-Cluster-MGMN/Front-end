@@ -63,7 +63,6 @@ const ImageCropper = ({ onChange, dropzone, rounded, setter }) => {
       );
 
       const canvasURL = canvas.toDataURL("image/jpeg");
-      console.log(canvasURL);
       fetch(canvasURL)
         .then((res) => res.blob())
         .then((blob) => {

@@ -10,7 +10,6 @@ const useAPIMinorImage = (id) => {
     requestWithCredentials
       .post(API_ENDPOINT, { id: id })
       .then((res) => {
-        console.log(res.data);
         setMinorImages(res.data);
       })
       .catch((err) => {

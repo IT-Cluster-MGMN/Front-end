@@ -21,7 +21,7 @@ const ProductScroller = ({ data }) => {
     <>
       {data ? (
         <div className="flex flex-row gap-8 w-full items-center justify-around">
-          {data.length > 4 ? (
+          {data.length > 3 ? (
             <FaChevronLeft
               onClick={handleLeftArrow}
               size={"1.5rem"}
@@ -37,7 +37,7 @@ const ProductScroller = ({ data }) => {
               <ProductInfo item={product} />
             ))}
           </div>
-          {data.length > 4 ? (
+          {data.length > 3 ? (
             <FaChevronRight
               onClick={handleRightArrow}
               size={"1.5rem"}
