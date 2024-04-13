@@ -3,6 +3,7 @@ import { BsFillHeartFill, BsChatFill } from "react-icons/bs";
 import notFound from "@/assets/not-found-removebg-preview.png";
 import { useState } from "react";
 import MacroImage from "./MacroImage";
+import useAddToFav from "../../../hooks/useAddToFav";
 
 const ProductInfo = ({ productInfo, minorImages }) => {
   const [largeImage, setLargeImage] = useState(0);
@@ -18,6 +19,10 @@ const ProductInfo = ({ productInfo, minorImages }) => {
 
   const handleLargeImage = (index) => {
     setLargeImage(index);
+  };
+
+  const handleAddToFav = (id) => {
+    useAddToFav(id);
   };
 
   const [showMacroImage, setShowMacroImage] = useState(false);
@@ -67,7 +72,10 @@ const ProductInfo = ({ productInfo, minorImages }) => {
               </div>
             </GreenButton>
             <GreenButton hasHover={true}>
-              <div className="flex items-center flex-row gap-1">
+              <div
+                onClick={() => handleAddToFav(productInfo.productId)}
+                className="flex items-center flex-row gap-1"
+              >
                 <BsFillHeartFill />
                 Add to favourites
               </div>

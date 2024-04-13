@@ -4,8 +4,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const MacroImage = ({ images, index, onClick }) => {
   const [currentIndex, setCurrentIndex] = useState(index);
-  console.log(images.length);
-  console.log(currentIndex);
   return (
     <div className="absolute w-screen h-screen flex items-cente top-0 left-0">
       <Overlay zIndex={"z-20"} onClick={onClick} />
