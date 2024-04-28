@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ImageCropper from "../../../components/ImageCropper";
 import defaultProfile from "@/assets/profile.png";
 
-const ProfilePicture = ({ onChange }) => {
+const ProfilePicture = ({ onChange, currentImage = defaultProfile }) => {
   const [renderImage, setRenderImage] = useState();
   const reader = new FileReader();
 
@@ -19,7 +19,7 @@ const ProfilePicture = ({ onChange }) => {
     <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-4 h-full justify-center">
         <img
-          src={`${renderImage ? renderImage : defaultProfile} `}
+          src={`${renderImage ? renderImage : currentImage} `}
           alt="add profile picture"
           className="aspect-square bg-white cursor-pointer  rounded-full w-[15rem]"
         />

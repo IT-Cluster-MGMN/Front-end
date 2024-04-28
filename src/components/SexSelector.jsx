@@ -5,7 +5,7 @@ const SexSelector = ({ onChange, sex, lightTheme, hide, hidden, onHide }) => {
         <label
           className={`font-sans ${hidden ? "text-zinc-400" : ""} font-bold`}
         >
-          Gender
+          Стать
         </label>
         <select
           onChange={(e) => onChange(e.target.value)}
@@ -14,9 +14,9 @@ const SexSelector = ({ onChange, sex, lightTheme, hide, hidden, onHide }) => {
           <option disabled selected value>
             -
           </option>
-          <option className="text-black">Male</option>
-          <option className="text-black">Female</option>
-          <option className="text-black">Other</option>
+          <option className="text-black">Чоловік</option>
+          <option className="text-black">Жінка</option>
+          <option className="text-black">Інше</option>
         </select>
       </div>
       {hide && onHide ? (

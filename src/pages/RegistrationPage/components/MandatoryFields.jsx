@@ -51,10 +51,13 @@ const MandatoryFields = ({
   return (
     <>
       <div className="grid grid-cols-2 w-full h-full">
-        <ProfilePicture onChange={(e) => onImageChange(e)} />
+        <ProfilePicture
+          currentImage={currentImage}
+          onChange={(e) => onImageChange(e)}
+        />
         <div className="flex flex-col text-white font-sans gap-4  w-full justify-center h-full">
           <InputField
-            label="Email"
+            label="Електронна пошта"
             onMouseOverInfo={() => setMouseOverUsername(true)}
             onMouseOutInfo={() => setMouseOverUsername(false)}
             field={username}
@@ -68,7 +71,7 @@ const MandatoryFields = ({
             isMouseOver={mouseOverUsername}
           />
           <InputField
-            label="Password"
+            label="Пароль"
             onMouseOverInfo={() => setMouseOverPassword(true)}
             onMouseOutInfo={() => setMouseOverPassword(false)}
             field={password}
@@ -84,7 +87,7 @@ const MandatoryFields = ({
             onPwdShow={handleShowPassword}
           />
           <InputField
-            label="Confirm password"
+            label="Підтвердити пароль"
             field={match}
             isValidField={isValidMatch}
             setField={setMatch}

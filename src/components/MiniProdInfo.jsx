@@ -21,7 +21,7 @@ const MiniProdInfo = ({ id }) => {
           <img
             onClick={() => navigate(`../product/${id}`)}
             src={mainImage}
-            className="aspect-square  w-[3rem] rounded cursor-pointer"
+            className="aspect-square object-cover  w-[3rem] rounded cursor-pointer"
           />
           <div
             onClick={() => navigate(`../product/${id}`)}

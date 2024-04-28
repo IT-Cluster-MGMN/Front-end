@@ -2,7 +2,7 @@ const DescriptionField = ({ onChange }) => {
   return (
     <>
       <div className="flex gap-2 flex-col">
-        <label className="font-sans font-bold text-white">Description</label>
+        <label className="font-sans font-bold text-white">Опис</label>
         <textarea
           onChange={(e) => onChange(e)}
           cols="30"

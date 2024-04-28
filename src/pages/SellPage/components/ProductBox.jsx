@@ -52,7 +52,7 @@ const ProductBox = () => {
             />
           </div>
           <GreenButton hasHover={true} onClick={handleSubmit}>
-            Submit
+            Оприлюднити
           </GreenButton>
         </div>
       </div>

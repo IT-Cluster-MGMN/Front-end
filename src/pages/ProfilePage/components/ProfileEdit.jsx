@@ -217,7 +217,7 @@ const ProfileEdit = ({
         <>
           <div className="flex flex-col h-full w-full">
             <div className="flex flex-row justify-between w-full items-center">
-              <h2 className="font-sans text-white">Profile Edit</h2>
+              <h2 className="font-sans text-white">Редагування профілю</h2>
               <div className="flex flex-row gap-x-2">
                 <SaveButton onClick={handleSubmit} />
                 <EditProfileButton onClick={editClick} isEdditing={true} />
@@ -240,7 +240,7 @@ const ProfileEdit = ({
                   </div>
                   <InputField
                     placeholder={user.name}
-                    label={"Name"}
+                    label={"Ім'я"}
                     onMouseOutInfo={() => setMouseOverName(false)}
                     onMouseOverInfo={() => setMouseOverName(true)}
                     field={name}
@@ -259,7 +259,7 @@ const ProfileEdit = ({
                   />
                   <InputField
                     placeholder={user.surname}
-                    label={"Surname"}
+                    label={"Прізвище"}
                     onMouseOverInfo={() => setMouseOverSurname(true)}
                     onMouseOutInfo={() => setMouseOverSurname(false)}
                     field={surname}
@@ -278,7 +278,7 @@ const ProfileEdit = ({
                   />
                   <InputField
                     placeholder={user.additional}
-                    label={"Patronymic"}
+                    label={"По-батькові"}
                     onMouseOverInfo={() => setMouseOverAdditional(true)}
                     onMouseOutInfo={() => setMouseOverAdditional(false)}
                     field={additional}
@@ -321,7 +321,7 @@ const ProfileEdit = ({
                 <div className="flex flex-col">
                   <InputField
                     placeholder={contacts.phone}
-                    label={"Phone number"}
+                    label={"Номер телефону"}
                     field={phone}
                     isValidField={isValidPhone}
                     setField={setPhone}

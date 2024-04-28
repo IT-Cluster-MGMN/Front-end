@@ -30,7 +30,7 @@ const MacroImage = ({ images, index, onClick }) => {
       </button>
       <div className="relative w-full items-center flex justify-center">
         <img
-          className="absolute z-30 w-[30rem] aspect-square   "
+          className="absolute z-30 w-[30rem] "
           src={`data:image/jpeg;base64,${images[currentIndex]}`}
         />
       </div>

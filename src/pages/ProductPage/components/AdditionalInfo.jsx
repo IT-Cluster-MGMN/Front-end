@@ -16,21 +16,24 @@ const AdditionalInfo = ({ personal, contacts, avatar, username }) => {
           />
           <div className="flex flex-col w-full gap-8 self-center">
             <div className="self-center">
-              <EmailLabel currentState={1}>{username}</EmailLabel>
+              <SellerLabel data={personal.name} label={"Ім'я"} />
             </div>
             <div className="flex flex-row gap-4">
               <div className="flex flex-col gap-2 bg-zinc-100 p-5 rounded w-full">
-                <SellerLabel data={personal.name} label={"Name"} />
-                <SellerLabel data={personal.surname} label={"Surname"} />
-                <SellerLabel data={personal.additional} label={"Patronymic"} />
-                <SellerLabel data={personal.sex} label={"Gender"} />
+                <SellerLabel data={personal.surname} label={"Прізвище"} />
+                <SellerLabel data={personal.additional} label={"По-батькові"} />
+                <SellerLabel data={personal.sex} label={"Стать"} />
+                <SellerLabel
+                  data={personal.date_birth}
+                  label={"День народження"}
+                />
               </div>
               <div className="flex flex-col gap-2 w-full bg-zinc-100 p-5 rounded">
                 <SellerLabel
-                  data={personal.date_birth}
-                  label={"Date of birth"}
+                  data={personal.username}
+                  label={"Електронна пошта"}
                 />
-                <SellerLabel data={contacts.phone} label={"Phone number"} />
+                <SellerLabel data={contacts.phone} label={"Номер телефону"} />
                 <SellerLabel data={contacts.viber} label={"Viber"} />
                 <SellerLabel data={contacts.telegram} label={"Telegram"} />
               </div>

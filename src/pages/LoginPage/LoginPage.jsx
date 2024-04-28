@@ -59,6 +59,7 @@ const Login = () => {
                 // console.log(res.data.accessToken);
                 // const accessToken = res.data.accessToken;
                 // Cookies.set('accessToken', accessToken);
+                localStorage.removeItem("avatar");
                 setSuccess(true);
                 navigate("/");
             });

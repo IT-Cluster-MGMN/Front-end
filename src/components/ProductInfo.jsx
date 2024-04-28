@@ -31,7 +31,7 @@ const ProductInfo = ({ item }) => {
                 : `/src/assets/not-found-removebg-preview.png`
             }
             alt="image"
-            className="rounded-[1rem] aspect-square w-[13rem] select-none"
+            className="rounded-[1rem] object-cover aspect-square w-[13rem] select-none"
           />
           <span className="font-sans font-semibold text-black">
             {item.title}

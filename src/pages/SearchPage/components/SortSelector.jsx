@@ -5,10 +5,10 @@ const SortSelector = ({ onChange, lightTheme }) => {
       className={`bg-inherit ${lightTheme ? "text-black" : "text-white"} p-2  border-none focus:outline-none  `}
     >
       <option disabled selected value>
-        Sort by:
+        Сортувати за:
       </option>
-      <option className="text-black">Price: from higher to lower</option>
-      <option className="text-black">Price: from lower to higher</option>
+      <option className="text-black">Ціною: від дорогих до дешевих</option>
+      <option className="text-black">Ціною: від дешевих до дорогих</option>
     </select>
   );
 };

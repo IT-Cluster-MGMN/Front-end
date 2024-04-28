@@ -8,7 +8,7 @@ const Loading = ({ darkTheme }) => {
         <span
           className={`${darkTheme ? "text-white" : "text-black"} text-[1.5rem] font-sans font-bold`}
         >
-          Loading
+          Завантаження
         </span>
         <ImSpinner
           className="animate-spin"

@@ -4,7 +4,7 @@ const CategorySelector = ({ onChange }) => {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <label className="font-sans font-bold text-white">Category</label>
+        <label className="font-sans font-bold text-white">Категорія</label>
         <select
           onChange={(e) => onChange(e)}
           className="bg-inherit p-1 focus:outline-none rounded text-white border-x-transparent border-t-transparent border-[2px]"

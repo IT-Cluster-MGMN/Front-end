@@ -36,14 +36,14 @@ const ProductInfo = ({ productInfo, minorImages }) => {
                 ? `data:image/jpeg;base64,${images[largeImage]}`
                 : notFound
             }
-            className="aspect-square h-full rounded "
+            className="aspect-square object-cover h-full rounded "
             onClick={() => handleMacroImage(0)}
           />
           <div className="flex flex-col w-[6rem] h-full gap-1  items-center overflow-y-scroll">
             {images.map((image, index) => (
               <img
                 src={`data:image/jpeg;base64,${image}`}
-                className={`transition w-[5rem] aspect-square ${index === largeImage ? "brightness-[40%]" : ""} rounded`}
+                className={`transition w-[5rem] object-cover aspect-square ${index === largeImage ? "brightness-[40%]" : ""} rounded`}
                 onClick={() => handleLargeImage(index)}
                 onDoubleClick={() => handleMacroImage(index)}
               />
@@ -53,14 +53,17 @@ const ProductInfo = ({ productInfo, minorImages }) => {
         <div className="flex  flex-col gap-2 w-full  self-start h-[20rem]">
           <div className="flex flex-col gap-1">
             <label className="font-sans text-[1.2rem] font-semibold">
-              Description
+              Опис
             </label>
             <span className="h-[7rem] overflow-y-scroll font-sans font-light">
               {productInfo.description}
             </span>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-sans text-[2rem] font-extralight">
+            <label className="font-sans text-[1.2rem] font-semibold">
+              Ціна
+            </label>
+            <span className="h-[7rem] text-[2rem] overflow-y-scroll font-sans font-light">
               {productInfo.price}₴
             </span>
           </div>
@@ -68,7 +71,7 @@ const ProductInfo = ({ productInfo, minorImages }) => {
             <GreenButton hasHover={true}>
               <div className="flex flex-row gap-1 items-center">
                 <BsChatFill />
-                Chat with seller
+                Написати продавцю
               </div>
             </GreenButton>
             <GreenButton hasHover={true}>
@@ -77,7 +80,7 @@ const ProductInfo = ({ productInfo, minorImages }) => {
                 className="flex items-center flex-row gap-1"
               >
                 <BsFillHeartFill />
-                Add to favourites
+                Додати до улюблених
               </div>
             </GreenButton>
           </div>

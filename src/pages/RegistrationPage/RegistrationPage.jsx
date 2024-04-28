@@ -83,21 +83,19 @@ const RegistrationPage = () => {
           )}
           <div className="grid grid-cols-2 w-full justify-around">
             <div>
-              <span className="text-white font-sans">
-                Already have an account?{" "}
-              </span>
+              <span className="text-white font-sans">Вже маєте акаунт? </span>
               <Link
                 to="../login"
                 className="text-green-500 font-sans no-underline hover:"
               >
-                Sign in
+                Увійти
               </Link>
             </div>
             <button
               onClick={handleSubmit}
               className="rounded border-none bg-white text-green-600 hover:bg-green-700 text-[1rem] transition duration-200 font-sans font-bold hover:text-white"
             >
-              Submit
+              Підтвердити
             </button>
           </div>
         </div>

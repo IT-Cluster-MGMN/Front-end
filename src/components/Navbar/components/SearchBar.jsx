@@ -50,7 +50,7 @@ const SearchBar = () => {
                     !outline-none
                     "
           type="text"
-          placeholder="Search"
+          placeholder="Пошук"
           onChange={(e) => handleInput(e.target.value)}
         />
         <button

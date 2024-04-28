@@ -45,13 +45,13 @@ const ProductPage = () => {
               className={`${!isAdditionalInfo ? "text-green-600" : "text-darkgrey"} cursor-pointer font-sans hover:bg-zinc-100 w-full rounded-l transition text-center`}
               onClick={() => setIsAdditionalInfo(false)}
             >
-              Product
+              Про товар
             </span>
             <span
               className={`${isAdditionalInfo ? "text-green-600" : "text-darkgrey"} font-sans cursor-pointer hover:bg-zinc-100 rounded-r transition text-center w-full`}
               onClick={() => setIsAdditionalInfo(true)}
             >
-              Seller
+              Про продавця
             </span>
           </div>
 

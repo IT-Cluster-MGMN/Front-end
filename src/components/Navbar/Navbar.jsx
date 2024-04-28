@@ -21,7 +21,7 @@ const MINOR_BUTTON_BACKGROUND =
 // TODO: constant for search bar text
 
 const Navbar = () => {
-  const handleLoginAlert = () => { };
+  const handleLoginAlert = () => {};
 
   const [openProfileDropdown, setOpenProfileDropdown] = useState(false);
   const [openCategoriesMenu, setOpenCategoriesMenu] = useState(false);
@@ -100,7 +100,7 @@ const Navbar = () => {
               to="/"
             >
               <div className={`${GENERIC_TEXT} flex items-center gap-2`}>
-                Home
+                Головна
               </div>
             </Link>
             {/* Catalogue button */}
@@ -111,7 +111,7 @@ const Navbar = () => {
               <div
                 className={`${GENERIC_TEXT} flex items-center gap-2 bg-inherit border-none`}
               >
-                Catalogue
+                Каталог
                 <BsGrid3X3Gap />
               </div>
             </button>
@@ -125,7 +125,7 @@ const Navbar = () => {
               className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}
             >
               <BsFillHeartFill style={{ color: "white" }} />
-              <p className={GENERIC_TEXT}>Favourite</p>
+              <p className={GENERIC_TEXT}>Улюблені</p>
             </button>
             <Link
               to={isLogged ? "../sell" : "../login"}
@@ -133,7 +133,7 @@ const Navbar = () => {
               className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}
             >
               <BsFillTagsFill style={{ color: "white" }} />
-              <p className={GENERIC_TEXT}>Add Product</p>
+              <p className={GENERIC_TEXT}>Продати</p>
             </Link>
           </div>
           {/* Profile icon */}

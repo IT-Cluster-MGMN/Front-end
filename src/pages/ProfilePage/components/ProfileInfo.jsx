@@ -20,7 +20,7 @@ const ProfileInfo = ({
         <>
           <div className="flex flex-col h-full w-full">
             <div className="flex flex-row justify-between w-full items-center">
-              <h2 className="font-sans text-white">Profile Info</h2>
+              <h2 className="font-sans text-white">Інформація про вас</h2>
               <EditProfileButton onClick={editClick} />
             </div>
             <div className="grid-cols-2 grid-rows-2 w-full h-full gap-2 grid">
@@ -40,7 +40,7 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${userHidden.name === null ? "text-zinc-400" : null}`}
                     >
-                      Name {userHidden.name === null ? "- hidden" : null}
+                      Ім'я {userHidden.name === null ? "- приховано" : null}
                     </label>
                     {user.name ? (
                       <span
@@ -56,7 +56,8 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${userHidden.surname === null ? "text-zinc-400" : null}`}
                     >
-                      Surname {userHidden.surname === null ? "- hidden" : null}
+                      Прізвище{" "}
+                      {userHidden.surname === null ? "- приховано" : null}
                     </label>
                     {user.surname ? (
                       <span
@@ -72,8 +73,8 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${userHidden.additional === null ? "text-zinc-400" : null}`}
                     >
-                      Patronymic{" "}
-                      {userHidden.additional === null ? "- hidden" : null}
+                      По-батькові{" "}
+                      {userHidden.additional === null ? "- приховано" : null}
                     </label>
                     {user.additional ? (
                       <span
@@ -93,7 +94,7 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${userHidden.sex === null ? "text-zinc-400" : null}`}
                     >
-                      Gender {userHidden.sex === null ? "- hidden" : null}
+                      Стать {userHidden.sex === null ? "- приховано" : null}
                     </label>
                     {user.sex ? (
                       <span
@@ -109,8 +110,8 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${userHidden.date_birth === null ? "text-zinc-400" : null}`}
                     >
-                      Date of birth{" "}
-                      {userHidden.date_birth === null ? "- hidden" : null}
+                      День народження{" "}
+                      {userHidden.date_birth === null ? "- приховано" : null}
                     </label>
                     {user.date_birth ? (
                       <span
@@ -130,8 +131,8 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${contactsHidden.phone === null ? "text-zinc-400" : null}`}
                     >
-                      Phone number{" "}
-                      {contactsHidden.phone === null ? "- hidden" : null}
+                      Номер телефону{" "}
+                      {contactsHidden.phone === null ? "- приховано" : null}
                     </label>
                     {contacts.phone ? (
                       <span
@@ -147,7 +148,8 @@ const ProfileInfo = ({
                     <label
                       className={`font-sans font-bold ${contactsHidden.viber === null ? "text-zinc-400" : null}`}
                     >
-                      Viber {contactsHidden.viber === null ? "- hidden" : null}
+                      Viber{" "}
+                      {contactsHidden.viber === null ? "- приховано" : null}
                     </label>
                     {contacts.viber ? (
                       <span
@@ -164,7 +166,7 @@ const ProfileInfo = ({
                       className={`font-sans font-bold ${contactsHidden.telegram === null ? "text-zinc-400" : null}`}
                     >
                       Telegram{" "}
-                      {contactsHidden.telegram === null ? "- hidden" : null}
+                      {contactsHidden.telegram === null ? "- приховано" : null}
                     </label>
                     {contacts.telegram ? (
                       <span

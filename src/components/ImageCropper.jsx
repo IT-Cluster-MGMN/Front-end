@@ -5,7 +5,13 @@ import Cropper from "react-easy-crop";
 import { MdOutlineZoomInMap, MdOutlineZoomOutMap } from "react-icons/md";
 import { IoCropSharp, IoTrashBin } from "react-icons/io5";
 
-const ImageCropper = ({ onChange, dropzone, rounded, setter }) => {
+const ImageCropper = ({
+  onChange,
+  dropzone,
+  rounded,
+  setter,
+  aspect = 1 / 1,
+}) => {
   const [src, setSrc] = useState(null);
   const [crop, setCrop] = useState({
     x: 0,
@@ -115,7 +121,7 @@ const ImageCropper = ({ onChange, dropzone, rounded, setter }) => {
                     for="upload-button"
                     className="text-green-600 p-1 text-[0.7rem] rounded w-[12rem] bg-white hover:bg-green-700 select-none cursor-pointer hover:text-white transition font-sans font-bold"
                   >
-                    Change profile picture
+                    Змінити фотографію
                   </label>
                   {src ? (
                     <IoCropSharp
@@ -159,7 +165,7 @@ const ImageCropper = ({ onChange, dropzone, rounded, setter }) => {
                 for="upload-button"
                 className="text-green-600 p-2 rounded bg-white hover:bg-green-700 select-none cursor-pointer hover:text-white transition font-sans font-bold"
               >
-                Add profile picture
+                Додати фотографію
               </label>
               {src ? (
                 <IoCropSharp
@@ -179,7 +185,7 @@ const ImageCropper = ({ onChange, dropzone, rounded, setter }) => {
                 image={src}
                 crop={crop}
                 zoom={zoom}
-                aspect={1}
+                aspect={aspect}
                 cropShape={rounded ? "round" : "rect"}
                 onCropChange={setCrop}
                 onCropComplete={onCropComplete}

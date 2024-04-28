@@ -15,7 +15,11 @@ const Favourites = () => {
           ))}
         </div>
       ) : (
-        <span className="font-sans text-white">Fav list empty</span>
+        <div className="flex flex-col items-center justify-center w-full h-[4rem] ">
+          <span className="font-sans text-white ">
+            Список улюблених товарів пустий
+          </span>
+        </div>
       )}
     </div>
   );

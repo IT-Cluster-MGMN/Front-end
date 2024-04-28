@@ -12,7 +12,7 @@ const DateOfBirthSelector = ({
         <label
           className={`font-sans ${hidden ? "text-zinc-400" : ""} font-bold`}
         >
-          Date of birth
+          День народження
         </label>
         <input
           type="date"
