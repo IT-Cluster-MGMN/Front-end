@@ -1,5 +1,4 @@
 import axios from "axios";
-import requestWithCredentials from "../services/requestWithCredentials.js";
 
 const useRegisterUser = (
   mandatory,
@@ -10,7 +9,7 @@ const useRegisterUser = (
 ) => {
   const coodinatorEndpoint = "http://localhost:8000/api/coordinator/register";
   const formData = new FormData();
-  const rawData = {
+  const data = {
     username: mandatory.username,
     password: mandatory.password,
     name: initialPersonal.name,
@@ -22,6 +21,7 @@ const useRegisterUser = (
     telegram: initialContacts.telegram,
     viber: initialContacts.viber,
   };
+  const rawData = JSON.stringify(data);
   formData.append("rawData", rawData);
 
   if (avatar) {
