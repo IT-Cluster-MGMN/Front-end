@@ -41,6 +41,17 @@ const useRegisterUser = (
       .then((blob) => {
         const file = new File([blob], "file", { type: "image/jpeg" });
         formData.append("avatar", file, "image.jpg");
+        axios
+          .post(coodinatorEndpoint, formData, {
+            withCredentials: true,
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+          .then(() => {
+            window.location.href = "../";
+          })
+          .catch((err) => {
+            setErrorMsg(err.message);
+          });
       });
   } else {
     fetch(
@@ -50,21 +61,19 @@ const useRegisterUser = (
       .then((blob) => {
         const file = new File([blob], "file", { type: "image/jpeg" });
         formData.append("avatar", file, "image.jpg");
+        axios
+          .post(coodinatorEndpoint, formData, {
+            withCredentials: true,
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+          .then(() => {
+            window.location.href = "../";
+          })
+          .catch((err) => {
+            setErrorMsg(err.message);
+          });
       });
   }
-
-  axios
-    .post(coodinatorEndpoint, formData, {
-      withCredentials: true,
-      headers: { "Content-Type": "multipart/form-data" },
-      data: rawData,
-    })
-    .then(() => {
-      window.location.href = "../";
-    })
-    .catch((err) => {
-      setErrorMsg(err.message);
-    });
 };
 
 export default useRegisterUser;
