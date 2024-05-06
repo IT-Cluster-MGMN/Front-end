@@ -10,20 +10,30 @@ const useRegisterUser = (
 ) => {
   const coodinatorEndpoint = "http://localhost:8000/api/coordinator/register";
   const AVATAR = "http://localhost:8000/api/account/create/images";
-  const rawData = {
-    username: mandatory.username,
-    password: mandatory.password,
-    name: initialPersonal.name,
-    surname: initialPersonal.surname,
-    additional: initialPersonal.additional,
-    sex: initialPersonal.sex,
-    date_birth: initialPersonal.date_birth,
-    phone: initialContacts.phone,
-    telegram: initialContacts.telegram,
-    viber: initialContacts.viber,
-  };
+  // const rawData = {
+  //   username: mandatory.username,
+  //   password: mandatory.password,
+  //   name: initialPersonal.name,
+  //   surname: initialPersonal.surname,
+  //   additional: initialPersonal.additional,
+  //   sex: initialPersonal.sex,
+  //   date_birth: initialPersonal.date_birth,
+  //   phone: initialContacts.phone,
+  //   telegram: initialContacts.telegram,
+  //   viber: initialContacts.viber,
+  // };
 
   const formData = new FormData();
+  formData.append("username", mandatory.username);
+  formData.append("password", mandatory.password);
+  formData.append("name", initialPersonal.name);
+  formData.append("surname", initialPersonal.surname);
+  formData.append("additional", initialPersonal.additional);
+  formData.append("sex", initialPersonal.sex);
+  formData.append("date_birth", initialPersonal.date_birth);
+  formData.append("phone", initialContacts.phone);
+  formData.append("telegram", initialContacts.telegram);
+  formData.append("viber", initialContacts.viber);
 
   if (avatar) {
     fetch(avatar)
