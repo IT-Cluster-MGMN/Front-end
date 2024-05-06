@@ -10,7 +10,7 @@ const useRegisterUser = (
 ) => {
   const coodinatorEndpoint = "http://localhost:8000/api/coordinator/register";
   const AVATAR = "http://localhost:8000/api/account/create/images";
-  const data = {
+  const rawData = {
     username: mandatory.username,
     password: mandatory.password,
     name: initialPersonal.name,
@@ -23,7 +23,6 @@ const useRegisterUser = (
     viber: initialContacts.viber,
   };
 
-  const rawData = JSON.stringify(data);
   const formData = new FormData();
 
   if (avatar) {
@@ -48,7 +47,7 @@ const useRegisterUser = (
     .post(coodinatorEndpoint, formData, {
       withCredentials: true,
       headers: { "Content-Type": "multipart/form-data" },
-      params: { raw_data: rawData },
+      data: rawData,
     })
     .then(() => {
       window.location.href = "../";
