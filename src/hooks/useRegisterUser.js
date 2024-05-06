@@ -1,4 +1,5 @@
 import axios from "axios";
+import requestWithCredentials from "../services/requestWithCredentials.js";
 
 const useRegisterUser = (
   mandatory,
@@ -8,21 +9,31 @@ const useRegisterUser = (
   setErrorMsg,
 ) => {
   const coodinatorEndpoint = "http://localhost:8000/api/coordinator/register";
+  const AVATAR = "http://localhost:8000/api/account/create/images";
+  // const rawData = {
+  //   username: mandatory.username,
+  //   password: mandatory.password,
+  //   name: initialPersonal.name,
+  //   surname: initialPersonal.surname,
+  //   additional: initialPersonal.additional,
+  //   sex: initialPersonal.sex,
+  //   date_birth: initialPersonal.date_birth,
+  //   phone: initialContacts.phone,
+  //   telegram: initialContacts.telegram,
+  //   viber: initialContacts.viber,
+  // };
+
   const formData = new FormData();
-  const data = {
-    username: mandatory.username,
-    password: mandatory.password,
-    name: initialPersonal.name,
-    surname: initialPersonal.surname,
-    additional: initialPersonal.additional,
-    sex: initialPersonal.sex,
-    date_birth: initialPersonal.date_birth,
-    phone: initialContacts.phone,
-    telegram: initialContacts.telegram,
-    viber: initialContacts.viber,
-  };
-  const rawData = JSON.stringify(data);
-  formData.append("rawData", rawData);
+  formData.append("username", mandatory.username);
+  formData.append("password", mandatory.password);
+  formData.append("name", initialPersonal.name);
+  formData.append("surname", initialPersonal.surname);
+  formData.append("additional", initialPersonal.additional);
+  formData.append("sex", initialPersonal.sex);
+  formData.append("date_birth", initialPersonal.date_birth);
+  formData.append("phone", initialContacts.phone);
+  formData.append("telegram", initialContacts.telegram);
+  formData.append("viber", initialContacts.viber);
 
   if (avatar) {
     fetch(avatar)
@@ -30,18 +41,6 @@ const useRegisterUser = (
       .then((blob) => {
         const file = new File([blob], "file", { type: "image/jpeg" });
         formData.append("avatar", file, "image.jpg");
-        axios
-          .post(coodinatorEndpoint, formData, {
-            withCredentials: true,
-            headers: { "Content-Type": "multipart/form-data" },
-            data: rawData,
-          })
-          .then(() => {
-            window.location.href = "../";
-          })
-          .catch((err) => {
-            setErrorMsg(err.message);
-          });
       });
   } else {
     fetch(
@@ -51,20 +50,21 @@ const useRegisterUser = (
       .then((blob) => {
         const file = new File([blob], "file", { type: "image/jpeg" });
         formData.append("avatar", file, "image.jpg");
-        axios
-          .post(coodinatorEndpoint, formData, {
-            withCredentials: true,
-            headers: { "Content-Type": "multipart/form-data" },
-            data: rawData,
-          })
-          .then(() => {
-            window.location.href = "../";
-          })
-          .catch((err) => {
-            setErrorMsg(err.message);
-          });
       });
   }
+
+  axios
+    .post(coodinatorEndpoint, formData, {
+      withCredentials: true,
+      headers: { "Content-Type": "multipart/form-data" },
+      data: rawData,
+    })
+    .then(() => {
+      window.location.href = "../";
+    })
+    .catch((err) => {
+      setErrorMsg(err.message);
+    });
 };
 
 export default useRegisterUser;
