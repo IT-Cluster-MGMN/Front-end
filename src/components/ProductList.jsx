@@ -4,9 +4,15 @@ import { useEffect, useState } from "react";
 import PageSelector from "./PageSelector";
 import usePagination from "../hooks/usePagination";
 import ProductEmpty from "./ProductEmpty";
+import MyProductInfo from "../pages/MyProducts/components/MyProductInfo";
 
-const ProductList = ({ data }) => {
-  const paginatedData = usePagination(data, 20);
+const ProductList = ({
+  darkTheme = false,
+  data,
+  isHorizontal,
+  itemsPerPage = 20,
+}) => {
+  const paginatedData = usePagination(data, itemsPerPage);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -25,10 +31,16 @@ const ProductList = ({ data }) => {
     <>
       <div className="flex flex-col pb-8">
         {renderData ? (
-          <div className="grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  justify-around p-8 gap-4">
+          <div
+            className={`${isHorizontal ? "flex flex-col h-full " : "grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"}   justify-around p-8 gap-4`}
+          >
             {renderData.map((product) => (
               <>
-                <ProductInfo item={product} />
+                {isHorizontal ? (
+                  <MyProductInfo data={product} />
+                ) : (
+                  <ProductInfo item={product} />
+                )}
               </>
             ))}
           </div>
@@ -37,6 +49,7 @@ const ProductList = ({ data }) => {
         )}
 
         <PageSelector
+          darkTheme={darkTheme}
           numPages={paginatedData.length}
           currentPage={currentPage}
           selectPage={(e) => handlePageChange(e)}

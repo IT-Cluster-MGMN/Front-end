@@ -1,8 +1,8 @@
-version: '3'
+version: "3"
 services:
   mysql-security:
     image: mysql
-#    network_mode: host
+    #    network_mode: host
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: security
@@ -10,13 +10,13 @@ services:
     ports:
       - "3307:3307"
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 2s
       retries: 10
 
   security:
     image: nazariybrynyarskiy/security-app:latest
-#    network_mode: host
+    #    network_mode: host
     ports:
       - "8088:8088"
     depends_on:
@@ -29,6 +29,12 @@ services:
     ports:
       - "8000:8000"
 
+  coordinator:
+    image: nazariybrynyarskiy/coordinator-app:latest
+    #    network_mode: host
+    ports:
+      - "8082:8082"
+
   mysql-product:
     image: mysql
     #    network_mode: host
@@ -38,7 +44,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: productservice
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 2s
       retries: 10
 
@@ -61,7 +67,7 @@ services:
       MYSQL_DATABASE: profileservice
       MYSQL_TCP_PORT: 3308
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 2s
       retries: 10
 

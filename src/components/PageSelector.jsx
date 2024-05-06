@@ -2,7 +2,12 @@ import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 import PageButton from "./PageButton";
 
-const PageSelector = ({ numPages, currentPage, selectPage }) => {
+const PageSelector = ({
+  numPages,
+  currentPage,
+  selectPage,
+  darkTheme = false,
+}) => {
   const middleButtons = [];
   let i, j;
   if (currentPage > 3 && currentPage === numPages) {
@@ -34,7 +39,9 @@ const PageSelector = ({ numPages, currentPage, selectPage }) => {
 
   return (
     <>
-      <div className="w-full flex flex-row justify-center">
+      <div
+        className={`${darkTheme ? " bg-white w-fit self-center p-2 rounded" : "w-full"} flex flex-row justify-center`}
+      >
         {numPages > 1 ? (
           <>
             <PageButton
@@ -71,8 +78,6 @@ const PageSelector = ({ numPages, currentPage, selectPage }) => {
             />
           </>
         ) : null}
-
-        {/*TODO: make this three buttons adapt to last page*/}
       </div>
     </>
   );

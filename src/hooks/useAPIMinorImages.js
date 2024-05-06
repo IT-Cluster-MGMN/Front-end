@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import requestWithCredentials from "../services/requestWithCredentials";
+import axios from "axios";
 
 const useAPIMinorImage = (id) => {
   const [minorImages, setMinorImages] = useState([]);
@@ -7,7 +8,7 @@ const useAPIMinorImage = (id) => {
   const API_ENDPOINT = "http://localhost:8000/api/product/photo/other";
 
   useEffect(() => {
-    requestWithCredentials
+    axios
       .post(API_ENDPOINT, { id: id })
       .then((res) => {
         setMinorImages(res.data);
