@@ -1,5 +1,4 @@
 import axios from "axios";
-import requestWithCredentials from "../services/requestWithCredentials.js";
 
 const useRegisterUser = (
   mandatory,
@@ -9,19 +8,6 @@ const useRegisterUser = (
   setErrorMsg,
 ) => {
   const coodinatorEndpoint = "http://localhost:8000/api/coordinator/register";
-  const AVATAR = "http://localhost:8000/api/account/create/images";
-  // const rawData = {
-  //   username: mandatory.username,
-  //   password: mandatory.password,
-  //   name: initialPersonal.name,
-  //   surname: initialPersonal.surname,
-  //   additional: initialPersonal.additional,
-  //   sex: initialPersonal.sex,
-  //   date_birth: initialPersonal.date_birth,
-  //   phone: initialContacts.phone,
-  //   telegram: initialContacts.telegram,
-  //   viber: initialContacts.viber,
-  // };
 
   const formData = new FormData();
   formData.append("username", mandatory.username);
