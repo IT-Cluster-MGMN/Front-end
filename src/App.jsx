@@ -10,6 +10,7 @@ import TestPage from "./pages/TestPage/TestPage";
 import SellPage from "./pages/SellPage/SellPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import MyProducts from "./pages/MyProducts/MyProducts";
+import ChatPage from "./pages/ChatPage/ChatPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/sell" element={<SellPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/myproducts" element={<MyProducts />} />
+            <Route path="/chat" element={<ChatPage />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -7,10 +7,9 @@ import CategoriesMenu from "./components/CategoriesMenu";
 import SearchBar from "./components/SearchBar";
 import useIsLogged from "../../hooks/useIsLogged";
 import newlogo from "@/assets/newlogo.png";
-import defaultProfile from "@/assets/profile.png";
 import Avatar from "../Avatar";
-import useGetFav from "../../hooks/useGetFav";
 import Favourites from "../Favourites";
+import useGetAvatar from "../../hooks/useGetAvatar";
 
 const GENERIC_BUTTON_BACKGROUND =
   "flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2";
@@ -21,6 +20,8 @@ const MINOR_BUTTON_BACKGROUND =
 // TODO: constant for search bar text
 
 const Navbar = () => {
+  const avatar = useGetAvatar();
+  console.log(avatar);
   const handleLoginAlert = () => {};
 
   const [openProfileDropdown, setOpenProfileDropdown] = useState(false);
@@ -141,6 +142,7 @@ const Navbar = () => {
             <Avatar
               className="bg-white w-[2.5rem] h-[2.5rem] cursor-pointer aspect-square rounded-full"
               onClick={handleOpenProfileDropdown}
+              avatar={avatar}
             />
           </div>
         </div>

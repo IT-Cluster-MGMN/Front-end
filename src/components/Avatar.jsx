@@ -2,13 +2,10 @@ import useGetAvatar from "../hooks/useGetAvatar";
 import defaultAvatar from "@/assets/profile.png";
 import useIsLogged from "../hooks/useIsLogged";
 
-const Avatar = ({ className, onClick }) => {
-  const avatar = useGetAvatar();
-  const isLogged = useIsLogged();
-
+const Avatar = ({ className, onClick, avatar }) => {
   return (
     <>
-      {avatar && isLogged ? (
+      {avatar ? (
         <img
           src={`data:image/jpeg;base64,${avatar}`}
           className={className}
