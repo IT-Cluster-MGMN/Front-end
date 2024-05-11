@@ -20,6 +20,11 @@ const ProfileDropdown = ({ isLogged }) => {
                   <p className={DROPDOWN_TEXT}>Профіль</p>
                 </div>
               </Link>
+              <Link className="no-underline " to="/myproducts">
+                <div className="flex items-center justify-center px-10 py-2 hover:bg-darkgrey bg-zinc-700">
+                  <p className={DROPDOWN_TEXT}>Мої товари</p>
+                </div>
+              </Link>
               <Link className="no-underline " to="/" onClick={handleExit}>
                 <div className="flex items-center justify-center px-10 py-2 hover:bg-darkgrey bg-zinc-700">
                   <p className={DROPDOWN_TEXT}>Вийти</p>

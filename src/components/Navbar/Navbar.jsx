@@ -21,8 +21,7 @@ const MINOR_BUTTON_BACKGROUND =
 
 const Navbar = () => {
   const avatar = useGetAvatar();
-  console.log(avatar);
-  const handleLoginAlert = () => {};
+  const handleLoginAlert = () => { };
 
   const [openProfileDropdown, setOpenProfileDropdown] = useState(false);
   const [openCategoriesMenu, setOpenCategoriesMenu] = useState(false);

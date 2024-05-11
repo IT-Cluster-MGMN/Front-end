@@ -39,17 +39,17 @@ const PageSelector = ({
 
   return (
     <>
-      <div
-        className={`${darkTheme ? " bg-white w-fit self-center p-2 rounded" : "w-full"} flex flex-row justify-center`}
-      >
+      <div className={`w-fit self-center flex flex-row justify-center`}>
         {numPages > 1 ? (
           <>
             <PageButton
+              darkTheme={darkTheme}
               label={<GrFormPrevious />}
               disabled={currentPage === 1}
               onClick={() => selectPage(currentPage - 1)}
             />
             <PageButton
+              darkTheme={darkTheme}
               label="1"
               onClick={() => selectPage(1)}
               selected={currentPage === 1}
@@ -58,6 +58,7 @@ const PageSelector = ({
               {middleButtons.map((index) => (
                 <>
                   <PageButton
+                    darkTheme={darkTheme}
                     label={index}
                     onClick={() => selectPage(index)}
                     selected={index === currentPage}
@@ -67,11 +68,13 @@ const PageSelector = ({
             </div>
 
             <PageButton
+              darkTheme={darkTheme}
               label={numPages}
               selected={currentPage === numPages}
               onClick={() => selectPage(numPages)}
             />
             <PageButton
+              darkTheme={darkTheme}
               label={<GrFormNext />}
               disabled={currentPage === numPages}
               onClick={() => selectPage(currentPage + 1)}
