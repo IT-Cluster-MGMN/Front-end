@@ -16,7 +16,7 @@ const ProfileInfo = ({
 }) => {
   return (
     <>
-      {user && contacts && avatar ? (
+      {user && user.username && contacts && avatar ? (
         <>
           <div className="flex flex-col h-full w-full">
             <div className="flex flex-row justify-between w-full items-center">
