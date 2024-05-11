@@ -21,16 +21,9 @@ const ProductInfoCreate = ({ onChange, username }) => {
   const [titleFocus, setTitleFocus] = useState(false);
   const [mouseOverTitle, setMouseOverTitle] = useState(false);
 
-  const [categrory, setCategory] = useState();
+  const [category, setCategory] = useState();
 
   const [description, setDescription] = useState();
-  // const [isValidDescription, setIsValidDescription] = useState(false);
-  // useEffect(() => {
-  //   setIsValidDescription(prodDescRegex.test(description));
-  // }, [description]);
-  // const [descriptionFocus, setDescriptionFocus] = useState(false);
-  // const [mouseOverDescription, setMouseOverDescription] = useState(false);
-
   const [price, setPrice] = useState();
   const [isValidPrice, setIsValidPrice] = useState(false);
   useEffect(() => {
@@ -44,10 +37,10 @@ const ProductInfoCreate = ({ onChange, username }) => {
       username,
       title,
       description,
-      categrory,
+      category,
       price,
     });
-  }, [title, description, price, categrory]);
+  }, [title, description, price, category]);
 
   return (
     <>
