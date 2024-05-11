@@ -7,6 +7,7 @@ import useAddToFav from "../../../hooks/useAddToFav";
 
 const ProductInfo = ({ productInfo, minorImages }) => {
   const [largeImage, setLargeImage] = useState(0);
+  console.log(productInfo);
 
   const images = [];
   for (let i = 0; i < minorImages.length; i++) {
@@ -66,6 +67,8 @@ const ProductInfo = ({ productInfo, minorImages }) => {
             <span className="h-[7rem] text-[2rem] overflow-y-scroll font-sans font-light">
               {productInfo.price}₴
             </span>
+            <label className="font-sans">Дата оприлюднення</label>
+            <span>{productInfo.date}</span>
           </div>
           <div className="flex flex-row h-full justify-around items-end">
             <GreenButton hasHover={true}>
