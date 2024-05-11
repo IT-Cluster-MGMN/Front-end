@@ -13,16 +13,25 @@ const SearchProducts = () => {
     if (searchInput) {
       axios
         .post(
-          "http://localhost:8000/api/product/search",
+          ` http://localhost:8000/api/product/search`,
           {
-            query: searchInput,
+            minPrice: 0,
+            maxPrice: 999999999,
+            descending: false,
           },
-          { withCredentials: true },
+          {
+            withCredentials: true,
+            params: {
+              search: searchInput,
+            },
+          },
         )
         .then((response) => {
           setData(response.data);
         })
-        .catch((error) => { });
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }, [searchInput]);
 
