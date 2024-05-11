@@ -7,7 +7,7 @@ const HomeProducts = () => {
 
   return (
     <>
-      <div className=" w-full bg-zinc-200 p-4 h-full min-h-[33rem]">
+      <div className=" w-full bg-zinc-100 p-4 h-full min-h-[33rem]">
         <h1 className="font-sans font-bold">Найновіші товари</h1>
         {recents ? (
           <ProductScroller data={recents} />
