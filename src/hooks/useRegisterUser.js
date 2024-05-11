@@ -33,6 +33,7 @@ const useRegisterUser = (
             headers: { "Content-Type": "multipart/form-data" },
           })
           .then(() => {
+            localStorage.clear();
             window.location.href = "../";
           })
           .catch((err) => {
@@ -53,6 +54,7 @@ const useRegisterUser = (
             headers: { "Content-Type": "multipart/form-data" },
           })
           .then(() => {
+            localStorage.clear();
             window.location.href = "../";
           })
           .catch((err) => {
