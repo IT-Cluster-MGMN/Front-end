@@ -94,6 +94,11 @@ const ImageCropper = ({
     onChange(output);
   };
 
+  const style = {
+    cropAreaStyle: { zIndex: "30" },
+    mediaStyle: { zIndex: "30" },
+  };
+
   return (
     <div>
       <center className="flex flex-col items-center gap-2 p-2">
@@ -190,24 +195,24 @@ const ImageCropper = ({
                 onCropChange={setCrop}
                 onCropComplete={onCropComplete}
                 onZoomChange={setZoom}
-                style={{ width: "300px", height: "200px" }}
+                style={style}
               />
               <div className="absolute flex flex-col gap-2 bottom-2 w-fit right-2">
                 <button
                   onClick={handleZoomIn}
-                  className="p-2 rounded-full flex items-center"
+                  className="p-2 rounded-full flex items-center z-40"
                 >
                   <MdOutlineZoomInMap size={"1.7rem"} />
                 </button>
                 <button
                   onClick={handleZoomOut}
-                  className="p-2 rounded-full flex items-center"
+                  className="p-2 rounded-full flex items-center z-40"
                 >
                   <MdOutlineZoomOutMap size={"1.7rem"} />
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="p-2 rounded-full flex items-center"
+                  className="p-2 rounded-full flex items-center z-40"
                 >
                   <IoCropSharp size={"1.7rem"} />
                 </button>
