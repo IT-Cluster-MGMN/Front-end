@@ -14,7 +14,7 @@ const PlusButton = ({ onClick }) => {
       className="w-[2rem] h-[2rem] hover:transition-all justify-between  duration-500 rounded-full p-2 border-none hover:bg-green-700 bg-white relative hover:w-[12rem] items-center group  flex flex-row self-end overflow-hidden"
     >
       <span className="text-[0px] text-black font-sans  font-bold group-hover:text-[0.9rem] group-hover:text-white line-clamp-1 opacity-0 group-hover:opacity-100 transition-all   ">
-        {isMinusSign ? "Mandatory fields" : "Additional fields"}
+        {isMinusSign ? "Обов'язкові поля" : "Додаткові поля"}
       </span>
       {isMinusSign ? (
         <FaMinus
