@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useRegexValidation from "../../../hooks/useRegexValidation";
 import {
   nameRegex,
   phoneNumberRegex,
@@ -13,7 +12,6 @@ import { FaCircleInfo } from "react-icons/fa6";
 import Hint from "./Hint";
 import SexSelector from "../../../components/SexSelector";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector";
-import AdditionalSaveWarn from "./AdditionalSaveWarn";
 
 const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
   const [name, setName] = useState("");
