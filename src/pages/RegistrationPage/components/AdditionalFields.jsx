@@ -13,6 +13,7 @@ import { FaCircleInfo } from "react-icons/fa6";
 import Hint from "./Hint";
 import SexSelector from "../../../components/SexSelector";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector";
+import AdditionalSaveWarn from "./AdditionalSaveWarn";
 
 const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
   const [name, setName] = useState("");
@@ -67,7 +68,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
         <div className="flex flex-col gap-2">
           <div className="flex flex-col">
             <div className="flex flex-row items-center gap-2">
-              <label>Name</label>
+              <label>Ім'я</label>
               {name && !isValidName ? (
                 <FaCircleInfo
                   onMouseOver={() => setMouseOverName(true)}
@@ -89,7 +90,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
           </div>
           <div className="flex flex-col">
             <div className="flex flex-row items-center gap-2">
-              <label>Surname</label>
+              <label>Прізвище</label>
               {surname && !isValidSurname ? (
                 <FaCircleInfo
                   onMouseOver={() => setMouseOverSurname(true)}
@@ -117,7 +118,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
           </div>
           <div className="flex flex-col">
             <div className="flex flex-row items-center gap-2">
-              <label>Patronymic</label>
+              <label>По-батькові</label>
               {additional && !isValidAdditional ? (
                 <FaCircleInfo
                   onMouseOver={() => setMouseOverAdditional(true)}
@@ -159,12 +160,12 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
             }
             className="p-2"
           >
-            Save personal
+            Зберегти особисту інформацію
           </button>
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col">
-            <label>Phone Number</label>
+            <label>Номер телефону</label>
             <PhoneInput
               flags={flags}
               value={phone}
@@ -232,7 +233,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
             disabled={!isValidViber || !isValidTelegram || !isValidPhone}
             onClick={handleSaveContacts}
           >
-            Save contacts
+            Зберегти контакти
           </button>
         </div>
       </div>
