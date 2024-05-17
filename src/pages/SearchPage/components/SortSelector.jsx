@@ -7,6 +7,7 @@ const SortSelector = ({ onChange, lightTheme }) => {
       <option disabled selected value>
         Сортувати за:
       </option>
+      <option className="text-black">Найновіші</option>
       <option className="text-black">Ціною: від дорогих до дешевих</option>
       <option className="text-black">Ціною: від дешевих до дорогих</option>
     </select>

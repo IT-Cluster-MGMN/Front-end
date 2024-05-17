@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import ProductList from "../../../components/ProductList";
 import Loading from "../../../components/Loading";
 
-const SearchProducts = () => {
+const SearchProducts = ({ descendingSort, range }) => {
   const [data, setData] = useState(null);
   const location = useLocation();
   const searchInput = new URLSearchParams(location.search).get("query");
@@ -15,9 +15,9 @@ const SearchProducts = () => {
         .post(
           ` http://localhost:8000/api/product/search`,
           {
-            minPrice: 0,
-            maxPrice: 999999999,
-            descending: false,
+            minPrice: range[0],
+            maxPrice: range[1],
+            descending: descendingSort,
           },
           {
             withCredentials: true,
@@ -33,7 +33,7 @@ const SearchProducts = () => {
           console.log(error);
         });
     }
-  }, [searchInput]);
+  }, [searchInput, descendingSort, range]);
 
   return (
     <>
