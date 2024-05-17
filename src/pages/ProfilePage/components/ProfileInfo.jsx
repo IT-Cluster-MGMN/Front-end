@@ -42,7 +42,7 @@ const ProfileInfo = ({
                     >
                       Ім'я {userHidden.name === null ? "- приховано" : null}
                     </label>
-                    {user.name ? (
+                    {user.name && user.name !== "null" ? (
                       <span
                         className={`font-sans ${userHidden.name === null ? "text-zinc-400" : null}`}
                       >
@@ -59,7 +59,7 @@ const ProfileInfo = ({
                       Прізвище{" "}
                       {userHidden.surname === null ? "- приховано" : null}
                     </label>
-                    {user.surname ? (
+                    {user.surname && user.surname !== "null" ? (
                       <span
                         className={`font-sans ${userHidden.surname === null ? "text-zinc-400" : null}`}
                       >
@@ -76,7 +76,7 @@ const ProfileInfo = ({
                       По-батькові{" "}
                       {userHidden.additional === null ? "- приховано" : null}
                     </label>
-                    {user.additional ? (
+                    {user.additional && user.additional !== "null" ? (
                       <span
                         className={`font-sans ${userHidden.additional === null ? "text-zinc-400" : null}`}
                       >
@@ -96,7 +96,7 @@ const ProfileInfo = ({
                     >
                       Стать {userHidden.sex === null ? "- приховано" : null}
                     </label>
-                    {user.sex ? (
+                    {user.sex && user.sex !== "null" ? (
                       <span
                         className={`font-sans ${userHidden.sex === null ? "text-zinc-400" : null}`}
                       >
@@ -113,11 +113,15 @@ const ProfileInfo = ({
                       День народження{" "}
                       {userHidden.date_birth === null ? "- приховано" : null}
                     </label>
-                    {user.date_birth ? (
+                    {user.date_birth && user.date_birth !== "null" ? (
                       <span
                         className={`font-sans ${userHidden.date_birth === null ? "text-zinc-400" : null}`}
                       >
-                        {user.date_birth}
+                        {new Date(user.date_birth).toLocaleDateString("ua-UA", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
                       </span>
                     ) : (
                       <span>-</span>
@@ -134,7 +138,7 @@ const ProfileInfo = ({
                       Номер телефону{" "}
                       {contactsHidden.phone === null ? "- приховано" : null}
                     </label>
-                    {contacts.phone ? (
+                    {contacts.phone && contacts.phone !== "null" ? (
                       <span
                         className={`font-sans ${contactsHidden.phone === null ? "text-zinc-400" : null}`}
                       >
@@ -151,7 +155,7 @@ const ProfileInfo = ({
                       Viber{" "}
                       {contactsHidden.viber === null ? "- приховано" : null}
                     </label>
-                    {contacts.viber ? (
+                    {contacts.viber && contacts.viber !== "null" ? (
                       <span
                         className={`font-sans ${contactsHidden.viber === null ? "text-zinc-400" : null}`}
                       >
@@ -168,7 +172,7 @@ const ProfileInfo = ({
                       Telegram{" "}
                       {contactsHidden.telegram === null ? "- приховано" : null}
                     </label>
-                    {contacts.telegram ? (
+                    {contacts.telegram && contacts.telegram !== "null" ? (
                       <span
                         className={`font-sans ${contactsHidden.telegram === null ? "text-zinc-400" : null}`}
                       >
