@@ -47,17 +47,24 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
   const [viberFocus, setViberFocus] = useState(false);
   const [telegramFocus, setTelegramFocus] = useState(false);
 
+  const [isPersonalSaved, setIsPersonalSaved] = useState(false);
+  const [isContactsSaved, setIsContactsSaved] = useState(false);
+
   const handleInput = (value, setter, validSetter, regex) => {
     setter(value);
     validSetter(regex.test(value));
+    setIsPersonalSaved(false);
+    setIsContactsSaved(false);
   };
 
   const handleSavePersonal = () => {
     onPersonalSubmit({ name, surname, additional, sex, date_birth });
+    setIsPersonalSaved(true);
   };
 
   const handleSaveContacts = () => {
     onContactsSubmit({ phone, viber, telegram });
+    setIsContactsSaved(true);
   };
 
   return (
@@ -156,7 +163,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               !sex ||
               !date_birth
             }
-            className="p-2"
+            className={`p-2 ${isPersonalSaved ? "bg-green-500" : bg - white}`}
           >
             Зберегти особисту інформацію
           </button>
@@ -227,9 +234,9 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
             ) : null}
           </div>
           <button
-            className="p-2"
             disabled={!isValidViber || !isValidTelegram || !isValidPhone}
             onClick={handleSaveContacts}
+            className={`p-2 ${isContactsSaved ? "bg-green-500" : bg - white}`}
           >
             Зберегти контакти
           </button>
