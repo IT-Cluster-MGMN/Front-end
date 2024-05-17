@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const usePagination = (data, pageSize) => {
   const paginate = (data, PAGE_SIZE) => {
@@ -11,10 +11,11 @@ const usePagination = (data, pageSize) => {
     return paginatedData;
   };
 
-  const paginatedData = useMemo(
-    () => paginate(data, pageSize),
-    [data, pageSize],
-  );
+  const [paginatedData, setPaginatedData] = useState();
+
+  useEffect(() => {
+    setPaginatedData(() => paginate(data, pageSize), [data, pageSize]);
+  }, [data]);
 
   return paginatedData;
 };

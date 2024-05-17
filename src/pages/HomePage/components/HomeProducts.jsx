@@ -1,6 +1,5 @@
 import useGetRecents from "../../../hooks/useGetRecents";
 import ProductScroller from "../../../components/ProductsScroller";
-import Loading from "../../../components/Loading";
 
 const HomeProducts = () => {
   const recents = useGetRecents();
@@ -8,7 +7,7 @@ const HomeProducts = () => {
   return (
     <>
       <div className=" w-full bg-zinc-100 p-4 h-full min-h-[33rem]">
-        <h1 className="font-sans font-bold">Найновіші товари</h1>
+        <h1 className="font-sans font-bold">Останні товари</h1>
         {recents ? (
           <ProductScroller data={recents} />
         ) : (

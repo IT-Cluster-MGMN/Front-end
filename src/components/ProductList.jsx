@@ -13,23 +13,28 @@ const ProductList = ({
   itemsPerPage = 20,
 }) => {
   const paginatedData = usePagination(data, itemsPerPage);
+  console.log(paginatedData);
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [renderData, setRenderData] = useState(paginatedData[0]);
+  const [renderData, setRenderData] = useState(null);
 
   const handlePageChange = (e) => {
     setCurrentPage(e);
   };
 
   useEffect(() => {
-    setRenderData(paginatedData[currentPage - 1]);
-    window.scrollTo(0, 0);
-  }, [currentPage]);
+    if(paginatedData){
+      setRenderData(paginatedData[currentPage - 1]);
+      window.scrollTo(0, 0);
+    }
+  }, [currentPage, paginatedData]);
 
   return (
     <>
       <div className="flex flex-col pb-8">
+      {paginatedData ? (
+        <>  
         {renderData ? (
           <div
             className={`${isHorizontal ? "flex flex-col h-full " : "grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"}   justify-around p-8 gap-4`}
@@ -54,6 +59,8 @@ const ProductList = ({
           currentPage={currentPage}
           selectPage={(e) => handlePageChange(e)}
         />
+        </>
+      ) : null}
       </div>
     </>
   );
