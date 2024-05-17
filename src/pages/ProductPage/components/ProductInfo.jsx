@@ -4,10 +4,12 @@ import notFound from "@/assets/not-found-removebg-preview.png";
 import { useState } from "react";
 import MacroImage from "./MacroImage";
 import useAddToFav from "../../../hooks/useAddToFav";
+import useIsFav from "../../../hooks/useIsFav";
 
 const ProductInfo = ({ productInfo, minorImages }) => {
   const [largeImage, setLargeImage] = useState(0);
-  console.log(productInfo);
+
+  const [isFav, setIsFav] = useIsFav(productInfo.productId);
 
   const images = [];
   for (let i = 0; i < minorImages.length; i++) {
@@ -24,6 +26,7 @@ const ProductInfo = ({ productInfo, minorImages }) => {
 
   const handleAddToFav = (id) => {
     useAddToFav(id);
+    setIsFav(true);
   };
 
   const [showMacroImage, setShowMacroImage] = useState(false);
@@ -77,14 +80,24 @@ const ProductInfo = ({ productInfo, minorImages }) => {
                 Написати продавцю
               </div>
             </GreenButton>
-            <GreenButton hasHover={true}>
-              <div
-                onClick={() => handleAddToFav(productInfo.productId)}
-                className="flex items-center flex-row gap-1"
-              >
-                <BsFillHeartFill />
-                Додати до улюблених
-              </div>
+            <GreenButton hasHover={!isFav}>
+              {isFav ? (
+                <div
+                  onClick={() => handleAddToFav(productInfo.productId)}
+                  className="flex items-center flex-row gap-1"
+                >
+                  <BsFillHeartFill className="text-red-500" />
+                  Додано до улюблених
+                </div>
+              ) : (
+                <div
+                  onClick={() => handleAddToFav(productInfo.productId)}
+                  className="flex items-center flex-row gap-1"
+                >
+                  <BsFillHeartFill />
+                  Додати до улюблених
+                </div>
+              )}
             </GreenButton>
           </div>
         </div>

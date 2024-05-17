@@ -3,14 +3,19 @@ import "../App.css";
 import useAPIMainImage from "../hooks/useAPIMainImage";
 import GreenButton from "./GreenButton";
 import useAddToFav from "../hooks/useAddToFav";
+import useIsFav from "../hooks/useIsFav";
+import { BsFillHeartFill, BsChatFill } from "react-icons/bs";
 
 const ProductInfo = ({ item }) => {
   const image = useAPIMainImage(item.productId);
+
+  const [isFav, setIsFav] = useIsFav(item.productId);
 
   const navigate = useNavigate();
 
   const handleAddToFav = () => {
     useAddToFav(item.productId);
+    setIsFav(true);
   };
 
   const handleNavigate = () => {
@@ -40,8 +45,24 @@ const ProductInfo = ({ item }) => {
             {item.price}₴
           </span>
         </div>
-        <GreenButton onClick={handleAddToFav} hasHover={true}>
-          Add to favourites
+        <GreenButton hasHover={!isFav}>
+          {isFav ? (
+            <div
+              onClick={() => handleAddToFav(item.productId)}
+              className="flex text-[0.9rem] items-center flex-row gap-1"
+            >
+              <BsFillHeartFill className="text-red-500" />
+              Додано до улюблених
+            </div>
+          ) : (
+            <div
+              onClick={() => handleAddToFav(item.productId)}
+              className="flex items-center text-[0.9rem] flex-row gap-1"
+            >
+              <BsFillHeartFill />
+              Додати до улюблених
+            </div>
+          )}
         </GreenButton>
       </div>
     </>

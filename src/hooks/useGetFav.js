@@ -12,7 +12,7 @@ const useGetFav = () => {
         setFavourites(null);
       }
     }
-  }, [sessionStorage.getItem("favourites")]);
+  }, [sessionStorage]);
 
   return favourites;
 };
