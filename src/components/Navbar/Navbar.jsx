@@ -12,11 +12,10 @@ import Favourites from "../Favourites";
 import useGetAvatar from "../../hooks/useGetAvatar";
 
 const GENERIC_BUTTON_BACKGROUND =
-  "flex rounded-[7px] hover:bg-zinc-700 w-full justify-center items-center h-7 py-2";
-const GENERIC_TEXT =
-  "font-sans opacity-100 font-bold text-white text-[15px] no-underline";
+  "flex rounded-[7px] hover:bg-white hover:text-[rgba(80,200,120)] cursor-pointer transition text-white w-full justify-center items-center h-7 py-2";
+const GENERIC_TEXT = "font-sans opacity-100 font-bold text-[15px] no-underline";
 const MINOR_BUTTON_BACKGROUND =
-  "flex rounded-[7px] hover:bg-zinc-700 w-full justify-center h-7 items-center gap-2 bg-inherit border-none";
+  "flex rounded-[7px] hover:bg-white hover:text-[rgba(80,200,120)] text-white cursor-pointer transition w-full justify-center h-7 items-center gap-2 bg-inherit border-none";
 // TODO: constant for search bar text
 
 const Navbar = () => {
@@ -105,11 +104,11 @@ const Navbar = () => {
             </Link>
             {/* Catalogue button */}
             <button
-              className={`${GENERIC_BUTTON_BACKGROUND} self-center gap-2 bg-inherit border-none`}
+              className={`${GENERIC_BUTTON_BACKGROUND} self-center bg-inherit gap-2 border-none`}
               onClick={handleOpenCategoriesMenu}
             >
               <div
-                className={`${GENERIC_TEXT} flex items-center gap-2 bg-inherit border-none`}
+                className={`${GENERIC_TEXT} flex items-center gap-2  border-none`}
               >
                 Каталог
                 <BsGrid3X3Gap />
@@ -124,7 +123,7 @@ const Navbar = () => {
               onClick={handleFavouriteClick}
               className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}
             >
-              <BsFillHeartFill style={{ color: "white" }} />
+              <BsFillHeartFill className={GENERIC_TEXT} />
               <p className={GENERIC_TEXT}>Улюблені</p>
             </button>
             <Link
@@ -132,7 +131,7 @@ const Navbar = () => {
               onClick={handleLoginAlert}
               className={`no-underline ${MINOR_BUTTON_BACKGROUND}`}
             >
-              <BsFillTagsFill style={{ color: "white" }} />
+              <BsFillTagsFill className={GENERIC_TEXT} />
               <p className={GENERIC_TEXT}>Продати</p>
             </Link>
           </div>

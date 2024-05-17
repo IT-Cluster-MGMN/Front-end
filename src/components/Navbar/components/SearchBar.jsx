@@ -55,8 +55,8 @@ const SearchBar = () => {
         />
         <button
           type="submit"
-          className="h-full bg-[rgba(80,150,100,1)] border-none rounded-[1.5rem]
-                    hover:bg-[rgba(250,150,50,1)] py-1 delay-100 duration-150"
+          className="h-full bg-[rgba(80,200,120,1)] border-none rounded-[1.5rem]
+                    hover:bg-[rgba(80,150,100)] cursor-pointer py-1 delay-100 duration-150"
         >
           <BsSearch className="px-3 text-[0.8rem] text-white" />
         </button>
