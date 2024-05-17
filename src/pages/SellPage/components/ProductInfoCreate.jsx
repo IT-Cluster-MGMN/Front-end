@@ -44,7 +44,7 @@ const ProductInfoCreate = ({ onChange, username }) => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 ">
+      <div className="flex flex-col gap-2 w-[60%] ">
         <InputField
           label={"Назва"}
           onMouseOverInfo={() => setMouseOverTitle(true)}
@@ -59,7 +59,12 @@ const ProductInfoCreate = ({ onChange, username }) => {
           isMouseOver={mouseOverTitle}
         />
         <CategorySelector onChange={(e) => setCategory(e.target.value)} />
-        <DescriptionField onChange={(e) => setDescription(e.target.value)} />
+        <DescriptionField
+          title={title}
+          isValidTitle={isValidTitle}
+          category={category}
+          onChange={(e) => setDescription(e.target.value)}
+        />
         <InputField
           label={"Ціна"}
           onMouseOverInfo={() => setMouseOverPrice(true)}

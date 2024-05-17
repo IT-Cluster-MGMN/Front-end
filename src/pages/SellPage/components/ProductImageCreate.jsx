@@ -75,7 +75,7 @@ const ProductImageCreate = ({ onChange }) => {
             </div>
           )}
         </div>
-        <div className="flex flex-row gap-1 self-center overflow-x-scroll w-full h-[5rem] p-1">
+        <div className="flex flex-row gap-1 self-center overflow-x-scroll w-full max-w-[30rem] h-[5rem] p-1">
           {images.map((image, index) => (
             <>
               {index !== 0 ? (
