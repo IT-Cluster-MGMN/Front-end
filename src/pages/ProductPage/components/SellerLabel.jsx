@@ -2,7 +2,7 @@ const SellerLabel = ({ data, label }) => {
   return (
     <div className="flex-col flex">
       <label className="font-sans font-bold text-[1.2rem]">{label}</label>
-      {data === null ? (
+      {data === null || data === "null" ? (
         <span className="font-sans text-zinc-500 font-semibold">
           (Приховано)
         </span>

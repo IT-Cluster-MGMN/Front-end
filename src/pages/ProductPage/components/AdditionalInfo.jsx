@@ -24,7 +24,10 @@ const AdditionalInfo = ({ personal, contacts, avatar, username }) => {
                 <SellerLabel data={personal.additional} label={"По-батькові"} />
                 <SellerLabel data={personal.sex} label={"Стать"} />
                 <SellerLabel
-                  data={personal.date_birth}
+                  data={new Date(personal.date_birth).toLocaleDateString(
+                    "ua-UA",
+                    { year: "numeric", month: "long", day: "numeric" },
+                  )}
                   label={"День народження"}
                 />
               </div>
