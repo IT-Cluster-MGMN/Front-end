@@ -16,6 +16,7 @@ const ProductBox = () => {
   const username = useUsername();
 
   const [productImages, setProductImages] = useState(null);
+  console.log(productInfo, productImages);
 
   const handleInfoSubmit = (e) => {
     setProductInfo(e);
@@ -52,8 +53,24 @@ const ProductBox = () => {
             />
           </div>
           <GreenButton
-            disabled={productImages === null || productInfo === null}
-            hasHover={true}
+            disabled={
+              productImages?.[0] === undefined ||
+              productInfo?.username === null ||
+              productInfo?.title === undefined ||
+              productInfo?.description === undefined ||
+              productInfo?.category === undefined ||
+              productInfo?.price === undefined
+            }
+            hasHover={
+              !(
+                productImages?.[0] === undefined ||
+                productInfo?.username === null ||
+                productInfo?.title === undefined ||
+                productInfo?.description === undefined ||
+                productInfo?.category === undefined ||
+                productInfo?.price === undefined
+              )
+            }
             onClick={handleSubmit}
           >
             Оприлюднити
