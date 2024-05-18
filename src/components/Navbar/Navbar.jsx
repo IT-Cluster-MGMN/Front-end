@@ -6,7 +6,7 @@ import ProfileDropdown from "./components/ProfileDropdown";
 import CategoriesMenu from "./components/CategoriesMenu";
 import SearchBar from "./components/SearchBar";
 import useIsLogged from "../../hooks/useIsLogged";
-import newlogo from "@/assets/newlogo.png";
+import newlogo from "../../../public/new-logo.jpg";
 import Avatar from "../Avatar";
 import Favourites from "../Favourites";
 import useGetAvatar from "../../hooks/useGetAvatar";
