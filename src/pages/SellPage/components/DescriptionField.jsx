@@ -6,7 +6,6 @@ import axios from "axios";
 const DescriptionField = ({ onChange, category, title, isValidTitle }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [color, setColor] = useState("");
-  const [aiDescription, setAiDescription] = useState("");
   const [isAi, setIsAi] = useState(false);
   const [description, setDescription] = useState("");
 
@@ -21,7 +20,9 @@ const DescriptionField = ({ onChange, category, title, isValidTitle }) => {
             color: color,
             language: "українська",
           })
-          .then((res) => console.log(res))
+          .then((res) => {
+            setDescription(res.data.description);
+          })
           .catch((err) => console.log(err));
       } else {
         setErrorMessage(
