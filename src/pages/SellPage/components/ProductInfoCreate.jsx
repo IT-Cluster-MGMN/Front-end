@@ -63,7 +63,7 @@ const ProductInfoCreate = ({ onChange, username }) => {
           title={title}
           isValidTitle={isValidTitle}
           category={category}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e)}
         />
         <InputField
           label={"Ціна"}

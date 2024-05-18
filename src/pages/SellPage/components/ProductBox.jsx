@@ -51,7 +51,11 @@ const ProductBox = () => {
               username={username}
             />
           </div>
-          <GreenButton hasHover={true} onClick={handleSubmit}>
+          <GreenButton
+            disabled={productImages === null || productInfo === null}
+            hasHover={true}
+            onClick={handleSubmit}
+          >
             Оприлюднити
           </GreenButton>
         </div>
