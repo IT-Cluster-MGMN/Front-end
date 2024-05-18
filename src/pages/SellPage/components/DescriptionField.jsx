@@ -65,8 +65,8 @@ const DescriptionField = ({ onChange, category, title, isValidTitle }) => {
         <textarea
           onChange={(e) => handleChange(e.target.value)}
           cols="30"
-          rows="4"
-          maxLength="500"
+          rows="7"
+          maxLength="2000"
           className="resize-none rounded p-1 text-white bg-[rgba(50,50,50,1)] font-sans focus:outline-none"
           value={description}
         />
