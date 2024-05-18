@@ -6,6 +6,8 @@ const useRemoveFav = (id) => {
     currentFav.splice(index, 1);
     sessionStorage.setItem("favourites", currentFav.toString());
   }
+
+  window.location.reload();
 };
 
 export default useRemoveFav;
