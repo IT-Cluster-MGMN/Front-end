@@ -70,8 +70,6 @@ const ProductInfo = ({ productInfo, minorImages }) => {
             <span className="h-[7rem] text-[2rem] overflow-y-scroll font-sans font-light">
               {productInfo.price}₴
             </span>
-            <label className="font-sans">Дата оприлюднення</label>
-            <span>{productInfo.date}</span>
           </div>
           <div className="flex flex-row h-full justify-around items-end">
             <GreenButton hasHover={true}>
