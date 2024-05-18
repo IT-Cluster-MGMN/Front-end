@@ -37,8 +37,8 @@ const ProductBox = () => {
 
   return (
     <>
-      <div className="flex flex-row w-full h-full justify-center">
-        <div className="flex flex-col w-[70%]   gap-y-4 bg-darkgrey p-[2rem] ">
+      <div className="flex flex-row w-full h-[50rem] justify-center ">
+        <div className="flex flex-col w-[70%] h-full gap-y-[2rem] bg-darkgrey p-[2rem] ">
           <div className="flex flex-row  gap-x-4 w-full">
             <ProductImageCreate
               onChange={(e) => {
