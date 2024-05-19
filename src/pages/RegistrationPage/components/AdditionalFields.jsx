@@ -117,7 +117,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               className={`bg-inherit border-x-transparent border-t-transparent  border-[2px] ${isValidSurname && surname ? "border-b-green-500" : ""} ${!isValidSurname && surname ? "border-b-red-500" : ""} focus:outline-none text-white`}
             />
             {(surnameFocus && surname && !isValidSurname) ||
-              mouseOverSurname ? (
+            mouseOverSurname ? (
               <Hint type={"name"} />
             ) : null}
           </div>
@@ -145,7 +145,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               className={`bg-inherit border-x-transparent border-t-transparent  border-[2px] ${isValidAdditional && additional ? "border-b-green-500" : ""} ${!isValidAdditional && additional ? "border-b-red-500" : ""} focus:outline-none text-white`}
             />
             {(additionalFocus && additional && !isValidAdditional) ||
-              mouseOverAdditional ? (
+            mouseOverAdditional ? (
               <Hint type={"name"} />
             ) : null}
           </div>
@@ -163,7 +163,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               !sex ||
               !date_birth
             }
-            className={`p-2 ${isPersonalSaved ? "bg-green-500" : bg - white}`}
+            className={`p-2 ${isPersonalSaved ? "bg-green-500" : "bg-white"}`}
           >
             Зберегти особисту інформацію
           </button>
@@ -229,14 +229,14 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               className={`bg-inherit border-x-transparent border-t-transparent  border-[2px] ${isValidTelegram && telegram ? "border-b-green-500" : ""} ${!isValidTelegram && telegram ? "border-b-red-500" : ""} focus:outline-none text-white`}
             />
             {(telegramFocus && telegram && !isValidTelegram) ||
-              mouseOverTelegram ? (
+            mouseOverTelegram ? (
               <Hint type={"telegram"} />
             ) : null}
           </div>
           <button
             disabled={!isValidViber || !isValidTelegram || !isValidPhone}
             onClick={handleSaveContacts}
-            className={`p-2 ${isContactsSaved ? "bg-green-500" : bg - white}`}
+            className={`p-2 ${isContactsSaved ? "bg-green-500" : "bg-white"}`}
           >
             Зберегти контакти
           </button>
