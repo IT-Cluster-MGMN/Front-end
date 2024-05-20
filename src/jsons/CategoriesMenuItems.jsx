@@ -12,7 +12,7 @@ export const categoriesData = [
     icon: <BsPhone />,
     subcategories: [
       {
-        title: "Laptops",
+        title: "Ноутбуки",
         url: "../search?query=ноутбук",
         subsubcategory: [
           { title: "Asus", url: "../search?query=ноутбук%20asus" },
