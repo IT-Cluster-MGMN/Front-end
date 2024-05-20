@@ -6,6 +6,7 @@ import MacroImage from "../../ProductPage/components/MacroImage";
 import { IoTrashBin } from "react-icons/io5";
 import { FaPen } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import useDeleteMyProduct from "../../../hooks/useDeleteMyProduct";
 
 const MyProductInfo = ({ data }) => {
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ const MyProductInfo = ({ data }) => {
 
   const handleProdClick = () => {
     navigate(`/product/${data.productId}`);
+  };
+
+  const handleDeletion = () => {
+    useDeleteMyProduct(data.productId);
   };
 
   return (
@@ -72,6 +77,7 @@ const MyProductInfo = ({ data }) => {
             </div>
             <div className="flex flex-col w-[10%]">
               <IoTrashBin
+                onClick={handleDeletion}
                 color="green"
                 className="h-full transition px-2 hover:bg-zinc-300 rounded cursor-pointer"
               />

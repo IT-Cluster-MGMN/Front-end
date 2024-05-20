@@ -59,7 +59,7 @@ const ProductInfo = ({ productInfo, minorImages }) => {
             <label className="font-sans text-[1.2rem] font-semibold">
               Опис
             </label>
-            <span className="h-[7rem] overflow-y-scroll font-sans font-light">
+            <span className="h-[7rem] overflow-y-scroll break-words font-sans font-light">
               {productInfo.description}
             </span>
           </div>
