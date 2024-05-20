@@ -75,13 +75,13 @@ const MyProductInfo = ({ data }) => {
             <div className="bg-white h-[10rem] overflow-y-scroll w-full">
               <span className="font-sans">{data.description}</span>
             </div>
-            <div className="flex flex-col w-[10%]">
-              <IoTrashBin
-                onClick={handleDeletion}
-                color="green"
-                className="h-full transition px-2 hover:bg-zinc-300 rounded cursor-pointer"
-              />
-            </div>
+            {/* <div className="flex flex-col w-[10%]"> */}
+            {/*   <IoTrashBin */}
+            {/*     onClick={handleDeletion} */}
+            {/*     color="green" */}
+            {/*     className="h-full transition px-2 hover:bg-zinc-300 rounded cursor-pointer" */}
+            {/*   /> */}
+            {/* </div> */}
           </div>
           {showMacroImage ? (
             <MacroImage
