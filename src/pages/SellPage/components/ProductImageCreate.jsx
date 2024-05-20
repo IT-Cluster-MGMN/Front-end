@@ -7,7 +7,6 @@ const ProductImageCreate = ({ onChange }) => {
   const reader = new FileReader();
   const [draggedImageIndex, setDraggedImageIndex] = useState(null);
 
-  console.log(images)
 
   const handleFileAddition = (e) => {
     reader.readAsDataURL(e);

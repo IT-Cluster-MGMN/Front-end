@@ -21,6 +21,7 @@ const DescriptionField = ({ onChange, category, title, isValidTitle }) => {
             language: "українська",
           })
           .then((res) => {
+            onChange(res.data.description);
             setDescription(res.data.description);
           })
           .catch((err) => console.log(err));

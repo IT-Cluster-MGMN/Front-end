@@ -13,7 +13,6 @@ const ProductList = ({
   itemsPerPage = 20,
 }) => {
   const paginatedData = usePagination(data, itemsPerPage);
-  console.log(paginatedData);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,7 +23,7 @@ const ProductList = ({
   };
 
   useEffect(() => {
-    if(paginatedData){
+    if (paginatedData) {
       setRenderData(paginatedData[currentPage - 1]);
       window.scrollTo(0, 0);
     }
@@ -33,34 +32,34 @@ const ProductList = ({
   return (
     <>
       <div className="flex flex-col pb-8">
-      {paginatedData ? (
-        <>  
-        {renderData ? (
-          <div
-            className={`${isHorizontal ? "flex flex-col h-full " : "grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"}   justify-around p-8 gap-4`}
-          >
-            {renderData.map((product) => (
-              <>
-                {isHorizontal ? (
-                  <MyProductInfo data={product} />
-                ) : (
-                  <ProductInfo item={product} />
-                )}
-              </>
-            ))}
-          </div>
-        ) : (
-          <ProductEmpty />
-        )}
+        {paginatedData ? (
+          <>
+            {renderData ? (
+              <div
+                className={`${isHorizontal ? "flex flex-col h-full " : "grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"}   justify-around p-8 gap-4`}
+              >
+                {renderData.map((product) => (
+                  <>
+                    {isHorizontal ? (
+                      <MyProductInfo data={product} />
+                    ) : (
+                      <ProductInfo item={product} />
+                    )}
+                  </>
+                ))}
+              </div>
+            ) : (
+              <ProductEmpty />
+            )}
 
-        <PageSelector
-          darkTheme={darkTheme}
-          numPages={paginatedData.length}
-          currentPage={currentPage}
-          selectPage={(e) => handlePageChange(e)}
-        />
-        </>
-      ) : null}
+            <PageSelector
+              darkTheme={darkTheme}
+              numPages={paginatedData.length}
+              currentPage={currentPage}
+              selectPage={(e) => handlePageChange(e)}
+            />
+          </>
+        ) : null}
       </div>
     </>
   );

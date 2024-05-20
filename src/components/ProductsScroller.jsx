@@ -17,8 +17,6 @@ const ProductScroller = ({ data }) => {
     }
   };
 
-  console.log(data);
-
   return (
     <>
       {data ? (

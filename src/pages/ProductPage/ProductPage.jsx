@@ -17,7 +17,6 @@ const ProductPage = () => {
   const [username, setUsername] = useState(null);
   useEffect(() => {
     if (productInfo) {
-      console.log(11);
       setUsername(productInfo.username);
     }
   }, [productInfo]);

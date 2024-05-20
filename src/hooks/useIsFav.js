@@ -8,7 +8,6 @@ const useIsFav = (id) => {
   useEffect(() => {
     if (favList) {
       if (favList.includes(String(id))) {
-        console.log(1);
         setIsFav(true);
       }
     }

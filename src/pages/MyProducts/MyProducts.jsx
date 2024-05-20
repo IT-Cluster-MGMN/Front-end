@@ -9,7 +9,6 @@ import useUsername from "../../hooks/useUsername";
 const MyProducts = () => {
   const username = useUsername();
   const myProducts = useGetMyProducts(username);
-  console.log(myProducts);
   return (
     <>
       <div className="flex flex-col absolute top-0 left-0 w-screen overflow-x-hidden">

@@ -16,7 +16,6 @@ const ProductBox = () => {
   const username = useUsername();
 
   const [productImages, setProductImages] = useState(null);
-  console.log(productInfo, productImages);
 
   const handleInfoSubmit = (e) => {
     setProductInfo(e);
