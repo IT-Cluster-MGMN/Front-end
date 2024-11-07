@@ -1,4 +1,4 @@
-import { categoriesData } from "../../../jsons/CategoriesMenuItems";
+import { categoriesData } from "../../../components/Navbar/components/CategoriesMenuItems";
 
 const CategorySelector = ({ onChange }) => {
   return (

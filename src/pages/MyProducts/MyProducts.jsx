@@ -1,7 +1,6 @@
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import ProductList from "../../components/ProductList";
-import dummyData from "@/jsons/dummyData.json";
 import useGetMyProducts from "../../hooks/useGetMyProducts";
 import Loading from "../../components/Loading";
 import useUsername from "../../hooks/useUsername";

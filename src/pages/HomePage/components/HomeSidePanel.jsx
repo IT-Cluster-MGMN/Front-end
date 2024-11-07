@@ -1,4 +1,4 @@
-import { categoriesData } from "../../../jsons/CategoriesMenuItems";
+import { categoriesData } from "../../../components/Navbar/components/CategoriesMenuItems";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BsCaretUp, BsFolderMinus } from "react-icons/bs";
