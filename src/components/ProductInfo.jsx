@@ -33,7 +33,7 @@ const ProductInfo = ({ item }) => {
             src={
               image
                 ? `data:image/jpeg;base64,${image}`
-                : `/src/assets/not-found-removebg-preview.png`
+                : `/public/images/no-image.png`
             }
             alt="image"
             className="rounded-[1rem] object-cover aspect-square w-[13rem] select-none"

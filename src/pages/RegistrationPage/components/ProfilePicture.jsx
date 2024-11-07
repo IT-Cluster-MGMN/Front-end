@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ImageCropper from "../../../components/ImageCropper";
-import defaultProfile from "@/assets/profile.png";
+import defaultProfile from "../../../../public/images/profile.png";
 
 const ProfilePicture = ({ onChange, currentImage = defaultProfile }) => {
   const [renderImage, setRenderImage] = useState();

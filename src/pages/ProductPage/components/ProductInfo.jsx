@@ -1,6 +1,6 @@
 import GreenButton from "@/components/GreenButton.jsx";
 import { BsFillHeartFill, BsChatFill } from "react-icons/bs";
-import notFound from "@/assets/not-found-removebg-preview.png";
+import noImage from "../../../../public/images/no-image.png"
 import { useState } from "react";
 import MacroImage from "./MacroImage";
 import useAddToFav from "../../../hooks/useAddToFav";
@@ -38,7 +38,7 @@ const ProductInfo = ({ productInfo, minorImages }) => {
             src={
               minorImages
                 ? `data:image/jpeg;base64,${images[largeImage]}`
-                : notFound
+                : noImage
             }
             className="aspect-square object-cover h-full rounded "
             onClick={() => handleMacroImage(0)}

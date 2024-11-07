@@ -1,5 +1,5 @@
 import useGetAvatar from "../hooks/useGetAvatar";
-import defaultAvatar from "@/assets/profile.png";
+import defaultAvatar from "../../public/images/profile.png"
 import useIsLogged from "../hooks/useIsLogged";
 
 const Avatar = ({ className, onClick, avatar }) => {

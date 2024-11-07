@@ -1,5 +1,5 @@
 import useAPIMainImage from "../../../hooks/useAPIMainImage";
-import notFound from "@/assets/not-found-removebg-preview.png";
+import noImage from "../../../../public/images/no-image.png"
 import useAPIMinorImage from "../../../hooks/useAPIMinorImages";
 import { useState } from "react";
 import MacroImage from "../../ProductPage/components/MacroImage";
@@ -44,7 +44,7 @@ const MyProductInfo = ({ data }) => {
                 src={
                   images
                     ? "data:image/jpeg;base64," + images[largeImage]
-                    : notFound
+                    : noImage
                 }
                 onClick={handleMacroImage}
                 className=" object-cover w-[10rem] aspect-square rounded"

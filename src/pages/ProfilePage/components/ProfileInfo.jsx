@@ -4,7 +4,7 @@ import { BsTelegram } from "react-icons/bs";
 import GreenButton from "../../../components/GreenButton";
 import Loading from "../../../components/Loading";
 import EmailLabel from "./EmailLabel";
-import defaultProfile from "@/assets/profile.png";
+import defaultProfile from "../../../../public/images/profile.png";
 
 const ProfileInfo = ({
   user,
