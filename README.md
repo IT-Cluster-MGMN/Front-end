@@ -31,13 +31,7 @@ Project structure: <br/>
 ⠀⠀⠀├── App.css(main css file)<br/>
 ⠀⠀⠀├── App.jsx(main project file, contains react browser)<br/>
 ⠀⠀⠀└── other files are either unused or are immutable<br/>
-All custom hooks:<br/>
-    useRegexValidation(<initial value>, <regex>) = regex.text(value);<br/>
-        usage:<br/>
-            [<value>, <is valid>, <setter function>] = useRegexValidation(<initial value>, <regex>); <br/>
-    useUsername() - sends request with credentials and returns user's username;<br/>
-    useUserData() - sends post request with credentials and returns user's data;<br/>
-<br/>
+
 All custom api requests(services/api.js):
    requestWithCredentials(...) - config: {'withCredentials':true}
     requestWithoutCredentials(...) - 'withCredentials':false
