@@ -9,7 +9,7 @@ import {
 import useEditProfile from "../../../hooks/useEditProfile.js";
 import EditProfileButton from "./EditProfileButton.jsx";
 import SaveButton from "./SaveButton.jsx";
-import SexSelector from "../../../components/SexSelector.jsx";
+import GenderSelector from "../../../components/GenderSelector.jsx";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector.jsx";
 import Loading from "../../../components/Loading.jsx";
 import EmailLabel from "./EmailLabel.jsx";
@@ -299,7 +299,7 @@ const ProfileEdit = ({
               </div>
               <div className="col-start-2 p-2 row-start-1 bg-white rounded-[1.5rem]">
                 <div className="flex flex-col h-full ">
-                  <SexSelector
+                  <GenderSelector
                     onChange={(e) => handleSexChange(e)}
                     sex={sex}
                     lightTheme={true}

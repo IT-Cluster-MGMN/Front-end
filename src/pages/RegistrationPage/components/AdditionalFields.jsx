@@ -10,7 +10,7 @@ import flags from "react-phone-number-input/flags";
 import "react-phone-number-input/style.css";
 import { FaCircleInfo } from "react-icons/fa6";
 import Hint from "./Hint";
-import SexSelector from "../../../components/SexSelector";
+import GenderSelector from "../../../components/GenderSelector";
 import DateOfBirthSelector from "../../../components/DateOfBirthSelector";
 
 const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
@@ -117,7 +117,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               className={`bg-inherit border-x-transparent border-t-transparent  border-[2px] ${isValidSurname && surname ? "border-b-green-500" : ""} ${!isValidSurname && surname ? "border-b-red-500" : ""} focus:outline-none text-white`}
             />
             {(surnameFocus && surname && !isValidSurname) ||
-            mouseOverSurname ? (
+              mouseOverSurname ? (
               <Hint type={"name"} />
             ) : null}
           </div>
@@ -145,11 +145,11 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               className={`bg-inherit border-x-transparent border-t-transparent  border-[2px] ${isValidAdditional && additional ? "border-b-green-500" : ""} ${!isValidAdditional && additional ? "border-b-red-500" : ""} focus:outline-none text-white`}
             />
             {(additionalFocus && additional && !isValidAdditional) ||
-            mouseOverAdditional ? (
+              mouseOverAdditional ? (
               <Hint type={"name"} />
             ) : null}
           </div>
-          <SexSelector onChange={(e) => setSex(e)} sex={sex} />
+          <GenderSelector onChange={(e) => setSex(e)} sex={sex} />
           <DateOfBirthSelector
             onChange={(e) => setDateBirth(e)}
             date_birth={date_birth}
@@ -229,7 +229,7 @@ const AdditionalFields = ({ onPersonalSubmit, onContactsSubmit }) => {
               className={`bg-inherit border-x-transparent border-t-transparent  border-[2px] ${isValidTelegram && telegram ? "border-b-green-500" : ""} ${!isValidTelegram && telegram ? "border-b-red-500" : ""} focus:outline-none text-white`}
             />
             {(telegramFocus && telegram && !isValidTelegram) ||
-            mouseOverTelegram ? (
+              mouseOverTelegram ? (
               <Hint type={"telegram"} />
             ) : null}
           </div>

@@ -1,4 +1,4 @@
-const SexSelector = ({ onChange, sex, lightTheme, hide, hidden, onHide }) => {
+const GenderSelector = ({ onChange, sex, lightTheme, hide, hidden, onHide }) => {
   return (
     <div className="flex flex-row w-full">
       <div className="flex flex-col font-sans w-full">
@@ -26,4 +26,4 @@ const SexSelector = ({ onChange, sex, lightTheme, hide, hidden, onHide }) => {
   );
 };
 
-export default SexSelector;
+export default GenderSelector;
